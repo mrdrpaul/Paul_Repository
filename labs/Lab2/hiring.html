@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hiring</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<div style="font-size: 40px; display: block; text-align: center">
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="#">Hiring</a>
+    <h1>§ La Fantásia Hiring §</h1>
+</div>
+<div>
+    <form action="/sendToSite" method="get">
+        <label>
+            First Name:
+            <input type="text" name="fname" placeholder="Enter your first name" required maxlength="20">
+        </label>
+        <br>
+        <label>
+            Last Name:
+            <input type="text" name="lname" placeholder="Enter your last name" minlength="1" maxlength="20">
+        </label>
+        <br>
+        <label>
+            Address 1:
+            <input type="text" name="address1" placeholder="Address 1" required>
+        </label>
+        <br>
+        <label>
+            Address 2:
+            <input type="text" name="address2" placeholder="Address 2">
+        </label>
+        <br>
+        <label>
+            City:
+            <input type="text" name="city" placeholder="City" maxlength="30" required>
+        </label>
+        <br>
+        <label>
+            State:
+<!--            Retrieved from "https://www.freeformatter.com/usa-state-list-html-select.html"-->
+            <select>
+                <option value="AL">AL</option>
+                <option value="AK">AK</option>
+                <option value="AR">AR</option>
+                <option value="AZ">AZ</option>
+                <option value="CA">CA</option>
+                <option value="CO">CO</option>
+                <option value="CT">CT</option>
+                <option value="DC">DC</option>
+                <option value="DE">DE</option>
+                <option value="FL">FL</option>
+                <option value="GA">GA</option>
+                <option value="HI">HI</option>
+                <option value="IA">IA</option>
+                <option value="ID">ID</option>
+                <option value="IL">IL</option>
+                <option value="IN">IN</option>
+                <option value="KS">KS</option>
+                <option value="KY">KY</option>
+                <option value="LA">LA</option>
+                <option value="MA">MA</option>
+                <option value="MD">MD</option>
+                <option value="ME">ME</option>
+                <option value="MI">MI</option>
+                <option value="MN">MN</option>
+                <option value="MO">MO</option>
+                <option value="MS">MS</option>
+                <option value="MT">MT</option>
+                <option value="NC">NC</option>
+                <option value="NE">NE</option>
+                <option value="NH">NH</option>
+                <option value="NJ">NJ</option>
+                <option value="NM">NM</option>
+                <option value="NV">NV</option>
+                <option value="NY">NY</option>
+                <option value="ND">ND</option>
+                <option value="OH">OH</option>
+                <option value="OK">OK</option>
+                <option value="OR">OR</option>
+                <option value="PA">PA</option>
+                <option value="RI">RI</option>
+                <option value="SC">SC</option>
+                <option value="SD">SD</option>
+                <option value="TN">TN</option>
+                <option value="TX">TX</option>
+                <option value="UT">UT</option>
+                <option value="VT">VT</option>
+                <option value="VA">VA</option>
+                <option value="WA">WA</option>
+                <option value="WI">WI</option>
+                <option value="WV">WV</option>
+                <option value="WY">WY</option>
+            </select>
+        </label>
+        <br>
+        <label>
+            Age:
+            <input type="number" name="age" placeholder="Age" min="21" max="99">
+        </label>
+        <br>
+        <label>
+            Phone:
+            <input type="tel" name="phone" placeholder="Tel (xxx-xxx-xxxx)" title="pattern xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+        </label>
+        <br>
+        <label>
+            Email:
+            <input type="email" name="email_address" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        </label>
+        <br>
+        <label>
+            Password:
+            <input type="password" name="password" title="ender number, special,capital,lowercase, then whatever for the rest of your password" placeholder="length 8-12" min="8" max="12" pattern="[0-9][!@#$%^()][A-Z][a-z].{4,8}" required>
+        </label>
+        <br>
+        <label>
+            Marriage status:
+            <input type="radio" name="marriage" checked="checked">Single
+            <input type="radio" name="marriage">Married
+        </label>
+        <br>
+        <label>
+            Favorite colors:
+            <input type="checkbox" name="color1" value="blue">blue
+            <input type="checkbox" name="color2" value="red">red
+            <input type="checkbox" name="color3" value="green">green
+            <input type="checkbox" name="color4" value="yellow">yellow
+            <input type="checkbox" name="color5" value="orange">orange
+        </label>
+        <br>
+        <label>
+            More Info:
+            <br>
+            <textarea rows="4" cols="20" maxlength="30" name="moreInfo" placeholder="Enter info about yourself"></textarea>
+        </label>
+        <br>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+</div>
+</body>
+</html>
