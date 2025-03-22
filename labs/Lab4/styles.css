@@ -1,0 +1,346 @@
+body{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: black;
+}
+
+header{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2vw;
+    width: 100vw;
+    height: 7vw;
+    z-index: -1;
+}
+
+.dungeonTitle {
+    font-family: "Jacquard 12", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: inherit;
+    color: white;
+    z-index: 1;
+}
+.dungeonBanner{
+    position: absolute;
+    outline: black solid 7px;
+    outline-offset: -7px;
+    z-index: 0;
+    left: 20vw;
+    right: 20vw;
+    top:0;
+}
+#leftWallImage,#rightWallImage,#dungeonBackgroundImage, #dungeonBanner{
+    width: 100%;
+    height: 100%;
+}
+
+#dungeonContainer{
+    overflow: hidden;
+}
+
+/*Sets height of the row to 100% (100vh) of the height of the viewpoint (extends columns)*/
+.row{
+    height: 100vh;
+}
+
+#dungeonWallLeft,#dungeonWallRight, #dungeonBackground{
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+#leftWallImage,#rightWallImage{
+    outline: black solid 7px;
+    outline-offset: -7px;
+    text-align: center;
+}
+
+#dungeonBackgroundImage{
+    position: relative;
+    outline: black solid 7px;
+    outline-offset: -7px;
+    text-align: center;
+    z-index: -2;
+    /*animation: entrance 4s ease-in;*/
+
+}
+#forwardPoint{
+    position: absolute;
+    left: 45%;
+    top: 60vh;
+    max-width: 10vw;
+    rotate: 90deg;
+    animation: pulse 3s linear infinite;
+    z-index: 6;
+}
+
+#leftPoint, #rightPoint{
+    position: absolute;
+    display:none;
+    top: 60vh;
+    max-width: 10vw;
+}
+#leftPoint{
+    left: 22%;
+}
+#rightPoint{
+    right: 22%
+
+}
+
+@keyframes entrance {
+    from{ filter:brightness(1)}
+    to {scale: 5;filter:brightness(0)}
+}
+
+@keyframes locationChange {
+    from{ filter:brightness(1)}
+    to {filter:brightness(0)}
+}
+/*change for dungeon page*/
+@keyframes moveLeft {
+    from{translate:0}
+    to{translate:-400px}
+}
+@keyframes moveRight {
+    from{translate: 0}
+    to{translate: 55vw}
+}
+
+@keyframes moveLeft {
+    from{translate:0}
+    to{translate:-400px}
+}
+@keyframes moveRight {
+    from{translate: 0}
+    to{translate: 55vw}
+}
+
+@keyframes graduallyDisappear {
+    from{opacity: 1}
+    to{opacity: 0}
+    100%{display: none}
+}
+@keyframes graduallyAppear {
+    from{opacity: 0}
+    to{opacity: 1;
+    }
+
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+/*___________________________________________Menu.html______________________________________________*/
+#menuLeftWallImage, #menuRightWallImage{
+    background-position: top;
+    width: 100%;
+    height: 100%;
+    outline: black solid 7px;
+    outline-offset: -7px;
+    text-align: center;
+    position: relative;
+    z-index:-2;
+}
+
+.portal{
+    position: absolute;
+    bottom: 30vh;
+    width: 10.5vw;
+    height: 45vh;
+    border: 10px solid tan;
+    border-top-left-radius: 100vw;
+    border-top-right-radius: 100vw;
+    padding: 0;
+    z-index: -1;
+    /*animation: activatePortal 2s linear;*/
+    /*animation-fill-mode: forwards;*/
+}
+#portalLeftBorder{
+    left: 5vw;
+}
+#portalRightBorder{
+    right: 5.35vw;
+}
+
+#portalUnderlay{
+    position: absolute;
+    left: 5.6vw;
+    bottom: 30vh;
+    width: 0;
+    height: 50vh;
+    overflow: hidden;
+    padding-right: 88.4vw;
+    background-color: transparent;
+    z-index: 1;
+}
+.menuItemContainer{
+    position: absolute;
+    display: grid;
+    grid-template-columns: 60fr 40fr;
+    top: 28%;
+    left: -500px;
+    width: 36vw;
+    height: 32vh;
+    border-radius: 10px;
+    box-sizing: content-box;
+    overflow: hidden;
+    /*animation: moveRight 2s linear, addBorder 1s linear;*/
+    /*animation-delay: 2s,4s;*/
+    /*animation-fill-mode: forwards;*/
+}
+
+#previousItem, #nextItem,#menuButton{
+    padding:0;
+    display: flex;
+}
+#previousItem{
+    justify-content: right;
+}
+#menuButton{
+    justify-content: center;
+}
+#nextItem{
+    justify-content: left;
+
+    /*right: auto;*/
+}
+#previousItemButton, #nextItemButton{
+    position: relative;
+    background: none;
+    padding: 0;
+    border: none;
+    margin-left: 0;
+    cursor: pointer;
+    top:80vh;
+    height: 10vh;
+}
+#previousItemButton{
+    left:8vw;
+}
+#nextItemButton{
+    right:8vw;
+}
+#previousItemButtonImage{
+    max-width: 10vw;
+    height: inherit;
+
+}
+#nextItemButtonImage{
+    max-width: 10vw;
+    height: inherit;
+}
+
+#menuCall{
+    position: relative;
+    width: 8vw;
+    height: 8vh;
+    top:11vh;
+    outline: 5px solid black;
+    outline-offset: -5px;
+    background-image: url("./assets/button.png");
+    font-size: 1vw;
+    color: white;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 10%;
+}
+
+#mutton{
+    width: 100%;
+    height: 90%;
+
+}
+#menuItemDescription{
+    background-color: tan;
+    text-align: center;
+    padding: 1px;
+    opacity: 0;
+    /*animation: graduallyAppear 2s linear;*/
+    /*animation-delay: 4s;*/
+    /*animation-fill-mode: forwards;*/
+}
+
+@keyframes moveRight2 {
+    0%{
+        /*left: -20vw;*/
+        height: 0;
+    }
+    to{
+        /*left: 40vw;*/
+        height: 30vh;
+    }
+
+
+}
+@keyframes addBorder {
+    from{outline:0 solid whitesmoke}
+    to{outline: 5px solid whitesmoke;}
+}
+
+
+@keyframes activatePortal {
+    from{background-color: transparent}
+    to{background-color: black}
+}
+@keyframes deactivatePortal {
+    from{background-color: black}
+    to{background-color: transparent}
+}
+
+@keyframes dissipateMenu  {
+    from{
+        left:inherit;
+        opacity: 1
+    }
+    to{
+        left:inherit;
+        /*left:55vw;*/
+        opacity: 0
+    }
+    /*100%{*/
+    /*    left:0;*/
+    /*    display: none}*/
+}
+
+@keyframes shift{
+    0%{border-radius: 0}
+    10%{
+        border-radius: 0 50% 0 50% /50% 0 50% 0;
+        border-left: 0 solid black;
+        scale: 0;
+        /*border: solid 80px tan;*/
+        filter: brightness(0%);
+
+    }
+    20%{filter: brightness(32%);}
+    30%{filter: brightness(45%);}
+    40%{filter: brightness(0);}
+    50%{filter: brightness(0);}
+    60%{filter: brightness(0);}
+    100%{
+        border-radius: 0 50% 0 50%;
+        border-left: 100px solid black;
+        filter: brightness(0);
+        rotate: -45000deg;
+        scale: 1000%;
+    }
+
+}
+
+menu body{display: none}
