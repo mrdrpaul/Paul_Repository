@@ -14,22 +14,53 @@
 </head>
 <!--bootstrap-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!-- Fontawesome -->
+<script src="https://kit.fontawesome.com/15b7e774df.js" crossorigin="anonymous"></script>
 <!--personal JS-->
-
 <body class="menuPage" style="background-image: url('./assets/tavernMenu.jpeg');background-repeat: no-repeat;background-size: 80vw 100vh; background-position: center" >
+<!-- FONMTAWESOME BEING USED IN NAV BAR -->
+<div id="menuPageNavBar">
+	<img src="./assets/navBarImage.png" id="navBarImage" alt="navBarImage">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	  <div class="container-fluid">
+		<a class="navbar-brand" href="#">Mystical Navigation Station</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		  <div class="navbar-nav">
+			<i class="fa-solid fa-wand-sparkles"></i>
+			<a class="nav-link " href="index.html">Home</a>
+			<i class="fa-solid fa-hat-wizard"></i>
+			<a class="nav-link " href="hiring.html">Hiring</a>
+			<i class="fa-solid fa-wand-magic-sparkles"></i>
+			<a class="nav-link active" aria-current="page" href="#">Menu</a>
+			<i class="fa-solid fa-hand-sparkles"></i>
+		  </div>
+		</div>
+	  </div>
+	</nav>
+</div>
 <!--<body style="background-image: url('./assets/tavernMenu.jpeg');background-repeat: no-repeat;background-size: 80vw 100vh; background-position: center" >-->
     <div class="container-fluid" id="dungeonContainer">
-        <div class="row">
+        <div class="row" id="menuRow">
             <div class="col" id="dungeonWallLeft">
                 <img src="assets/woodWallStainedGlassWindow.jpeg" id="menuLeftWallImage" alt="Skull Wall">
                 <div class="portal" id="portalLeftBorder"></div>
                 <div id="portalUnderlay">
-                    <div class="menuItemContainer">
-                        <img src="./assets/Mutton.png" id="mutton" alt="background Image">
-                        <p id="menuItemDescription">
-                            Slow-roasted o’er an open flame, our Hearth-Roasted Mutton Platter be a feast fit for a weary traveler. This rich and hearty cut be basted in a blend o’ me own secret herbs and dripping with savory juices.
-                            Served alongside a crusty hunk o’ barley bread, a dollop o’ spiced apple chutney, and a heapin’ portion o’ buttered root vegetables, this meal shall warm thy belly and put the strength o’ ten men in thy bones!
-                            </p>
+					<div class="portalBeamOpening" id="portalBeamLeftOpening"></div>
+					<div class="portalBeamOpening" id="portalBeamRightOpening"></div>
+					<!-- <div class="portalBeam" id="portalBeamLeft"></div> -->
+					<!-- <div class="portalBeam" id="portalBeamRight"></div> -->
+                    <div id="menuItemContainer">
+						<div id="leftColumn">
+							<p id="menuItemName"></p>
+							<img src="" id="menuItemImage" alt="background Image">
+						</div>
+						<div id="rightColumn">				
+							<p id="menuItemPrice"></p>
+							<p id="menuItemDescription"></p>
+						</div>			
                     </div>
                 </div>
 <!--                <div class="portalRightBorder"></div>-->
