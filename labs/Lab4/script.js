@@ -223,7 +223,19 @@ if(document.body.classList.contains('menuPage')){
 }
 
 if(document.body.classList.contains('hiringPage')){
-
+	let submitClick = document.getElementById("submitButton")
+	submitClick.addEventListener('click', () =>{
+		let userFormAge = document.forms["userForm"]["age"].value;
+		validateForm(userFormAge)
+})
+	
+	
+function validateForm(userformage){
+	if (userformgae<21||userformage>99){
+		alert("Must be older than 21 and younger than 99");
+	}
+	
+}
 }
 
 

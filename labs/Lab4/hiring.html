@@ -42,13 +42,13 @@
 	</nav>
 </div>
 <div id="hiringForm">
-	<form>
+	<form name="userForm">
 	<div class="container-fluid" id="dungeonContainer">
 		<div class="row" id="hiringRowOne">
 			<div class="col" >
 				<div class="mb-3">
 					<label for="firstName" class="form-label">First Name</label>
-					<input type="text" class="form-control" id="firstName">
+					<input type="text" class="form-control" name="firstName" id="firstName">
 				</div>
 			</div>
 			<div class="col">
@@ -97,7 +97,7 @@
 			<div class="col" >
 				<div class="mb-3">
 					<label for="age" class="form-label">Age</label>
-					<input type="text" class="form-control" id="age">
+					<input type="text" class="form-control" name="age" id="age">
 				</div>
 			</div>
 			<div class="col" >
@@ -158,7 +158,7 @@
 		</div>
 		<div class="row" id="hiringRowEight">
 		<div class="col">
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
 		</div>
 		<div class="col">
 			<button type="reset" class="btn btn-danger">Reset</button>
