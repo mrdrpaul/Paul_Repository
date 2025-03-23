@@ -1,0 +1,595 @@
+/* The color style for these pages were based on a mediaval theme. a darker aesthetic was chosen for the homepage to represent a dungeon crawler, while a brighter more hearty color scheme is for the tavern. */
+
+body{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: black;
+}
+
+header{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2vw;
+    width: 100vw;
+    height: 7vw;
+    z-index: -1;
+}
+
+#homePageNavBar, #hiringPageNavBar, #menuPageNavBar {
+	display: grid;
+    grid-template-columns: 2fr 98fr;
+	background-color:black;
+	opacity: 0.8;
+	position:absolute;
+	width:100%;
+}
+#navBarImage{
+	max-width:40px;
+}
+#homePageNavBar{
+	display:none;
+}
+.bg-primary{
+	background-color:black !important;
+	opacity: 0.8;
+}
+/* THIS IS WHERE THE GOOGLE FONT IS BEING USED */
+.dungeonTitle, .bg-primary {
+    font-family: "Jacquard 12", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: inherit;
+    color: white;
+    z-index: 1;
+}
+/* THIS IS THE END OF WHERE THE GOOGLE FONT IS BEING USED */
+
+
+
+.dungeonBanner{
+    position: absolute;
+    outline: black solid 7px;
+    outline-offset: -7px;
+    z-index: 0;
+    left: 20vw;
+    right: 20vw;
+    top:0;
+}
+#leftWallImage,#rightWallImage,#dungeonBackgroundImage, #dungeonBanner{
+    width: 100%;
+    height: 100%;
+}
+
+#dungeonContainer{
+    overflow: hidden;
+}
+
+/*Sets height of the row to 100% (100vh) of the height of the viewpoint (extends columns)*/
+.row{
+    height: 10vh;
+}
+
+#indexRow{
+	height:100vh;
+}
+#menuRow{
+	height:100vh;
+}
+#dungeonWallLeft,#dungeonWallRight, #dungeonBackground{
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+#leftWallImage,#rightWallImage{
+    outline: black solid 7px;
+    outline-offset: -7px;
+    text-align: center;
+}
+
+#dungeonBackgroundImage{
+    position: relative;
+    outline: black solid 7px;
+    outline-offset: -7px;
+    text-align: center;
+    z-index: -2;
+    /*animation: entrance 4s ease-in;*/
+
+}
+#forwardPoint{
+    position: absolute;
+    left: 45%;
+    top: 60vh;
+    max-width: 10vw;
+    rotate: 90deg;
+    animation: pulse 3s linear infinite;
+    z-index: 6;
+}
+
+#leftPoint, #rightPoint{
+    position: absolute;
+    display:none;
+    top: 60vh;
+    max-width: 10vw;
+}
+#leftPoint{
+    left: 22%;
+}
+#rightPoint{
+    right: 22%
+
+}
+
+@keyframes entrance {
+    from{ filter:brightness(1)}
+    to {scale: 5;filter:brightness(0)}
+}
+
+@keyframes locationChange {
+    from{ filter:brightness(1)}
+    to {filter:brightness(0)}
+}
+/*change for dungeon page*/
+@keyframes moveLeftDungeon {
+    from{translate:0}
+    to{translate:-400px}
+}
+@keyframes moveRightDungeon {
+    from{translate: 0}
+    to{translate: 400px}
+}
+
+@keyframes graduallyDisappear {
+    from{opacity: 1}
+    to{opacity: 0}
+    100%{display: none}
+}
+@keyframes graduallyAppear {
+    from{opacity: 0}
+    to{opacity: 1;
+    }
+
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+/*___________________________________________Menu.html______________________________________________*/
+#menuLeftWallImage, #menuRightWallImage{
+    background-position: top;
+    width: 100%;
+    height: 100%;
+    outline: black solid 7px;
+    outline-offset: -7px;
+    text-align: center;
+    position: relative;
+    z-index:-2;
+}
+
+.portal{
+    position: absolute;
+    bottom: 30vh;
+    width: 10.5vw;
+    height: 45vh;
+    border: 10px solid tan;
+    border-top-left-radius: 100vw;
+    border-top-right-radius: 100vw;
+    padding: 0;
+    z-index: -1;
+	opacity:0;
+    /*animation: activatePortal 2s linear;*/
+    /*animation-fill-mode: forwards;*/
+}
+#portalLeftBorder{
+    left: 5vw;
+}
+#portalRightBorder{
+    right: 5.35vw;
+}
+
+#portalUnderlay{
+    position: absolute;
+    left: 5.6vw;
+    bottom: 30vh;
+    width: 0px;
+    height: 50vh;
+    overflow: hidden;
+    padding-right: 88.4vw;
+    background-color: transparent;
+    z-index: 1;
+	/* border: 5px solid white; */
+}
+
+#portalBeamLeftOpening{
+	position: absolute;
+	opacity:0;
+	top: 56%;
+	left: 3.8%;
+	width: 50px;
+	height:50px;
+	border: 2px solid white;
+	background-color: none;
+	animation: rotationLeftPortal 2s linear infinite;
+}
+#portalBeamLeftOpening::before{
+	content:'';
+	position: absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	margin:auto;
+	width: 40px;
+	height: 40px;
+	border: 2px solid red;
+	animation: rotationBackLeftPortal 1.5s linear infinite;
+	transform-origin: center center;
+}
+#portalBeamLeftOpening::after{
+	content:'';
+	position: absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	margin:auto;
+	width: 10px;
+	height: 10px;
+	border: 2px solid white;
+	animation: rotationRightPortal .25s linear infinite;
+	transform-origin: center center;
+}
+
+#portalBeamRightOpening{
+	position: absolute;
+	opacity:0;	
+	top: 56%;
+	right: 3.6%;
+	width: 50px;
+	height:50px;
+	border: 2px solid white;
+	background-color: none;
+	animation: rotationRightPortal 2s linear infinite;
+}
+#portalBeamRightOpening::before{
+	content:'';
+	position: absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	margin:auto;
+	width: 40px;
+	height: 40px;
+	border: 2px solid red;
+	animation: rotationBackRightPortal 1.5s linear infinite;
+	transform-origin: center center;
+}
+#portalBeamRightOpening::after{
+	content:'';
+	position: absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	margin:auto;
+	width: 10px;
+	height: 10px;
+	border: 2px solid white;
+	animation: rotationRightPortal .25s linear infinite;
+	transform-origin: center center;
+}
+
+@keyframes rotationLeftPortal{
+	from{
+		transform:rotate(0deg) scale(1);
+	}
+	50%{
+		transform:rotate(180deg) scale(1.2);
+	}
+	to{
+		transform:rotate(360deg) scale(1); 
+	}
+}
+
+@keyframes rotationBackLeftPortal{
+	from{
+		transform:rotate(0deg);
+		}
+	to{
+		transform:rotate(-360deg);
+		}
+}
+
+@keyframes rotationRightPortal{
+	from{
+		transform:rotate(0deg) scale(1);
+	}
+	50%{
+		transform:rotate(-180deg) scale(1.2);
+	}
+	to{
+		transform:rotate(-360deg) scale(1); 
+	}
+	
+}
+@keyframes rotationBackRightPortal{
+	from{
+		transform:rotate(0deg);
+		}
+	to{
+		transform:rotate(360deg);
+		}
+}
+
+#portalBeamLeft{
+	position:absolute;
+	left: 5%;
+	/* width: 50px; */
+	/* height: 1px; */
+	/* background-color: white; */
+	/* border: 10px solid red; */
+	border-style: solid;
+	border-width: 0 100px 100px 0;
+	border-color: black transparent transparent black;
+	transform: rotate(-45deg);
+	top: 61%;
+	animation: leftBeam 5s linear;
+	animation-fill-mode: forwards;
+}
+@keyframes leftBeam{
+	from{
+		/* transform:translateX(0); */
+		
+	}
+	to{
+		/* opacity:0; */
+		/* width:500px; */
+		/* background-color:black; */
+		/* height:200px; */
+		border-width: 1000px 100px 100px 0px;
+		transform:translateY:(100px);
+		/* transform:translateX(100%); */
+	}
+}
+
+#menuItemContainer{
+    position: absolute;
+    display: grid;
+	opacity:0;
+    grid-template-columns: 50fr 50fr;
+	grid-gap: 0;
+    top: 20%;
+    /* left: -500px; */
+	left: 29.5%;
+    width: 36vw;
+    height: 38vh;
+    border-radius: 10px;
+    box-sizing: content-box;
+    overflow: auto;
+	background-color: tan;
+    /*animation: moveRight 2s linear, addBorder 1s linear;*/
+	/* border: 10px solid white; */
+	/* filter: blur(1.5rem); */
+	/* animation: unBlur 5s linear; */
+    /* animation: moveRight 8s infinite; */
+    /*animation-delay: 2s,4s;*/
+    /* animation-fill-mode: forwards; */
+}
+#menuItemName{
+	text-align:center;
+	padding:10px ;
+	font-size:1.8vh;
+	outline: 2px solid black;
+	outline-offset:-2px;
+}
+#menuItemPrice{
+	text-align:center;
+	padding:10px ;
+	font-size:1.8vh;
+	outline: 2px solid black;
+	outline-offset:-2px;
+}
+#menuItemImage{
+	object-fit: fit;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#menuItemDescription{
+    text-align: justify;
+	justify-content: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    opacity: 0;
+	max-height:100%;
+	font-size:1.5vh;
+}
+
+
+@keyframes unBlur{
+	from{
+		filter:blur(1.5rem); 
+		opacity:0;
+		/* transform:translateX(0); */
+		}
+	to{
+		filter:blur(0);
+		opacity:1;
+		/* transform:translateX(76%); */
+		}
+}
+
+#previousItem, #nextItem,#menuButton{
+    padding:0;
+    display: flex;
+}
+#previousItem{
+    justify-content: right;
+}
+#menuButton{
+    justify-content: center;
+}
+#nextItem{
+    justify-content: left;
+
+    /*right: auto;*/
+}
+#previousItemButton, #nextItemButton{
+    position: relative;
+    background: none;
+    padding: 0;
+    border: none;
+    margin-left: 0;
+    cursor: pointer;
+    top:80vh;
+    height: 10vh;
+}
+#previousItemButton{
+    left:8vw;
+}
+#nextItemButton{
+    right:8vw;
+}
+#previousItemButtonImage{
+    max-width: 10vw;
+    height: inherit;
+
+}
+#nextItemButtonImage{
+    max-width: 10vw;
+    height: inherit;
+}
+
+#menuCall{
+    position: relative;
+    width: 8vw;
+    height: 8vh;
+    top:11vh;
+    outline: 5px solid black;
+    outline-offset: -5px;
+    background-image: url("./assets/button.png");
+    font-size: 1vw;
+    color: white;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 10%;
+}
+
+
+
+/* @keyframes moveLeft { */
+    /* from{translate:0} */
+    /* to{translate:-400px} */
+/* } */
+@keyframes moveRight {
+    from{translate: 0}
+    to{translate: 55vw}
+}
+
+@keyframes moveRight2 {
+    0%{
+        /*left: -20vw;*/
+        height: 0;
+    }
+    to{
+        /*left: 40vw;*/
+        height: 30vh;
+    }
+
+
+}
+@keyframes addBorder {
+    from{outline:0 solid whitesmoke}
+    to{outline: 5px solid whitesmoke;}
+}
+
+
+@keyframes activatePortal {
+    from{background-color: transparent; opacity:0;}
+    to{background-color: black;opacity:1;}
+}
+@keyframes deactivatePortal {
+    from{background-color: black;opacity:1;}
+    to{background-color: transparent;opacity:0;}
+}
+
+@keyframes dissipateMenu  {
+    from{
+        opacity: 1;
+		filter:blur(0);
+    }
+    to{
+        opacity: 0;
+		filter:blur(1.5rem);
+		
+    }
+    /*100%{*/
+    /*    left:0;*/
+    /*    display: none}*/
+}
+
+@keyframes shift{
+    0%{border-radius: 0}
+    10%{
+        border-radius: 0 50% 0 50% /50% 0 50% 0;
+        border-left: 0 solid black;
+        scale: 0;
+        /*border: solid 80px tan;*/
+        filter: brightness(0%);
+
+    }
+    20%{filter: brightness(32%);}
+    30%{filter: brightness(45%);}
+    40%{filter: brightness(0);}
+    50%{filter: brightness(0);}
+    60%{filter: brightness(0);}
+    100%{
+        border-radius: 0 50% 0 50%;
+        border-left: 100px solid black;
+        filter: brightness(0);
+        rotate: -45000deg;
+        scale: 1000%;
+    }
+
+}
+/*___________________________________________hiring.html______________________________________________*/
+#hiringForm{
+    position: absolute;
+    left: 25vw;
+    bottom: 5vh;
+    width: 50vw;
+    height: 80vh;
+    overflow: hidden;
+    background-color: tan;
+	opacity:0.9;
+    z-index: 1;
+	border-radius:10px;
+	/* border: 5px solid white; */
+}
+
+#hiringRowOne{
+	height:20%;
+}
+#hiringRowSeven{
+	height:10%;
+}
+#hiringRowEight{
+	text-align:center;
+	padding:10px;
+	height:10%;
+}
