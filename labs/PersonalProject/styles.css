@@ -1,0 +1,372 @@
+body {
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    outline: 0;
+    background-image: url("red-seamless-pattern-fabric-poker-table-minimalistic-casino-vector-3d-background-with-texture-composed-from-volume-card.jpg");
+}
+header {
+    position: relative;
+    height: 150px;
+}
+footer {
+    margin-top: auto;
+    height: 150px;
+}
+main {
+    position: relative;
+    height: 700px;
+}
+.upper_menu_bar_above{
+    background-image: url("velvet_diamonds_menubar_image.jpg");
+    position: relative;
+    height: 50px;
+}
+.upper_gradiant_bar{
+    background-image: linear-gradient(darkgray,grey);
+    position: relative;
+    height: 50px;
+}
+.upper_gradiant_bar #message{
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    animation: changeColor2 7s infinite;
+}
+
+.upper_menu_bar{
+    background-image: url("velvet_diamonds_menubar_image.jpg");
+    position: relative;
+    height: 50px;
+}
+
+.upper_menu_bar ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.upper_menu_bar ul li{
+    position: relative;
+    width:25%;
+    padding: 14px 0;
+    justify-content: center;
+}
+
+.upper_menu_bar ul li a{
+    color: rebeccapurple;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.upper_menu_bar ul li ul{
+    display: none;
+    justify-content: center;
+    position: absolute;
+    top: 80%;
+    left: 27%;
+    background-color: white;
+    width: 200px;
+    z-index: 1;
+    white-space: nowrap;
+}
+
+.upper_menu_bar ul li ul li{
+    display: block;
+    width: 100%;
+}
+.upper_menu_bar ul li ul li:hover{
+    animation: pulse 2s infinite;
+}
+
+.upper_menu_bar ul li ul li a{
+    display: block;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    font-size: 14px;
+}
+
+.upper_menu_bar ul li:hover > ul{
+    display: block;
+}
+
+main{
+    position: relative;
+    text-align: center;
+}
+.lower_menu_bar_above{
+    background-image: url("velvet_diamonds_menubar_image.jpg");
+    position: relative;
+    height: 50px;
+}
+.lower_gradiant_bar{
+    background-image: linear-gradient(darkgray,grey);
+    position: relative;
+    height:50px;
+}
+.lower_menu_bar_below{
+    background-image: url("velvet_diamonds_menubar_image.jpg");
+    position: relative;
+    height: 50px;
+}
+#resortLink{
+    background-image: url("resort_cropped.jpg");
+    background-size: 100%;
+}
+#hotelLink{
+    background-image: url("resort_hotel_cropped.jpg");
+    background-size: 100%;
+}
+#eateryLink{
+    background-image: url("resort_eateries_cropped.jpg");
+    background-size: 100%;
+}
+#resortLink:hover{
+    animation: pulse 2s infinite;
+}
+/*.container{*/
+/*    position: relative;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*    width: 100px;*/
+/*    height: 400px;*/
+
+/*}*/
+/*
+.line{
+    position: absolute;
+    left:50%;
+    width:1px;
+    height: 0px;
+    top: 0;
+    background-color: whitesmoke;
+    animation: fallingStar 10s linear;
+}
+
+.ground{
+    width: 100%;
+    top: 400px;
+    border: none;
+    border-top: 5px solid white;
+    position: relative;
+    margin-top: 50px;
+    color: white;
+}
+.explosion{
+    position: absolute;
+    left:50%;
+    width:1px;
+    height:1px;
+    top: 400px;
+    background-color: whitesmoke;
+    animation: explosionRadius 20s linear;
+    animation-delay: 10s;
+}
+*/
+
+div{
+    text-align: center;
+}
+.button-click{
+    position: relative;
+    top:300px;
+    text-align: center;
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow:#422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-click:hover{
+    animation: pulse 2s infinite;
+}
+
+.button-click:active{
+    box-shadow:#422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+}
+
+@media (min-width:768px){
+    .button-click{
+        min-width: 120px;
+        padding: 0 25px;
+    }
+
+}
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    padding-top: 60px;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.modal-content{
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+}
+.close{
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+p{
+    text-align: center;
+    opacity: 1;
+}
+#image-mouse{
+    margin: auto;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 5s ease-in-out;
+    display: none;
+    animation: rotateShape 3s linear infinite;
+}
+@keyframes changeColor {
+    0% {background-color: red;}
+    15% {background-color: orange;}
+    30% {background-color: yellow;}
+    45% {background-color: green;}
+    60% {background-color: blue;}
+    75% {background-color: indigo;}
+    82% {background-color: violet;}
+    92% {background-color: crimson;}
+
+}
+
+@keyframes changeColor2 {
+    0% {color: red;}
+    14% {color: orange;}
+    28% {color: yellow;}
+    43% {color: green;}
+    57% {color: blue;}
+    72% {color: indigo;}
+    82% {color: violet;}
+    92% {color: crimson;}
+
+}
+
+@keyframes rotateShape {
+    0% {transform: rotate(0deg)}
+    100% {transform: rotate(360deg)}
+
+}
+
+@keyframes fallingStar{
+    0%{height: 0}
+    100%{height:100%}
+}
+
+@keyframes explosionRadius{
+    0%{}
+    60%{transform:scale(30000%)}
+    80%{transform:scale(70000%)}
+    100%{transform:scale(100000%)}
+
+}
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+        opacity: 1;
+        box-shadow: 0 0 5px 0 rgba(52,152,219,0.5);
+    }
+    50%{
+        transform:scale(1.1);
+        opacity: 0.9;
+        box-shadow: 0 0 15px 5px rgba(52,152,219,0.5);
+    }
+    100%{
+        transform:scale(1);
+        opacity: 1;
+        box-shadow: 0 0 5px 0 rgba(52,152,219,0.5);
+    }
+
+}
+
+@keyframes graduallyAppear {
+    from{opacity: 0; transform: scale(0.8)}
+    to{opacity: 1; transform: scale(1)}
+}
+@keyframes graduallyDisappear {
+    from{opacity: 1; transform: scale(1)}
+    to{opacity: 0; transform: scale(0.8)}
+}
+
+.modal.show{
+    display: block;
+    animation: graduallyAppear 1.5s ease forwards;
+}
+.modal.closing{
+    display: block;
+    animation: graduallyDisappear 1.5s ease forwards;
+}
+
+/*@keyframes fallingStar{*/
+/*    0%{height: 0}*/
+/*    50%{height:100% ; transform: rotate(1800deg)}*/
+/*    100%{height: 0; transform: rotate(3600deg)}*/
+/*}*/
+
+/*@keyframes fallingStar{*/
+/*    from{height: 0;}*/
+/*    to{ height:100%;}*/
+/*}*/
+
+/*.line{*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*    position: relative;*/
+/*    width:0%;*/
+/*    height: 1px;*/
+/*    top: 2px;*/
+/*    border-left: 1px solid whitesmoke;*/
+/*    transform: rotate(0deg);*/
+/*    animation: fallingStar 10s;*/
+/*    overflow: auto;*/
+/*}*/
+
+/*#ground{*/
+/*    position: absolute;*/
+/*    size:2px;*/
+/*    color:white;*/
+/*    width: 100%;*/
+/*    margin-top: 700px;*/
+/*    max-height: 70px;*/
+/*    overflow: auto;*/
+/*}*/
