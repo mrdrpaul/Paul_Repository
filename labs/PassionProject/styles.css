@@ -1,0 +1,385 @@
+.cormorant-unicase-light {
+    font-family: "Cormorant Unicase", serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.cormorant-unicase-regular {
+    font-family: "Cormorant Unicase", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.cormorant-unicase-medium {
+    font-family: "Cormorant Unicase", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.cormorant-unicase-semibold {
+    font-family: "Cormorant Unicase", serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.cormorant-unicase-bold {
+    font-family: "Cormorant Unicase", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+*{
+    padding:0;
+    margin: 0;
+    border: none;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(45deg,black,teal,aqua,black,aquamarine);
+    background-size: 100vw 100vh ;
+    background-repeat: round;
+    display: grid;
+    grid-template-columns: 5fr 90fr 5fr ;
+    grid-template-rows: auto 1fr auto;
+    text-align: center;
+    /*grid-template-rows: 100px 200px 100px 100px;*/
+    /*grid-template-areas:*/
+    /*    "head head2 head3 head4"*/
+    /*    "col1 col2 col3 col4"*/
+    /*    "footer footer footer footer"*/
+    /*;*/
+}
+body header, footer{
+    grid-column: 1/span 3;
+    height:50px;
+    background-color: black;
+    color: white;
+    opacity:0.7;
+}
+#columnLeftBorder,#columnRightBorder{
+    background-color: black;
+    opacity:0.7;
+}
+#columnCenterBlock{
+    height:100%;
+    overflow-y: auto;
+}
+
+#centerBlocksubGrid{
+    display: grid;
+    grid-template-columns: 25fr 25fr 25fr 25fr;
+    grid-gap: 10px;
+}
+
+.cardContainer{
+    height:50vh;
+    border: 2px solid red;
+    background-color: black;
+    padding:10%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cardContainer1{
+    transition: opacity 1s linear;
+}
+#cardContainer1:hover{
+    /*position: absolute;*/
+    /*opacity: 0;*/
+}
+
+.siteCard{
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+    border-radius: 2%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.siteCard:hover{
+    animation: pulse 2s linear infinite;
+}
+.cardVisual, .cardInfo{
+    transition: height 0.8s ease;
+    overflow: hidden;
+}
+.cardVisual{
+    position: relative;
+    height: 70%;
+    width: 100%;
+    overflow: hidden;
+}
+.cardInfo{
+    background-color: tan;
+    border-radius: inherit;
+    height:30%;
+}
+
+.siteCard:hover .cardVisual{
+    height:100%;
+    filter: brightness(1.5);
+
+}
+.siteCard:hover .cardInfo{
+    height:0;
+}
+#website1{
+    background-image: url("assets/SpaceCard/DarkNebula.png");
+    background-size: cover;
+    background-position: center;
+}
+#website6{
+    background-image: url("assets/GauntletCard/arcade.jpeg");
+    background-size: cover;
+    background-position: center;
+}
+#website1 #ship1{
+    position: absolute;
+    top: 0;
+    left:-35%;
+    transition: left 2s linear, top 2s linear, rotate 2s linear;
+    max-width: 30%;
+    rotate: 10deg;
+    z-index: 1;
+}
+#website1 #StoryBlock{
+    position: absolute;
+    top:30%;
+    left:15%;
+    width:70%;
+    opacity:0.8;
+    color:white;
+    background: black;
+    z-index: 2;
+}
+
+#website1 #StoryBlock span{
+    opacity: 0;
+    display: inline-block;
+    animation: textAppear 0.25s forwards;
+}
+
+@keyframes textAppear {
+    to{
+        opacity: 1;
+    }
+}
+
+#website1.fly-in #ship1{
+    top:10%;
+    left:10%;
+    rotate: 20deg;
+    transition: left 2s linear, top 2s linear, rotate 2s linear, scale 2s linear;
+}
+#website1 #console{
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter: brightness(3);
+    transition: scale 2s linear, opacity 0.5s linear;
+    z-index: 2;
+}
+#website1 #planet{
+    position: absolute;
+    display: block;
+    top:30%;
+    left:35%;
+    max-width: 20%;
+    transition: left 20s linear,filter 2s linear, scale 16s linear, opacity 0.5s linear;
+    z-index: 1;
+}
+#website1.approach-planet #planet{
+    left:10%;
+    scale: 10;
+}
+#website1.reset-planet #planet{
+    /*transition: filter;*/
+    transition: none;
+    scale: 1;
+    left: 30%;
+
+}
+
+#website1.shift-planet #planet{
+    /*transition: filter;*/
+    scale: 1;
+    left: 30%;
+
+}
+
+#website1.fly-out #ship1{
+    top: 0;
+    left:0;
+    rotate: 0;
+    opacity: 0;
+    transition: left 2s linear, top 2s linear, rotate 2s linear, opacity 1s linear;
+    /*transition: none;*/
+}
+
+#website2{
+    background-image: url("ShatteredWastePortal.png");
+    background-size: cover;
+    background-position: center;
+    transition: filter 2.5s ease-in-out;
+    filter: brightness(1);
+}
+#website2:hover{
+    filter:brightness(1.2);
+}
+#website3{
+    background-image: url("LoungeCardBackground.png");
+    background-size: cover;
+    background-position: center;
+
+}
+
+#website3{
+    /*background-image: url("");*/
+    background-size: cover;
+    background-position: center;
+
+}
+
+#website6 .cardVisual{
+    display: grid;
+    grid-template-columns: 20fr 20fr 20fr 20fr 20fr;
+    grid-template-rows: 10fr 10fr 10fr 10fr 10fr 10fr 10fr 10fr 10fr 10fr;
+}
+
+.row1{
+    width: 100%;
+    height: 100%;
+    border: 1px solid white;
+}
+.row1 > div{
+    position: relative;
+    left: 0;
+    height: 100%;
+    width: 20%;
+    border: inherit;
+}
+
+/*Begin center block replacement on card selections*/
+#centerBlockDungeon{
+    display: grid;
+    grid-template-columns: 25fr 50fr 25fr;
+    grid-gap: 10px;
+}
+
+#centerBlockGauntlet{
+    font-family: "Cormorant Unicase", serif;
+    font-weight: 300;
+    font-style: normal;
+    display: grid;
+    grid-template-columns: 30fr 55fr 15fr;
+    /*grid-gap: 10px;*/
+    height: 100%;
+}
+
+#centerBlockGauntlet .leftCol, .midCol, .rightCol{
+    background-color: black;
+    outline: 5px solid black;
+    outline-offset: -5px;
+}
+#centerBlockGauntlet .midCol{
+    background-image: url("assets/GauntletCard/gauntletGameBorder.png");
+    background-size: cover;
+    background-position: center;
+    padding: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#gauntletBoard{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+
+.gridSquare{
+    background-image: url("./assets/GauntletCard/stoneTile.jpeg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    /*border: 1px solid black;*/
+}
+.gridSquare > div{
+    position: relative;
+    left: 0;
+    height: 100%;
+    width: 20%;
+    border: inherit;
+}
+#playerGrid{
+    background-image: url("./assets/GauntletCard/pixelBarbarian.png");
+    background-size: contain;
+    background-position: center;
+}
+
+#centerBlockGauntlet .leftCol{
+    background-size: cover;
+    background-position: center;
+    animation: changeImages 120s linear infinite;
+}
+@keyframes changeImages {
+    0%{background-image: url("assets/GauntletCard/barbarian.png")}
+    12.5%{background-image: url("./assets/GauntletCard/skeletonWarrior.png")}
+    25%{background-image: url("./assets/GauntletCard/elf.png")}
+    37.5%{background-image: url("./assets/GauntletCard/necromancer.png")}
+    50%{background-image: url("./assets/GauntletCard/valkyrie.png")}
+    62.5%{background-image: url("./assets/GauntletCard/skeletonArcher.png")}
+    75%{background-image: url("./assets/GauntletCard/wizard.png")}
+    87.5%{background-image: url("./assets/GauntletCard/dwarfWarrior.png")}
+    100%{background-image: url("assets/GauntletCard/barbarian.png")}
+}
+
+#centerBlockGauntlet .rightCol{
+    display: grid;
+    grid-template-rows: auto auto auto auto auto auto auto auto;
+    font-size: 20px;
+    color: white;
+}
+.character{
+    text-align: center;
+}
+
+#warrior{
+    color: red;
+}
+#warrior:hover{
+    background-image: url("./assets/GauntletCard/barbarian.png");
+    background-size: contain;
+    background-position: center;
+}
+#valkyrie{
+    color:blue;
+}
+#wizard{
+    color:yellow;
+}
+#elf{
+    color:green;
+}
+
+/*__________________________________Animations__________________________________*/
+@keyframes fadeNavBar{
+    from{opacity:0.8;}
+    to{opacity:0}
+}
+
+@keyframes pulse{
+    from{}
+    50%{scale:1.02}
+    to{scale: 1}
+}
+@keyframes shimmering{
+    0%,100%{filter: brightness(1);}
+    50%{filter: brightness(1.5);}
+}
