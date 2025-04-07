@@ -279,13 +279,161 @@ body header, footer{
     height: 100%;
 }
 
+#centerBlock3D{
+    display: grid;
+    grid-template-columns: 20fr 60fr 20fr;
+    grid-gap: 10px;
+	height: 100%;
+}
+/*Begin center block replacement specifics and customizations*/
+
+/* 3d Block (move below  gauntlet block when done) */
+#centerBlock3D .leftCol, .rightCol{
+    background-color: black;
+    outline: 5px solid black;
+    outline-offset: -5px;
+}
+#centerBlock3D .midCol{
+	display: flex;
+	background-color: white;
+	justify-content: center;
+	align-items: center;
+}
+
+.perspective{
+	/* position:relative; */
+	width:100%;
+	perspective: 800px;
+	perspective-origin: 50% -200px;
+}
+
+.box{
+	/* width: var(--size); */
+	width: 100px;
+	aspect-ratio: 1;
+	
+	position: relative;
+	transform-style: preserve-3d;
+	transform-origin:50px bottom -50px;
+	/* transform-origin:center; */
+}
+.ground{
+	top: 0;
+	position: absolute;
+	width: 100%;
+	aspect-ratio: 1;
+	transform-style: preserve-3d;
+	
+	/* transform:rotateX(90deg); */
+	z-index:-1;
+}
+.floor{
+	position: absolute;
+	width: 100px;
+	left:50%;
+	aspect-ratio: 1;
+	
+	background-image: url("./assets/GauntletCard/stoneTile.jpeg");
+	background-size: cover;
+	background-position: center;
+	transform-style: preserve-3d;
+	
+	/* transform:rotateX(90deg); */
+	/* z-index:-1; */
+}
+
+.floor.one{
+	bottom:100%;
+	transform-origin:bottom;
+	transform:rotateX(90deg);
+	
+}
+.face{
+	position: absolute;
+	width: 100px;
+	aspect-ratio: 1;
+	
+	background-image: url("./assets/GauntletCard/stoneTile.jpeg");
+	background-size: cover;
+	background-position: center;
+	transform-style: preserve-3d;
+}
+.box{
+	animation: rotate 10s linear infinite;
+	/* transition: left 2s linear; */
+}
+.face.front{
+	
+}
+.face.bottom{
+	top:100%;
+	transform-origin: top;
+	transform:rotateX(-90deg);
+}
+.face.top{
+	bottom:100%;
+	transform-origin: bottom;
+	transform:rotateX(90deg);
+}
+.face.back{
+	bottom:200%;
+	transform-origin:center 150px -50px;
+	transform: rotateX(180deg);
+}
+.face.right{
+	left:100%;
+	transform-origin: left;
+	transform:rotateY(90deg);
+}
+.face.left{
+	right: 100%;
+	transform-origin: right;
+	transform:rotateY(-90deg);
+}
+
+
+@keyframes rotate{
+	from{
+		transform:rotate(0);
+		scale 1:
+		/* left:0; */
+		/* top:0; */
+	}
+	50%{
+		scale:0.5;
+		/* left: 100px; */
+		/* top:50px; */
+		}
+	to{
+		scale:1;
+		transform:rotateY(360deg);
+		/* left:0; */
+		/* top:0; */
+		
+	}
+}
+
+/* #floor{ */
+		
+	/* position: absolute; */
+	/* background-color: black; */
+	/* background-image: url("./assets/GauntletCard/stoneTile.jpeg"); */
+	/* background-size: cover; */
+    /* background-position: center; */
+	/* border: 5px solid red; */
+	/* width: 300px; */
+	/* height: 300px; */
+	/* rotate: 1 1 0 45deg; */
+/* } */
+	
+/* Gauntlet Block */
 #centerBlockGauntlet .leftCol, .midCol, .rightCol{
     background-color: black;
     outline: 5px solid black;
     outline-offset: -5px;
 }
 #centerBlockGauntlet .midCol{
-    background-image: url("assets/GauntletCard/gauntletGameBorder.png");
+    background-image: url("./assets/GauntletCard/gauntletGameBorder.png");
     background-size: cover;
     background-position: center;
     padding: 12%;
