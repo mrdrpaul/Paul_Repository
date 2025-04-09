@@ -15,11 +15,19 @@ let console = document.getElementById("console")
 let centerBlock = document.getElementById("centerBlocksubGrid")
 let centerBlockDungeon = document.getElementById("centerBlockDungeon")
 let centerBlockGauntlet = document.getElementById("centerBlockGauntlet")
+let centerBlock3d = document.getElementById("centerBlock3D")
 let centerBlockSubSections = document.querySelectorAll(".centerBlockSubSections")
 let cardContainers = document.querySelectorAll(".cardContainer")
 let gauntletBoard = document.getElementById("gauntletBoard")
-let gridSquare = document.getElementsByClassName("gridSquare")
+let gridSquare = document.getElementById("gridSquare")
 let currentPos=0
+
+let boxContainer = document.getElementById("boxContainer")
+let box = document.getElementsByClassName("boxRoom")
+let scene = document.getElementsByClassName("sceneContainer")
+let player1 = document.getElementsByClassName("player");
+let playerContainer = document.getElementsByClassName("playerContainer")
+let pillar1 = document.getElementsByClassName("pillarOne")
 
 cardSite1.addEventListener("mouseenter", ()=>{
     startSpaceStoryBoard();
@@ -191,30 +199,92 @@ function engageSelection(card){
             return null;
         case "cardContainer6":
             return centerBlockGauntlet;
+        case "cardContainer7":
+            return centerBlock3d;
     }
 }
 document.getElementById("warriorHealth")
+
+let angle=0; //used for rotating board and character Y, in degrees
+let boardAngle=0;
+let currentScale=1;
+let currentPlayerPos = [0,0,0]; //board units, not pixels
 document.addEventListener("keydown", (event) =>{
+
+    let isNS = ((angle > 315 && angle < 360) || (angle >=0 && angle < 45) || (angle > 135 && angle < 225));
+    let isSouth = (angle > 135 && angle < 225);
+    let isEast = (angle > 45 && angle < 135);
     switch (event.key){
         case "ArrowLeft":
-            gridSquare[currentPos].id=""
-            currentPos -= (currentPos%10>0)? 1: 0;
-            gridSquare[currentPos].id="playerGrid"
+            if(centerBlock3d.style.display !== "none"){
+                angle -=10;
+                boardAngle -=10;
+            }
+            if(centerBlockGauntlet.style.display!=="none"){
+                gridSquare[currentPos].id="";
+                currentPos -= (currentPos%10>0)? 1: 0;
+                gridSquare[currentPos].id="playerGrid";
+            }
+
+            // gridSquare[currentPos].id="";
+            // currentPos -= (currentPos%10>0)? 1: 0;
+            // gridSquare[currentPos].id="playerGrid"
             break;
         case "ArrowUp":
-            gridSquare[currentPos].id=""
-            currentPos -= currentPos<10 ? 0: 10;
-            gridSquare[currentPos].id="playerGrid"
+            if(centerBlock3d.style.display !== "none") {
+                currentScale += .1;
+            }
+            if(centerBlockGauntlet.style.display!=="none") {
+                gridSquare[currentPos].id="";
+                currentPos -= currentPos<10 ? 0: 10;
+                gridSquare[currentPos].id="playerGrid";
+            }
             break;
         case "ArrowRight":
-            gridSquare[currentPos].id=""
-            currentPos += (currentPos%10<9)? 1: 0;
-            gridSquare[currentPos].id="playerGrid"
+            if(centerBlock3d.style.display !== "none") {
+                angle += 10;
+                boardAngle+=10;
+            }
+            if(centerBlockGauntlet.style.display!=="none") {
+                gridSquare[currentPos].id="";
+                currentPos += (currentPos%10<9)? 1: 0;
+                gridSquare[currentPos].id="playerGrid";
+            }
             break;
         case "ArrowDown":
-            gridSquare[currentPos].id=""
-            currentPos += currentPos<90 ? 10: 0;
-            gridSquare[currentPos].id="playerGrid"
+            if(centerBlock3d.style.display !== "none") {
+                currentScale -= .1;
+            }
+            if(centerBlockGauntlet.style.display!=="none") {
+                gridSquare[currentPos].id="";
+                currentPos += currentPos<90 ? 10: 0;
+                gridSquare[currentPos].id="playerGrid";
+            }
+            break;
+        case "w":
+            currentPlayerPos[isNS ? 2 : 0] +=10 * (isNS ? (isSouth ? 1: -1) : (isEast ? 1 : -1));
+            break;
+        case "a":
+            currentPlayerPos[isNS ? 0 : 2] +=10 * (isNS ? (isSouth ? 1: -1) : (isEast ? -1 : 1));
+            break;
+        case "d":
+
+            currentPlayerPos[isNS ? 0 : 2] +=10 * (isNS ? (isSouth ? -1: 1) : (isEast ? 1 : -1));
+            break;
+        case "s":
+            currentPlayerPos[isNS ? 2 : 0] +=10 * (isNS ? (isSouth ? -1: 1) : (isEast ? -1 : 1));
             break;
     }
-})
+
+    if(centerBlock3d.style.display !== "none") {
+        scene[0].style.transition= "1s ease all";
+        scene[0].style.transform = `rotateY(${boardAngle}deg) scale3d(${currentScale},${currentScale},${currentScale})`;
+        playerContainer[0].style.transition= "0.5s ease all";
+        playerContainer[0].style.transform=`rotateX(${-90}deg) translate3d(${currentPlayerPos[0]}px,${currentPlayerPos[1]}px,${currentPlayerPos[2]}px)`;
+        player1[0].style.transform=`rotateY(${-angle}deg)`;
+    }
+    angle = (angle+360)%360;
+});
+function buildScene(){
+
+}
