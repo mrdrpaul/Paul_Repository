@@ -1,6 +1,4 @@
-// const Table = (name, height, hairColor, gender) => {
 const Table = ({data}) => {
-    // const {name, height, hair_color, gender} = data;
     return (
         <>
             <div>

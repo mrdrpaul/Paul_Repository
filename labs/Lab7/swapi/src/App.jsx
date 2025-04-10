@@ -12,9 +12,6 @@ const App = () => {
         axios.get(endpoint)
             .then(response => {
                 console.log("Response: ", response.data)
-                // let dataArray = response.data.results((returnedData, i)=>{
-                //     return <Table data={returnedData} key={returnedData.id ? returnedData.id : i}/>
-                // })
                 let dataArray =  <Table data={response.data.results}/>;
                 setTableData(dataArray);
             })
