@@ -1,0 +1,147 @@
+*{
+    padding:0;
+    margin: 0;
+    border: none;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(45deg,black,teal,aqua,black,aquamarine);
+    background-size: 100vw 100vh ;
+    background-repeat: round;
+    display: grid;
+    grid-template-columns: 5fr 90fr 5fr ;
+    grid-template-rows: auto 1fr auto;
+    text-align: center;
+}
+body header, footer{
+    grid-column: 1/span 3;
+    height:75px;
+    background-color: black;
+    color: white;
+    opacity:0.7;
+}
+#columnLeftBorder,#columnRightBorder{
+    position: relative;
+    background-color: black;
+    height: 100%;
+    opacity:0.7;
+    transition: opacity 0.3s ease;
+}
+
+.menuContainer{
+    /*display: none;*/
+    position: absolute;
+    overflow: hidden;
+    background-color: green;
+    width: 0;
+    height:100%;
+    transition: width 0.2s ease;
+}
+.menu{
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto;
+}
+.menu > div{
+    /*border: 5px solid white;*/
+}
+#sceneName > textarea{
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes populateMenu{
+    from{}
+    to{right:0;}
+}
+
+#columnCenterBlock {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 10fr 80fr 10fr;
+    overflow: hidden;
+    background-image: url("./assets/background.png");
+    background-size:cover;
+    background-position: center;
+}
+#centerBlockCenterCol{
+    display: flex;
+    perspective: 800px;
+    height:100%;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.scene{
+    display: none; /*sets display to none so that the scene does not initially appear, instead wil appear on button click*/
+    aspect-ratio: 1;
+    width: 0; /*initial width set to 0 so that the transition animates the board coming into existence*/
+    background-color: white;
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    transition: width 0.5s ease, transform 0.5s linear;
+}
+.sceneFloor{
+    position: absolute;
+    aspect-ratio: 1;
+    width: 100%;
+    background-image: url("./assets/grass.png");
+    background-size:cover;
+    background-position: center;
+}
+.baseFaces{
+    position: absolute;
+    width:100%;
+    --baseHeight:40px;
+    height:var(--baseHeight);
+    background-image: url("./assets/dirt.jpeg");
+    background-size:auto;
+    background-position: center;
+}
+.baseFaces.baseFront{
+    /*aspect-ratio: 3; !*preserves ratio if only 1 measurement is provided, eg. width or height. higher aspect rations make image smaller, lower makes it bigger *!*/
+    top:100%; /*pushes element to bottom of parent*/
+    transform-origin: top; /* performs transformation along top of element*/
+    transform: rotateX(-90deg); /* folds element down along x axis*/
+}
+.baseFaces.baseBack{
+    /*height: var(--baseHeight);*/
+    /*height: inherit;*/
+    transform-origin: top;
+    transform: rotateX(-90deg);
+}
+.baseFaces.baseLeft{
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(-90deg);
+}
+.baseFaces.baseRight{
+    transform-origin: top right;
+    transform: rotateX(-90deg) rotateY(90deg);
+}
+.baseFaces.baseFloor{
+    height:100%;
+    transform: translateZ(calc(-1*(var(--baseHeight))));
+}
+
+
+button{
+    position: absolute;
+    top: 200px;
+    border-radius: 100%;
+
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+#firstTime{
+    right:53%;
+    /*transform: rotateX(-45deg);*/
+    /*transform: translate3d(100px,100px,100px);*/
+}
+#previousUser{
+    left:53%;
+}

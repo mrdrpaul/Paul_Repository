@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Scene Generator</title>
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <header></header>
+  <div class="outerColumns" id="columnLeftBorder">
+    <div class="menuContainer">
+      <div class="menu">
+        <div id="sceneName">
+          <textarea aria-label="Scene Name" placeholder="Scene Name" style="background-color: transparent; color: black;text-align: center; font-size: 18px"></textarea>
+        </div>
+        <div id="perspectiveControls">
+          Perspective Control
+          <input id="perspectiveControl" type="range" value="180" min="0" max="360">
+        </div>
+        <div id="rotateScene">
+          Rotate Scene
+
+          <input id="rotateSceneControlYaxis" type="range" value="180" min="0" max="360">
+          <input id="rotateSceneControlXaxis" type="range" value="90" min="0" max="180">
+
+        </div>
+        <div id="SceneControls">
+          Scene Controls
+          <input id="sceneSizeControl" type="text" aria-label="scene size" placeholder="scene size " style=" color: black;text-align: center">
+          <input id="baseHeightControl" type="text" aria-label="base height" placeholder="base height " style=" color: black;text-align: center">
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <div class="outerColumns" id="columnCenterBlock">
+    <div>leftcol</div>
+    <div id="centerBlockCenterCol">
+        <div class="scene">
+          <div class="sceneFloor">
+            <input id="menuDrag" type="range" value="0" min="0" max="200">
+
+          </div>
+          <div class="baseFaces baseFront"></div>
+          <div class="baseFaces baseBack"></div>
+          <div class="baseFaces baseLeft"></div>
+          <div class="baseFaces baseRight"></div>
+          <div class="baseFaces baseFloor"></div>
+<!--          <button type="button" id="firstTime">First Time?</button>-->
+        </div>
+      <button type="button" id="firstTime">First Time?</button>
+      <button type="button" id="previousUser">Ive Been here before</button>
+
+    </div>
+    <div>rightcol</div>
+  </div>
+  <div class="outerColumns" id="columnRightBorder"></div>
+  <footer></footer>
+<script src="script.js"></script>
+</body>
+</html>
