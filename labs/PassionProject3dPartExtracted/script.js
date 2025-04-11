@@ -10,6 +10,9 @@ let rotateSceneControlYaxis = document.getElementById("rotateSceneControlYaxis")
 let baseFaces = document.querySelectorAll(".baseFaces")
 let baseHeightControl = document.getElementById("baseHeightControl")
 let sceneSizeControl = document.getElementById("sceneSizeControl")
+let perspectiveControl = document.getElementById("perspectiveControl")
+let centerBlockCenterCol = document.getElementById("centerBlockCenterCol")
+let sceneScale = document.getElementById("sceneScale")
 
 menuDrag.addEventListener('input', (event) =>{
     let percentage= event.target.value;
@@ -22,29 +25,37 @@ menuDrag.addEventListener('input', (event) =>{
     }else{
         columnLeftBorder.style.opacity=1;
     }
-    // menuContainer.style.right="54%";
 })
 let angleY=0;
 let angleX=90;
+let scaleValue = 1;
+
+
+perspectiveControl.addEventListener('input',(event)=>{
+    centerBlockCenterCol.style.perspective=`${event.target.value}px`
+})
+
 rotateSceneControlYaxis.addEventListener('input', (event)=>{
     angleY = (event.target.value-180);
-    scene.style.transform=`rotateY(${angleY}deg) rotateX(${angleX}deg)`
+    scene.style.transform=`rotateY(${angleY}deg) rotateX(${angleX}deg) scale3d(${scaleValue},${scaleValue},${scaleValue})`
 })
 rotateSceneControlXaxis.addEventListener('input', (event)=>{
     angleX = (event.target.value);
-    scene.style.transform=`rotateX(${angleX}deg) rotateY(${angleY}deg)`
+    scene.style.transform=`rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(${scaleValue},${scaleValue},${scaleValue})`
 })
 
 baseHeightControl.addEventListener('input',(event)=>{
     val = event.target.value;
-    // baseFaces.style.setProperty('--baseHeight',`${event.target.value}px`);
-    // ((!isNaN(val) && val.trim()) ? "" : "" );
-    // baseFaces.forEach(element=>{element.style.setProperty('--baseHeight',`${val}px`);});
     baseFaces.forEach(element=>{element.style.setProperty('--baseHeight',(isNaN(val) || val <=0) ? "40px" : `${val}px`);});
-    // baseFaces.style.height='100px';
 })
 sceneSizeControl.addEventListener('input',(event)=>{
-    scene.style.width=`${event.target.value}px`
+    val = event.target.value;
+    scene.style.width=((isNaN(val) || val <=100) ? "100px" : `${event.target.value}px`)
+})
+
+sceneScale.addEventListener('input',(event)=>{
+    scaleValue = event.target.value;
+    scene.style.transform=`rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(${scaleValue},${scaleValue},${scaleValue})`
 })
 
 newUserButton.addEventListener('click', ()=>{
