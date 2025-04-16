@@ -16,19 +16,61 @@
         <div id="perspectiveControls">
           Perspective Control
           <input id="perspectiveControl" type="range" step="100" value="800" min="0" max="2000">
+          <div id="perspectiveValue">800px</div>
         </div>
         <div id="rotateScene">
           Rotate Scene
-
           <input id="rotateSceneControlYaxis" type="range" value="180" min="0" max="360">
+          <div id="xAxisValue">X Axis: 0deg</div>
           <input id="rotateSceneControlXaxis" type="range" value="90" min="0" max="180">
-
+          <div id="yAxisValue">Y Axis: 75deg</div>
         </div>
         <div id="SceneControls">
-          Scene Controls
+          <div>Scene Controls</div>
           <input id="sceneSizeControl" type="text" aria-label="scene size" placeholder="scene size " style=" color: black;text-align: center">
           <input id="baseHeightControl" type="text" aria-label="base height" placeholder="base height " style=" color: black;text-align: center">
+          <div>Scene Scale</div>
           <input id="sceneScale" type="range" step="0.5" value="1" min="0" max="5">
+          <div id="sceneScaleValue">Scale: 1</div>
+          <div>Background Image</div>
+          <select id="backgroundSelection" aria-label="Floor Selection">
+            <option value="grassyFields" selected>Grassy Fields</option>
+            <option value="stars">Stars</option>
+            <option value="graveyard">GraveYard</option>
+            <option value="blackHole">Black Hole</option>
+            <option value="desertSands">Desert Sands</option>
+          </select>
+          <div>Scene Background</div>
+          <select id="floorSelection" aria-label="Floor Selection">
+            <option value="grassyFields" selected>Grassy Fields</option>
+            <option value="magmaFloor">Magma Floor</option>
+            <option value="dungeonFloor">Dungeon Floor</option>
+            <option value="desertSands">Desert Sands</option>
+            <option value="bossFloor">Boss Floor</option>
+            <option value="bossFloorGlowing">Boss Floor Glowing</option>
+            <option value="stars">Stars</option>
+
+          </select>
+          <div>Base Background</div>
+          <select id="baseSelection" aria-label="Base Selection">
+            <option value="dirt" selected>Dirt</option>
+            <option value="grassyFields" >Grassy Fields</option>
+            <option value="magmaFloor">Magma Floor</option>
+            <option value="dungeonFloor">Dungeon Floor</option>
+            <option value="desertSands">Desert Sands</option>
+            <option value="bossFloor">Boss Floor</option>
+            <option value="bossFloorGlowing">Boss Floor Glowing</option>
+            <option value="stars">Stars</option>
+          </select>
+          <div>Props</div>
+          <select id="propSelection" aria-label="Prop Selection">
+            <option value="column" selected>Column</option>
+            <option value="tree" >Tree</option>
+            <option value="magmaFloor">Magma Floor</option>
+            <option value="dungeonFloor">Dungeon Floor</option>
+            <option value="desertSands">Desert Sands</option>
+          </select>
+          <button type="button" id="propAddition">Add</button>
         </div>
         <div></div>
       </div>
@@ -37,20 +79,44 @@
   <div class="outerColumns" id="columnCenterBlock">
     <div>leftcol</div>
     <div id="centerBlockCenterCol">
-        <div class="scene">
-          <div class="sceneFloor">
-            <input id="menuDrag" type="range" value="0" min="0" max="200">
+<!--      allows positioning of boss around board-->
+        <div class="bossContainer">
+<!--          allows more control (rotation) of boss itself-->
+          <div class="skeletonBossContainer">
+<!--            control of head-->
+            <div class="bossHead"></div>
+<!--            control of body (chest)-->
+            <div class="bossBody"></div>
+<!--            control of left arm (from boss perspective)-->
+            <div class="leftArm"></div>
+<!--            control of right arm (from boss perspective)-->
+            <div class="rightArm"></div>
+<!--            portal the boss will appear out of, acts as base, nothing below spine-->
+              <div class="summonPortal"></div>
 
           </div>
-          <div class="baseFaces baseFront"></div>
-          <div class="baseFaces baseBack"></div>
-          <div class="baseFaces baseLeft"></div>
-          <div class="baseFaces baseRight"></div>
-          <div class="baseFaces baseFloor"></div>
-<!--          <button type="button" id="firstTime">First Time?</button>-->
+        </div>
+<!--      scene container is used to rotate entire scene on player rotate-->
+        <div class="sceneContainer">
+          <!--      scene contains the elements for the player, board, enemies (except boss) props, etc..-->
+          <div class="scene">
+
+            <div class="playerContainer">
+              <div class="player"></div>
+            </div>
+
+            <div class="sceneFloor"></div>
+            <div class="baseFaces baseFront"></div>
+            <div class="baseFaces baseBack"></div>
+            <div class="baseFaces baseLeft"></div>
+            <div class="baseFaces baseRight"></div>
+            <div class="baseFaces baseFloor"></div>
+
+          </div>
         </div>
       <button type="button" id="firstTime">First Time?</button>
       <button type="button" id="previousUser">Ive Been here before</button>
+      <button type="button" id="begin">Begin the Challenge</button>
 
     </div>
     <div>rightcol</div>
