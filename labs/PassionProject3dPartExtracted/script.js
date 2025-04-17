@@ -24,6 +24,9 @@ let sceneScaleValue = document.getElementById("sceneScaleValue")
 let backgroundSelection = document.getElementById("backgroundSelection")
 let beginGame = document.getElementById("begin")
 let sceneContainer = document.getElementsByClassName("sceneContainer")[0]
+let camera = document.getElementsByClassName("camera")[0]
+let bossContainer = document.getElementsByClassName("bossContainer")[0]
+let tileContainer = document.getElementsByClassName("tileContainer")[0]
 
 // let baseImage = document.getElementsByClassName("baseFaces")
 
@@ -76,15 +79,18 @@ beginGame.addEventListener('click', ()=>{
         newUserButton.style.display="none";
         previousUserButton.style.display="none";
         beginGame.style.display="none";
-        scene.style.display="block";
+
+        tileContainer.style.display="block";
     },1000)
     setTimeout(()=>{
-        scene.style.width="600px";
-        // scene.style.transform="rotateX(90deg)"
+        tileContainer.style.width="600px";
+        tileContainer.style.transform="rotateX(90deg)";
+
         centerBlock.style.backgroundImage="url(./assets/blackHole.png)";
         sceneFloor.style.backgroundImage= "url(./assets/stars.png)";
         baseFaces.forEach(elements => {elements.style.backgroundImage="url(./assets/stars.png)"});
 
+        // camera.style.animation="rotateCamera 10s linear infinite";
     },1100)
 
 })
@@ -210,7 +216,6 @@ function beginGameButtonIsActive(){
     //move container to simulate player movement
     let playerOneContainer = document.getElementsByClassName("playerContainer")[0];
     let playerOne = document.getElementsByClassName("player")[0];
-    playerOneContainer.style.display="block";
 
     // changing the X in the playerContainer moves the player right (increasing value) and left (decreasing value) [preferable, no change required]
     // changing the Y in the playerContainer moves the player down (increasing value) and up (decreasing value) [might multiply by -1 make make decrease move down and increase move up (NOT IMPLEMENTED)]
@@ -241,8 +246,8 @@ function beginGameButtonIsActive(){
     let boardAngle = 0;
 
     setTimeout(()=>{
-        sceneContainer.style.transform=`rotateX(90deg) translate3d(${cameraPosition[0]*-1}px,${cameraPosition[1]}px,${cameraPosition[2]}px)`;
-        scene.style.transform=`rotateX(${overheadBoardAngle}deg) scale3d(1,1,1)`;
+        // sceneContainer.style.transform=`rotateX(90deg) translate3d(${cameraPosition[0]*-1}px,${cameraPosition[1]}px,${cameraPosition[2]}px)`;
+        // scene.style.transform=`rotateX(${overheadBoardAngle}deg) scale3d(1,1,1)`;
     },2000)
 
 // player movement
@@ -309,7 +314,7 @@ function beginGameButtonIsActive(){
                     boardAngle+=40;
 
                 }
-                playerAngle+=10;
+                playerAngle+=15;
 
                 //turn character left,rotate character container, rotate scene, rotateY
                 break;
@@ -320,18 +325,19 @@ function beginGameButtonIsActive(){
                     boardAngle-=40;
 
                 }
-                playerAngle-=10;
+                playerAngle-=15;
 
                 break;
         }
         //multiplying the Y and Z by -1 allows for the switch statement to increase and decrease values appropriately
         playerOneContainer.style.transform=`rotateX(-90deg) translate3d(${playerOnePosition[0]}px,${playerOnePosition[1]*-1}px,${playerOnePosition[2]*-1}px)`
         playerOne.style.transform=`rotateY(${playerAngle}deg)`
+        camera.style.transform=`rotateZ(${playerAngle}deg)`
         // sceneContainer.style.transform=`rotateX(90deg) translate3d(${cameraPosition[0]*-1}px,${cameraPosition[1]}px,${cameraPosition[2]}px)`
         // sceneContainer.style.transform=`translate3d(0,0,0)`
         // scene.style.transform=`rotateX(${overheadBoardAngle}deg) scale3d(1,1,1) rotateZ(${boardAngle}deg) translate3d(${boardCameraPosition2}px,${boardCameraPosition}px,0)`;
-        scene.style.transform=`rotateX(${overheadBoardAngle}deg) rotateZ(${boardAngle}deg) translate3d(${playerCameraPosition[0] *-1}px,${playerCameraPosition[2]}px,${playerCameraPosition[1]}px)`;
-        sceneContainer.style.transform=`rotateX(90deg) rotateY(${boardAngle}))`
+        // scene.style.transform=`rotateX(${overheadBoardAngle}deg) rotateZ(${boardAngle}deg) translate3d(${playerCameraPosition[0] *-1}px,${playerCameraPosition[2]}px,${playerCameraPosition[1]}px)`;
+        // sceneContainer.style.transform=`rotateX(90deg) rotateY(${boardAngle}))`
 
     })
 

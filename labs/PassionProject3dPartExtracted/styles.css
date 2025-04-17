@@ -101,29 +101,61 @@ body header, footer{
     align-items: center;
 
 }
+
+/*_______________________________________CSS for tile container stylization (parent of the tile elements)_______________________________________*/
+.tileContainer{
+    display: none; /*hides entire element and children until activated*/
+    position: relative;
+    transform-style: preserve-3d;
+    outline: 5px solid white; /*for visual testing*/
+    outline-offset: -5px; /*for visual testing*/
+    width: 0; /*sets initial width, allows for smooth transition*/
+    aspect-ratio: 1; /*allows height to be set to width*/
+    transition: width 0.5s ease, transform 2s linear; /*applies transition effect*/
+    /*viewpoint is at center, 90deg rotation with center origin causes board to disappear*/
+    /*rotating with origin at bottom visually folds the board backwards*/
+    /*transform-origin: center;*/
+    transform-origin: bottom;
+}
+/*_______________________________________CSS for camera stylization (parent of the tile)_______________________________________*/
+.camera{
+    position: relative;
+    transform-style: preserve-3d;
+    transition: width 1.5s ease;
+    aspect-ratio: 1;
+    width: inherit;
+    outline: 5px solid yellow;
+    outline-offset: -5px;
+
+    }
+@keyframes rotateCamera {
+    from{}
+    to{transform:rotateZ(360deg)}
+}
 /*_______________________________________CSS for Scene+base stylization_______________________________________*/
 .sceneContainer{
     position: absolute;
     transform-style: preserve-3d;
-    transform-origin: bottom;
-    transition: width 0.5s ease, transform 0.5s linear;
-    /*width:*/
-    border:5px solid black;
+    transition: width 2.5s ease;
+    aspect-ratio: 1;
+    width: inherit;
+    outline: 5px solid red;
+    outline-offset: -5px;
 
 }
 .scene{
-    display: none; /*sets display to none so that the scene does not initially appear, instead wil appear on button click*/
+    /*display: none; !*sets display to none so that the scene does not initially appear, instead wil appear on button click*!*/
     aspect-ratio: 1;
-    width: 0; /*initial width set to 0 so that the transition animates the board coming into existence*/
+    width: inherit; /*initial width set to 0 so that the transition animates the board coming into existence*/
     background-color: white;
-    transform-origin: bottom;
+    /*transform-origin: bottom;*/
     transform-style: preserve-3d;
-    transition: width 0.5s ease, transform 0.5s linear;
+    transition: width 3.5s ease, transform 0.5s linear;
 }
 .sceneFloor{
     position: absolute;
     aspect-ratio: 1;
-    width: 100%;
+    width: inherit;
     background-image: url("./assets/grass.png");
     background-size:auto;
     background-position: center;
@@ -131,7 +163,7 @@ body header, footer{
 }
 .baseFaces{
     position: absolute;
-    width:100%;
+    width:inherit;
     --baseHeight:40px;
     height:var(--baseHeight);
     background-image: url("./assets/dirt.jpeg");
@@ -165,15 +197,12 @@ body header, footer{
 /*_______________________________________Player customization_______________________________________*/
 .playerContainer{
     position: absolute;
-    display: none; /*hides player so that it does not initially exist on the board (specifically for the scene customization board)*/
     transform-style: preserve-3d;
     transform-origin: bottom; /*transforms occur from bottom up element (allows element to flip up, as opposed to default center origin transform, resulting in element partially being in the ground)*/
     transform:rotateX(-90deg); /*flips player container back up after flip down from board */
     width: 20px;
     height: 20px;
-    /*aspect-ratio: 1;*/
-    /*border: 1px solid white;*/
-    z-index: 1; /*ensures element visually appears on top of scene (when testing where element is with border:)*/
+    /*z-index: 1; !*ensures element visually appears on top of scene (when testing where element is with border:)*!*/
     bottom:0;/*places the character at the bottom of the board initially (closest to the user[player])*/
     left:50%; /*places the left side of the playerContainer element 50% from the left of the parent element (the left side of the board)*/
     transition: transform 0.5s linear;
@@ -185,34 +214,232 @@ body header, footer{
     background-repeat: no-repeat;
     width: 20px;
     height: 20px;
-    bottom: 0;
-    aspect-ratio: 1;
-
 }
 /*_______________________________________End Player customization_______________________________________*/
 /*_______________________________________Boss customization_______________________________________*/
 .bossContainer{
     position: absolute;
-    border: 5px solid white;
-    width: 600px;
-    height: 600px;
     transform-style: preserve-3d;
-    transform: rotateX(80deg);
-    z-index: 1;
+    transition: width 2.5s ease;
+    aspect-ratio: 1;
+    width: inherit;
+    outline: 5px solid green;
+    outline-offset: -5px;
 }
 .skeletonBossContainer{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    outline: 5px solid white;
+    outline-offset: -5px;
+    width: 100px;
+    height:200px;
+    transform-origin: top;
+    transform-style: preserve-3d;
+    /*translate of (-50%,0,200px) along with the left 50% moves element to center and rotate(-90deg) flips element down*/
+    /*preserves top/bottom for child elements*/
+    transform:translate3d(-50%,50%,200px) rotateX(-90deg);
+    /*animation: rotateBossContainer 10s linear infinite;*/
+    z-index: 1;
+}
+@keyframes rotateBossContainer {
+    from{transform: translate3d(-50%,-50%,200px) rotateX(-90deg)}
+    to{transform:translate3d(-50%,-50%,200px) rotateX(-90deg) rotateY(360deg)}
 
 }
 .bossHead{
-
+    position: absolute;
+    top: -100px;
+    background-color: black;
+    outline: 5px solid white;
+    outline-offset: -5px;
+    width:100px;
+    aspect-ratio: 1;
 }
 .bossBody{
-
+    display: flex;
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+    outline: 5px solid white;
+    outline-offset: -5px;
+    width:100px;
+    height:200px;
+    justify-content: center;
+    transform-style: preserve-3d;
 }
+.spineLower{
+    position: absolute;
+    bottom:0;
+    background-color: black;
+    outline: 5px solid black;
+    outline-offset: -5px;
+    box-shadow: 0 0 10px 3px white;
+
+    width: 25px;
+    height:70px;
+    transform-origin: bottom;
+    transform: rotateX(25deg);
+}
+.spineMid{
+    position: absolute;
+    bottom:65px;
+    background-color: black;
+    outline: 5px solid black;
+    outline-offset: -5px;
+    box-shadow: 0 0 10px 3px white;
+    width: 25px;
+    height:90px;
+    transform-origin: bottom;
+    transform: translateZ(-30px);
+}
+.spineUpper{
+    position: absolute;
+    bottom:145px;
+    background-color: black;
+    outline: 5px solid black;
+    outline-offset: -5px;
+    box-shadow: 0 0 10px 3px white;
+    width: 25px;
+    height:90px;
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    transform: rotateX(-25deg) translateZ(-30px);
+}
+
+.collarBone{
+    position:relative;
+    display: flex;
+    width:25px;
+    height:25px;
+    background-color: green;
+    transform-style: preserve-3d;
+}
+.collarBoneBackLeft{
+    position: absolute;
+    left:100%;
+    width: 100px;
+    height: 25px;
+    background-color: black;
+    outline: 5px solid white;
+    outline-offset: -5px;
+    box-shadow: 0 0 10px 3px white;
+
+    transform-origin: left;
+    transform: rotateY(-20deg);
+}
+.collarBoneBackRight{
+    position: absolute;
+    right:100%;
+    width: 100px;
+    height: 25px;
+    background-color: black;
+    outline: 5px solid white;
+    outline-offset: -5px;
+    box-shadow: 0 0 10px 3px white;
+
+    transform-origin: right;
+    transform: rotateY(20deg);
+}
+.collarBoneFrontLeft{
+    position: absolute;
+    left:100%;
+    width: 100px;
+    height: 25px;
+    background-color: black;
+    outline: 5px solid white;
+    outline-offset: -5px;
+    box-shadow: 0 0 10px 3px white;
+
+    transform-origin: right;
+    transform: translateZ(34px) rotateY(20deg);
+}
+.collarBoneFrontRight{
+    position: absolute;
+    right:100%;
+    width: 100px;
+    height: 25px;
+    background-color: black;
+    outline: 5px solid white;
+    outline-offset: -5px;
+    box-shadow: 0 0 10px 3px white;
+
+    transform-origin: left;
+    transform: translateZ(34px) rotateY(-20deg);
+}
+
 .leftArm{
+    position: absolute;
+    top: 0;
+    right: -50px;
+    background-color: black;
+    outline: 5px solid white;
+    outline-offset: -5px;
+    width:50px;
+    height: 100px;
 
 }
 .rightArm{
+    position: absolute;
+    top: 0;
+    left:-50px;
+    background-color: black;
+    outline: 5px solid white;
+    outline-offset: -5px;
+    width:50px;
+    height: 100px;
+}
+
+.summonPortalContainer{
+    position: absolute;
+    bottom:-74px;
+    display: flex;
+    width: 150px;
+    aspect-ratio: 1;
+    /*background-color: white;*/
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    transform: rotateX(90deg);
+
+}
+.summonPortal{
+    position: relative;
+    /*circle rotates at middle, bottom pushes circle down by half of diameter (= to radius) so that the circle sits at bottom of skeletonBossContainer*/
+    top: 0;
+    background-color: black;
+    box-shadow: 0 0 10px 3px white;
+    border-radius: 50%;
+    /*width: 150px;*/
+    width: 0;
+    aspect-ratio: 1;
+    transform-origin: center;
+    transition: width 5s linear;
+    animation: bossPortal 6s linear;
+    animation-fill-mode: forwards;
+    z-index: 1;
 
 }
 
+@keyframes bossPortal{
+    from{width:0}
+    /*80%{width:0;transform:rotateX(90deg)}*/
+    80%{width:150px}
+    to{width:150px}
+}
+
+.portalAttack{
+    position: absolute;
+    background-color: black;
+    box-shadow: 0 0 10px 3px white;
+    border-radius: 50%;
+    left: 50%;
+    top:50%;
+    width: 0;
+    aspect-ratio: 1;
+    transition: width 5s linear;
+    /*animation: bossPortal 5s linear infinite;*/
+    z-index: 1;
+}

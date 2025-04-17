@@ -79,23 +79,40 @@
   <div class="outerColumns" id="columnCenterBlock">
     <div>leftcol</div>
     <div id="centerBlockCenterCol">
+<!--      used for flipping the tile down-->
+      <div class="tileContainer">
+<!--      used for rotating-->
+        <div class="camera">
 <!--      allows positioning of boss around board-->
-        <div class="bossContainer">
+          <div class="bossContainer">
 <!--          allows more control (rotation) of boss itself-->
-          <div class="skeletonBossContainer">
+           <div class="skeletonBossContainer">
 <!--            control of head-->
-            <div class="bossHead"></div>
+              <div class="bossHead"></div>
 <!--            control of body (chest)-->
-            <div class="bossBody"></div>
+              <div class="bossBody">
+                <div class="spineLower"></div>
+                <div class="spineMid"></div>
+                <div class="spineUpper">
+                  <div class="collarBone">
+                    <div class="collarBoneBackLeft"></div>
+                    <div class="collarBoneBackRight"></div>
+                    <div class="collarBoneFrontLeft"></div>
+                    <div class="collarBoneFrontRight"></div>
+                  </div>
+                </div>
+              </div>
 <!--            control of left arm (from boss perspective)-->
-            <div class="leftArm"></div>
+              <div class="leftArm"></div>
 <!--            control of right arm (from boss perspective)-->
-            <div class="rightArm"></div>
+              <div class="rightArm"></div>
 <!--            portal the boss will appear out of, acts as base, nothing below spine-->
-              <div class="summonPortal"></div>
-
+             <div class="summonPortalContainer">
+               <div class="summonPortal"></div>
+             </div>
+            </div>
           </div>
-        </div>
+
 <!--      scene container is used to rotate entire scene on player rotate-->
         <div class="sceneContainer">
           <!--      scene contains the elements for the player, board, enemies (except boss) props, etc..-->
@@ -104,6 +121,8 @@
             <div class="playerContainer">
               <div class="player"></div>
             </div>
+
+            <div class="portalAttack"></div>
 
             <div class="sceneFloor"></div>
             <div class="baseFaces baseFront"></div>
@@ -114,6 +133,8 @@
 
           </div>
         </div>
+        </div>
+      </div>
       <button type="button" id="firstTime">First Time?</button>
       <button type="button" id="previousUser">Ive Been here before</button>
       <button type="button" id="begin">Begin the Challenge</button>
