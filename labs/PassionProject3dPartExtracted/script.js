@@ -24,6 +24,9 @@ let sceneScaleValue = document.getElementById("sceneScaleValue")
 let backgroundSelection = document.getElementById("backgroundSelection")
 let beginGame = document.getElementById("begin")
 let sceneContainer = document.getElementsByClassName("sceneContainer")[0]
+// let bossScene = document.getElementsByClassName("bossScene")[0]
+// let bossSceneContainer = document.getElementsByClassName("bossSceneContainer")[0]
+let skeletonBossContainer = document.getElementsByClassName("skeletonBossContainer")[0]
 
 // let baseImage = document.getElementsByClassName("baseFaces")
 
@@ -77,9 +80,12 @@ beginGame.addEventListener('click', ()=>{
         previousUserButton.style.display="none";
         beginGame.style.display="none";
         scene.style.display="block";
+		skeletonBossContainer.style.display="block";
+        // bossScene.style.display="block";
     },1000)
     setTimeout(()=>{
         scene.style.width="600px";
+		// bossScene.style.width="600px";
         // scene.style.transform="rotateX(90deg)"
         centerBlock.style.backgroundImage="url(./assets/blackHole.png)";
         sceneFloor.style.backgroundImage= "url(./assets/stars.png)";
@@ -225,7 +231,7 @@ function beginGameButtonIsActive(){
     // changing Y moves the camera forwards (increasing) and backwards (decreasing)
     // let cameraPosition=[10,160,50];
     let cameraPosition=[10,800,280];
-    let playerCameraPosition = [0,0,0]
+    let playerCameraPosition = [0,0,0];
     // let cameraPosition=[10,-280,800];
     //Y val of 160 is first person
     //Z val of 40 is just under top of hat, considering character height is is fine for 1st person pov
@@ -241,8 +247,12 @@ function beginGameButtonIsActive(){
     let boardAngle = 0;
 
     setTimeout(()=>{
+		// bossSceneContainer.style.transform=`rotateX(90deg) translate3d(${cameraPosition[0]*-1}px,${cameraPosition[1]}px,0)`;
+		// bossContainer.style.transform=`rotateX(90deg) translate3d(${cameraPosition[0]*-1}px,${cameraPosition[1]}px,${cameraPosition[2]}px)`;
+		// bossContainer.style.transform=`rotateX(70deg)`;
         sceneContainer.style.transform=`rotateX(90deg) translate3d(${cameraPosition[0]*-1}px,${cameraPosition[1]}px,${cameraPosition[2]}px)`;
         scene.style.transform=`rotateX(${overheadBoardAngle}deg) scale3d(1,1,1)`;
+        // bossScene.style.transform=`rotateX(${overheadBoardAngle}deg) scale3d(1,1,1)`;
     },2000)
 
 // player movement
@@ -331,7 +341,9 @@ function beginGameButtonIsActive(){
         // sceneContainer.style.transform=`translate3d(0,0,0)`
         // scene.style.transform=`rotateX(${overheadBoardAngle}deg) scale3d(1,1,1) rotateZ(${boardAngle}deg) translate3d(${boardCameraPosition2}px,${boardCameraPosition}px,0)`;
         scene.style.transform=`rotateX(${overheadBoardAngle}deg) rotateZ(${boardAngle}deg) translate3d(${playerCameraPosition[0] *-1}px,${playerCameraPosition[2]}px,${playerCameraPosition[1]}px)`;
+		// bossSceneContainer.style.transform=`rotateX(${overheadBoardAngle}deg) rotateZ(${boardAngle}deg) translate3d(${playerCameraPosition[0] *-1}px,${playerCameraPosition[2]}px,${playerCameraPosition[1]}px)`;
         sceneContainer.style.transform=`rotateX(90deg) rotateY(${boardAngle}))`
+        // bossContainer.style.transform=`rotateX(90deg) rotateY(${boardAngle}))`
 
     })
 
