@@ -25,6 +25,7 @@ let currentPos=0
 let boxContainer = document.getElementById("boxContainer")
 let box = document.getElementsByClassName("boxRoom")
 let scene = document.getElementsByClassName("sceneContainer")
+let actualScene = document.getElementsByClassName("scene")
 let player1 = document.getElementsByClassName("player");
 let playerContainer = document.getElementsByClassName("playerContainer")
 let pillar1 = document.getElementsByClassName("pillarOne")
@@ -209,6 +210,8 @@ let angle=0; //used for rotating board and character Y, in degrees
 let boardAngle=0;
 let currentScale=1;
 let currentPlayerPos = [0,0,0]; //board units, not pixels
+let sceneTranslateAmount = 0;
+let moving = false;
 document.addEventListener("keydown", (event) =>{
 
     let isNS = ((angle > 315 && angle < 360) || (angle >=0 && angle < 45) || (angle > 135 && angle < 225));
@@ -263,6 +266,7 @@ document.addEventListener("keydown", (event) =>{
             break;
         case "w":
             currentPlayerPos[isNS ? 2 : 0] +=10 * (isNS ? (isSouth ? 1: -1) : (isEast ? 1 : -1));
+            sceneTranslateAmount +=10;
             break;
         case "a":
             currentPlayerPos[isNS ? 0 : 2] +=10 * (isNS ? (isSouth ? 1: -1) : (isEast ? -1 : 1));
@@ -274,14 +278,30 @@ document.addEventListener("keydown", (event) =>{
         case "s":
             currentPlayerPos[isNS ? 2 : 0] +=10 * (isNS ? (isSouth ? -1: 1) : (isEast ? -1 : 1));
             break;
+        case " ":
+            if( currentPlayerPos[1] < 0 ){
+            }else{
+                currentPlayerPos[1]-=5;
+            }
+
     }
 
     if(centerBlock3d.style.display !== "none") {
         scene[0].style.transition= "1s ease all";
         scene[0].style.transform = `rotateY(${boardAngle}deg) scale3d(${currentScale},${currentScale},${currentScale})`;
+        actualScene[0].style.transform = `rotateX(90deg) scale3d(3,3,3) translate3d(${-1*currentPlayerPos[0]}px,${-1*currentPlayerPos[2]}px,${currentPlayerPos[1]}px)`;
         playerContainer[0].style.transition= "0.5s ease all";
         playerContainer[0].style.transform=`rotateX(${-90}deg) translate3d(${currentPlayerPos[0]}px,${currentPlayerPos[1]}px,${currentPlayerPos[2]}px)`;
         player1[0].style.transform=`rotateY(${-angle}deg)`;
+        setTimeout(()=>{
+            if(currentPlayerPos[1] < 0){
+                currentPlayerPos[1]+=5;
+                playerContainer[0].style.transform=`rotateX(${-90}deg) translate3d(${currentPlayerPos[0]}px,${currentPlayerPos[1]}px,${currentPlayerPos[2]}px)`;
+                actualScene[0].style.transform = `rotateX(90deg) scale3d(3,3,3) translate3d(${-1*currentPlayerPos[0]}px,${-1*currentPlayerPos[2]}px,${currentPlayerPos[1]}px)`;
+
+            }
+
+        },300)
     }
     angle = (angle+360)%360;
 });

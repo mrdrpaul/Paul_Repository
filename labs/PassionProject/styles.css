@@ -308,6 +308,8 @@ body header, footer{
 .sceneContainer{
     transform-style:preserve-3d;
     /*transform-origin: 50px bottom -50px;*/
+    /*transform:translate3d(0,0,-750px);*/
+
 
 }
 .scene{
@@ -315,6 +317,7 @@ body header, footer{
     position: relative;
     aspect-ratio:1;
     transform-style:preserve-3d;
+    transition: transform 0.5s linear;
     transform:rotateX(90deg) scale3d(3,3,3);
 }
 
@@ -469,10 +472,122 @@ body header, footer{
     transform: translate3d(150px,-30px,0);
 }
 
+.angelContainer{
+    position:absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 20px;
+    left: 80px;
+    width: 100px;
+    height: 100px;
+    transform-style: preserve-3d;
+    transform: rotateX(-90deg) translate3d(0,-60px,0);
+    animation: rotateAngel 10s linear infinite
+}
+@keyframes rotateAngel{
+    from{transform: rotateX(-90deg) rotateY(0deg) translate3d(0,-60px,0) scale3d(1,1,1)}
+    to{transform: rotateX(-90deg) rotateY(360deg) translate3d(0,-60px,0) scale3d(7,7,7)}
+}
+.sphereHalves{
+    position:absolute;
+    background-color: black;
+    box-shadow: white 0 0 10px 2px, yellow 0 0 7px 3px, red 0 0 10px 8px;
+    border-radius: 50% 20px;
+    aspect-ratio: 1;
+    width:50px
+}
+
+.sphereHalf1{
+    /*position:absoulte*/
+    transform-origin: center;
+    transform: rotateY(0deg);
+    animation: spinHalf1 1.7s linear infinite;
+}
+@keyframes spinHalf1 {
+    from{transform:rotateY(0deg) rotateX(0deg)}
+    to{transform:rotateY(-360deg) rotateX(360deg)}
+}
+.sphereHalf2{
+    transform-origin: center;
+    transform: rotateY(90deg);
+    animation: spinHalf2 2s linear infinite;
+}
+@keyframes spinHalf2 {
+    from{transform:rotateX(0deg) rotateY(0deg)}
+    to{transform:rotateX(-360deg) rotateY(360deg)}
+}
+.ringOfEyes{
+    position: absolute;
+    width: 70px;
+    height:10px;
+    transform-style: preserve-3d;
+    border-radius: 50%;
+    box-shadow: white 0 0 70px 2px;
+
+}
+.ringOne{
+    position: absolute;
+    animation: spinClockwise 10s linear infinite;
+}
+@keyframes spinClockwise{
+    from{transform: rotateY(0deg) rotateZ(0deg)}
+    to{transform: rotateY(360deg) rotateZ(360deg)}
+}
+.ringTwo{
+    position: absolute;
+    transform:rotateX(-90deg);
+    animation: spinClockwiseXaxis 8s linear infinite;
+}
+@keyframes spinClockwiseXaxis{
+    from{transform: rotateX(0deg) rotateY(0deg)}
+    to{transform: rotateX(360deg) rotateY(-360deg)}
+}
+
+.ringThree{
+    position: absolute;
+    transform:rotateX(90deg) rotateZ(90deg) rotateY(45deg);
+    animation: spinThirdEye 6s linear infinite;
+}
+@keyframes spinThirdEye{
+    from{transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg)}
+    to{transform: rotateX(-360deg) rotateZ(-360deg) rotateY(360deg)}
+}
+
+.ringFaces{
+    position: absolute;
+    background-color: black;
+    /*background-image:url("./assets/GauntletCard/rectangleEye.jpeg");*/
+    background-size: contain;
+    width: 70px;
+    height:10px;
+    transform: translate3d(0,0,35px);
+
+
+}
+.firstFace{
+
+}
+.secondFace{
+    transform-origin: left;
+    transform: translate3d(0,0,35px) rotateY(90deg);
+}
+.thirdFace{
+    transform-origin: right;
+    transform: translate3d(0,0,35px) rotateY(-90deg);
+}
+.fourthFace{
+    transform-origin: left;
+    transform: translate3d(0,0,-35px);
+}
+
+
+
+
 .playerContainer{
     position: absolute;
     top:80px;
-    left:80px;
+    left:90px;
     transform-style:preserve-3d;
     transform-origin: center;
     transform: rotateX(-90deg);
@@ -483,9 +598,14 @@ body header, footer{
     position: absolute;
     bottom:0;
     left:0;
-    background-image: url("./assets/GauntletCard/pixelBarbarian.png");
+    /*background-image: url("./assets/GauntletCard/pixelBarbarian.png");*/
+    background-image: url("./assets/GauntletCard/pixelWizard.png");
+    /*background-image: url("./assets/GauntletCard/pixelPaladin.png");*/
+    /*background-image: url("./assets/GauntletCard/pixelArcher.png");*/
+    /*background-image: url("./assets/GauntletCard/pixelRogue.png");*/
     background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
     width: 20px;
     aspect-ratio: 1;
     transform-style: preserve-3d;
