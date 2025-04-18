@@ -27,6 +27,9 @@ let sceneContainer = document.getElementsByClassName("sceneContainer")[0]
 let camera = document.getElementsByClassName("camera")[0]
 let bossContainer = document.getElementsByClassName("bossContainer")[0]
 let tileContainer = document.getElementsByClassName("tileContainer")[0]
+let skeletonBossContainer = document.getElementsByClassName("skeletonBossContainer")[0]
+
+const audio = new Audio('./assets/Untitled.mp3')
 
 // let baseImage = document.getElementsByClassName("baseFaces")
 
@@ -84,14 +87,24 @@ beginGame.addEventListener('click', ()=>{
     },1000)
     setTimeout(()=>{
         tileContainer.style.width="600px";
-        tileContainer.style.transform="rotateX(90deg)";
+        tileContainer.style.transform="rotateX(90deg) scale3d(1,1,1) translate3d(0,250px,50px)";
 
         centerBlock.style.backgroundImage="url(./assets/blackHole.png)";
         sceneFloor.style.backgroundImage= "url(./assets/stars.png)";
         baseFaces.forEach(elements => {elements.style.backgroundImage="url(./assets/stars.png)"});
-
-        // camera.style.animation="rotateCamera 10s linear infinite";
+        audio.play();
     },1100)
+    setTimeout(()=>{
+        skeletonBossContainer.style.display="flex";
+
+    },5000)
+    setTimeout(()=>{
+        skeletonBossContainer.style.animation="rotateBossContainer 10s linear";
+        skeletonBossContainer.style.animationFillMode="forwards";
+    },6000)
+    setTimeout(()=>{
+        camera.style.animation="rotateCamera 10s linear infinite";
+    },23300)
 
 })
 // true if user selected button to customize [currently "ive been here before" button]

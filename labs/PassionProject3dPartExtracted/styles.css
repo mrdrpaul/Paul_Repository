@@ -227,7 +227,7 @@ body header, footer{
     outline-offset: -5px;
 }
 .skeletonBossContainer{
-    display: flex;
+    display: none;
     justify-content: center;
     position: absolute;
     top: 0;
@@ -240,24 +240,184 @@ body header, footer{
     transform-style: preserve-3d;
     /*translate of (-50%,0,200px) along with the left 50% moves element to center and rotate(-90deg) flips element down*/
     /*preserves top/bottom for child elements*/
-    transform:translate3d(-50%,50%,200px) rotateX(-90deg);
-    /*animation: rotateBossContainer 10s linear infinite;*/
+    /*animation-fill-mode: forwards;*/
+
+    transform:translate3d(-50%,50%,-200px) rotateX(-90deg);
+    /*animation: rotateBossContainer 10s linear ;*/
+
     z-index: 1;
 }
 @keyframes rotateBossContainer {
-    from{transform: translate3d(-50%,-50%,200px) rotateX(-90deg)}
-    to{transform:translate3d(-50%,-50%,200px) rotateX(-90deg) rotateY(360deg)}
+    from{transform: translate3d(-50%,50%,-200px) rotateX(-90deg)}
+    to{transform:translate3d(-50%,50%,195px) rotateX(-90deg)}
 
 }
 .bossHead{
     position: absolute;
-    top: -100px;
-    background-color: black;
-    outline: 5px solid white;
-    outline-offset: -5px;
+    top: -120px;
     width:100px;
     aspect-ratio: 1;
+    transform-style: preserve-3d;
+    transform:rotateX(-23deg);
 }
+
+.halo{
+    position: absolute;
+    transform: rotateX(90deg) translate3d(-100px);
+    background-color: white;
+    width: 150px;
+    aspect-ratio: 1;
+}
+
+.crown{
+    /*top:-100%;*/
+    position: absolute;
+    transform-origin: top;
+    transform:rotateX(90deg);
+    width:100px;
+    aspect-ratio: 1;
+    transform-style: preserve-3d;
+
+}
+
+.crownFaces{
+    position: absolute;
+    background-color: gold;
+    background-image: url("./assets/stars.png");
+    /*outline: 5px solid white;*/
+    /*outline-offset: -5px;*/
+    box-shadow: 0 0 10px 3px white;
+    width: 100%;
+}
+.crownBase{
+    aspect-ratio: 1;
+}
+.crownFront{
+    height:25px;
+    bottom: 0;
+    transform-origin: bottom;
+    transform: rotateX(-90deg);
+
+}
+.crownLeft{
+    height:25px;
+    transform-origin: top right;
+    transform: rotateZ(-90deg) rotateX(90deg);
+}
+.crownRight{
+    height:25px;
+    transform-origin: top left;
+    transform: rotateZ(90deg) rotateX(90deg);
+}
+.crownBack{
+    height:25px;
+    transform-origin: top;
+    transform: rotateX(90deg);
+}
+
+.crownPillars{
+    position: absolute;
+    transform-origin: top;
+    transform-style: preserve-3d;
+}
+
+.crownPillarOne{
+    transform:rotateX(90deg);
+
+}
+.crownPillarTwo{
+    transform:rotateX(90deg) translateX(70px);
+}
+.crownPillarThree{
+    transform:rotateX(90deg) translateX(70px) translateZ(-70px);
+
+}
+.crownPillarFour{
+    transform:rotateX(90deg) translateZ(-70px);
+
+}
+
+.crownPillarContainers{
+    top:25px;
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.crownPillarFaceOneContainer{
+
+}
+.crownPillarFaceTwoContainer{
+    transform-origin: top left;
+    transform: rotateY(90deg);
+}
+.crownPillarFaceThreeContainer{
+    transform-origin: top right;
+    transform: rotateY(-90deg);
+}
+.crownPillarFaceFourContainer{
+    transform:translateZ(-30px);
+}
+
+.crownPillarFaces{
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 70px solid gold;
+    transform-origin: top;
+}
+
+.crownPillarFaceOne{
+    transform:rotateX(-12deg);
+}
+.crownPillarFaceTwo{
+    transform:rotateX(12deg);
+
+}
+.crownPillarFaceThree{
+    transform:rotateX(12deg);
+}
+.crownPillarFaceFour{
+    transform:rotateX(12deg);
+
+}
+
+.skull{
+    display: flex;
+    width: 100px;
+    justify-content: center;
+    position: absolute;
+    transform-style: preserve-3d;
+    transform: translateZ(10px)
+}
+
+.skullFaces{
+    position: absolute;
+    width: 80px;
+    aspect-ratio: 1;
+    background-color: black;
+    box-shadow: 0 0 10px 3px black;
+    /*animation: expandShadow 10s linear infinite;*/
+}
+@keyframes expandShadow{
+    from{width:80px}
+    to{width:300px}
+}
+.skullFaceFront{
+
+    transform: translateZ(80px);
+}
+.skullFaceLeft{
+    transform-origin: left;
+    transform:rotateY(-90deg);
+}
+.skullFaceRight{
+    transform-origin: right;
+    transform:rotateY(90deg);
+
+}
+.skullFaceBack{
+}
+
+
 .bossBody{
     display: flex;
     position: absolute;
@@ -394,15 +554,17 @@ body header, footer{
 
 .summonPortalContainer{
     position: absolute;
-    bottom:-74px;
+    top:0;
+    left:50%;
     display: flex;
-    width: 150px;
+    width: 300px;
     aspect-ratio: 1;
     /*background-color: white;*/
     justify-content: center;
     align-items: center;
     transform-style: preserve-3d;
-    transform: rotateX(90deg);
+    transform: translate3d(-50%,1px,1px);
+    z-index: 2;
 
 }
 .summonPortal{
@@ -426,8 +588,8 @@ body header, footer{
 @keyframes bossPortal{
     from{width:0}
     /*80%{width:0;transform:rotateX(90deg)}*/
-    80%{width:150px}
-    to{width:150px}
+    80%{width:300px}
+    to{width:300px}
 }
 
 .portalAttack{
