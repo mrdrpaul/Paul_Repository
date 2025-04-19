@@ -14,18 +14,12 @@ const App = () =>{
     return(
         <div className="pageHolder" style={{width:"100vw"}}>
             <Router>
-                {/*<SearchAppBar></SearchAppBar>*/}
                 <Routes>
                     <Route path="/" element=<Home/>/>
                     <Route path="/results" element=<Results/>/>
                     <Route path="/*" element=<Error/>/>
                 </Routes>
             </Router>
-            {/*<button onClick={handleClick}>Now Playing</button>*/}
-            {/*<div className="cardHolder">*/}
-            {/*    /!*<div style={{width:"400px"}}>{movies}</div>*!/*/}
-            {/*    {movies}*/}
-            {/*</div>*/}
         </div>
     )
 }
