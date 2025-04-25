@@ -121,7 +121,7 @@ body header, footer{
 .camera{
     position: relative;
     transform-style: preserve-3d;
-    transition: width 1.5s ease;
+    transition: width 1.5s ease, transform 0.2s linear;
     aspect-ratio: 1;
     width: inherit;
     outline: 5px solid yellow;
@@ -136,7 +136,7 @@ body header, footer{
 .sceneContainer{
     position: absolute;
     transform-style: preserve-3d;
-    transition: width 2.5s ease;
+    transition: width 2.5s ease, transform 0.2s linear;
     aspect-ratio: 1;
     width: inherit;
     outline: 5px solid red;
@@ -197,7 +197,7 @@ body header, footer{
 /*_______________________________________Player customization_______________________________________*/
 .playerContainer{
     position: absolute;
-    display: none;
+    display: block;
     transform-style: preserve-3d;
     transform-origin: bottom; /*transforms occur from bottom up element (allows element to flip up, as opposed to default center origin transform, resulting in element partially being in the ground)*/
     transform:rotateX(-90deg); /*flips player container back up after flip down from board */
@@ -206,15 +206,39 @@ body header, footer{
     /*z-index: 1; !*ensures element visually appears on top of scene (when testing where element is with border:)*!*/
     bottom:400px;/*places the character at the bottom of the board initially (closest to the user[player])*/
     left:390px; /*places the left side of the playerContainer element 50% from the left of the parent element (the left side of the board)*/
-    transition: transform 0.5s linear;
+    transition: transform 0.2s linear;
 }
-.player{
-    background-image: url("./assets/pixelWizard.png");
+.hands{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    display: block;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    transition: transform 0.2s linear;
+}
+.leftHand{
+    background-image: url("./assets/leftHand.png");
+    transform: translate3d(-10px,0px,-25px) rotateX(40deg) rotateY(62deg) rotateZ(39deg);
+
+}
+.rightHand{
+    background-image: url("./assets/rightHand.png");
+    transform: translate3d(10px,0px,-25px) rotateX(40deg) rotateY(-62deg) rotateZ(-39deg);
+
+}
+.player{
+    /*background-image: url("./assets/pixelWizard.png");*/
+    /*display: none;*/
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform-style: preserve-3d;
     width: 20px;
     height: 20px;
+    transition: transform 0.2s linear;
+
 }
 /*_______________________________________End Player customization_______________________________________*/
 /*_______________________________________Begin Castle customization_______________________________________*/
