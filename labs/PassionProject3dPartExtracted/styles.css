@@ -111,7 +111,7 @@ body header, footer{
     outline-offset: -5px; /*for visual testing*/
     width: 0; /*sets initial width, allows for smooth transition*/
     aspect-ratio: 1; /*allows height to be set to width*/
-    transition: width 0.5s ease, transform 2s linear; /*applies transition effect*/
+    transition: width 0.5s ease, transform 0.5s linear; /*applies transition effect*/
     /*viewpoint is at center, 90deg rotation with center origin causes board to disappear*/
     /*rotating with origin at bottom visually folds the board backwards*/
     /*transform-origin: center;*/
@@ -197,14 +197,15 @@ body header, footer{
 /*_______________________________________Player customization_______________________________________*/
 .playerContainer{
     position: absolute;
+    display: none;
     transform-style: preserve-3d;
     transform-origin: bottom; /*transforms occur from bottom up element (allows element to flip up, as opposed to default center origin transform, resulting in element partially being in the ground)*/
     transform:rotateX(-90deg); /*flips player container back up after flip down from board */
     width: 20px;
     height: 20px;
     /*z-index: 1; !*ensures element visually appears on top of scene (when testing where element is with border:)*!*/
-    bottom:0;/*places the character at the bottom of the board initially (closest to the user[player])*/
-    left:50%; /*places the left side of the playerContainer element 50% from the left of the parent element (the left side of the board)*/
+    bottom:400px;/*places the character at the bottom of the board initially (closest to the user[player])*/
+    left:390px; /*places the left side of the playerContainer element 50% from the left of the parent element (the left side of the board)*/
     transition: transform 0.5s linear;
 }
 .player{
@@ -216,6 +217,116 @@ body header, footer{
     height: 20px;
 }
 /*_______________________________________End Player customization_______________________________________*/
+/*_______________________________________Begin Castle customization_______________________________________*/
+.castle{
+    position: absolute;
+    left:100px;
+    aspect-ratio: 1;
+    width: 600px;
+    background-image: url("./assets/mossyCobblestoneRoad.png");
+    background-position: center;
+    background-size: 100px 100px;
+    transform-style: preserve-3d;
+}
+.castleWall{
+    position: absolute;
+    background-image: url("./assets/castleWall.png");
+    background-position: center;
+    background-size: contain;
+    width: 600px;
+    height: 100px;
+}
+
+.castleWallFront{
+    bottom: 0;
+    background-image: none;
+    transform-origin: bottom;
+    transform: rotateX(-90deg);
+    transform-style: preserve-3d;
+}
+.castleWallFrontLeft{
+    position: absolute;
+    width:250px;
+}
+.castleWallFrontGate{
+    position: absolute;
+    background-image: none;
+
+}
+.castleWallFrontRight{
+    right:0;
+    position: absolute;
+    width:250px;
+}
+
+.castleWallBack{
+    top: -100px;
+    transform-origin: bottom;
+    transform: rotateX(-90deg);
+}
+.castleWallLeft{
+    top: -100px;
+    transform-origin: bottom right;
+    transform: rotateX(-90deg) rotateY(90deg);
+}
+.castleWallRight{
+    top: -100px;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) rotateY(-90deg);
+}
+
+
+.treeContainer{
+    position: absolute;
+    transform-style: preserve-3d;
+    /*background-color: red;*/
+    width: 35px;
+    height: 70px;
+    transform-origin: bottom;
+    transform: rotateX(-90deg);
+
+}
+.tree{
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background-image: url("./assets/tree.png");
+    background-position: center;
+    background-size: cover;
+}
+.treeFaceOne{
+
+}
+.treeFaceTwo{
+    transform:rotateY(90deg);
+
+}
+
+
+
+
+/*_______________________________________End Castle customization_______________________________________*/
+/*_______________________________________Begin Prop customization (House Variants)_______________________________________*/
+
+
+
+
+
+
+/*_______________________________________End Prop customization (House Variants)_______________________________________*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*_______________________________________Boss customization_______________________________________*/
 .bossContainer{
     position: absolute;
@@ -260,15 +371,17 @@ body header, footer{
     transform-style: preserve-3d;
     transform:rotateX(-23deg);
 }
-
 .halo{
     position: absolute;
-    transform: rotateX(90deg) translate3d(-100px);
-    background-color: white;
+    left: 50%;
+
+    transform: rotateX(90deg) translate3d(-50%,-10px , 100px);
+    background-color: transparent;
+    box-shadow: 0 0 40px 3px gold ;
+    border-radius: 50%;
     width: 150px;
     aspect-ratio: 1;
 }
-
 .crown{
     /*top:-100%;*/
     position: absolute;
@@ -279,13 +392,10 @@ body header, footer{
     transform-style: preserve-3d;
 
 }
-
 .crownFaces{
     position: absolute;
     background-color: gold;
     background-image: url("./assets/stars.png");
-    /*outline: 5px solid white;*/
-    /*outline-offset: -5px;*/
     box-shadow: 0 0 10px 3px white;
     width: 100%;
 }
@@ -314,13 +424,11 @@ body header, footer{
     transform-origin: top;
     transform: rotateX(90deg);
 }
-
 .crownPillars{
     position: absolute;
     transform-origin: top;
     transform-style: preserve-3d;
 }
-
 .crownPillarOne{
     transform:rotateX(90deg);
 
@@ -336,13 +444,11 @@ body header, footer{
     transform:rotateX(90deg) translateZ(-70px);
 
 }
-
 .crownPillarContainers{
     top:25px;
     position: absolute;
     transform-style: preserve-3d;
 }
-
 .crownPillarFaceOneContainer{
 
 }
@@ -357,14 +463,12 @@ body header, footer{
 .crownPillarFaceFourContainer{
     transform:translateZ(-30px);
 }
-
 .crownPillarFaces{
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
     border-top: 70px solid gold;
     transform-origin: top;
 }
-
 .crownPillarFaceOne{
     transform:rotateX(-12deg);
 }
@@ -379,7 +483,6 @@ body header, footer{
     transform:rotateX(12deg);
 
 }
-
 .skull{
     display: flex;
     width: 100px;
@@ -388,7 +491,6 @@ body header, footer{
     transform-style: preserve-3d;
     transform: translateZ(10px)
 }
-
 .skullFaces{
     position: absolute;
     width: 80px;
@@ -416,8 +518,6 @@ body header, footer{
 }
 .skullFaceBack{
 }
-
-
 .bossBody{
     display: flex;
     position: absolute;
@@ -468,7 +568,6 @@ body header, footer{
     transform-style: preserve-3d;
     transform: rotateX(-25deg) translateZ(-30px);
 }
-
 .collarBone{
     position:relative;
     display: flex;
@@ -529,11 +628,10 @@ body header, footer{
     transform-origin: left;
     transform: translateZ(34px) rotateY(-20deg);
 }
-
 .leftArm{
     position: absolute;
     top: 0;
-    right: -50px;
+    right: -100px;
     background-color: black;
     outline: 5px solid white;
     outline-offset: -5px;
@@ -544,19 +642,20 @@ body header, footer{
 .rightArm{
     position: absolute;
     top: 0;
-    left:-50px;
+    left:-100px;
     background-color: black;
     outline: 5px solid white;
     outline-offset: -5px;
     width:50px;
     height: 100px;
 }
-
 .summonPortalContainer{
+    /*display set to none to hide boss code*/
+    display: none;
     position: absolute;
     top:0;
     left:50%;
-    display: flex;
+    /*display: flex;*/
     width: 300px;
     aspect-ratio: 1;
     /*background-color: white;*/
@@ -579,20 +678,20 @@ body header, footer{
     aspect-ratio: 1;
     transform-origin: center;
     transition: width 5s linear;
-    animation: bossPortal 6s linear;
+    /*animation: bossPortal 6s linear;*/
     animation-fill-mode: forwards;
     z-index: 1;
 
 }
-
 @keyframes bossPortal{
     from{width:0}
     /*80%{width:0;transform:rotateX(90deg)}*/
     80%{width:300px}
     to{width:300px}
 }
-
 .portalAttack{
+    /*display set to none to hide boss code*/
+    display: none;
     position: absolute;
     background-color: black;
     box-shadow: 0 0 10px 3px white;
