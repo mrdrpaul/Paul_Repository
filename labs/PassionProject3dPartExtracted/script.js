@@ -298,6 +298,8 @@ function beginGameButtonIsActive(){
     let playerAngle2 = 0;
     let boardAngle = 0;
 
+    let cameraAngle=0;
+
     setTimeout(()=>{
         // sceneContainer.style.transform=`rotateX(90deg) translate3d(${cameraPosition[0]*-1}px,${cameraPosition[1]}px,${cameraPosition[2]}px)`;
         // scene.style.transform=`rotateX(${overheadBoardAngle}deg) scale3d(1,1,1)`;
@@ -305,40 +307,32 @@ function beginGameButtonIsActive(){
 
 // player movement
     document.addEventListener("keydown", (event)=>{
+        let isNorthPlane = (cameraAngle === 0 || cameraAngle === 45 || cameraAngle === 315)
+        let isEastPlane = (cameraAngle === 225 || cameraAngle === 270 || cameraAngle === 315)
+        let isWestPlane = (cameraAngle === 45 || cameraAngle === 90 || cameraAngle === 135)
+        let isSouthPlane = (cameraAngle === 135 || cameraAngle === 180 || cameraAngle === 225)
         switch(event.key){
             case "w":
-                playerOnePosition[2]+=10;
-                boardCameraPosition+=10;
-                playerCameraPosition[2]+=10;
-
-                boardPosition[1]+=10;
+                playerOnePosition[2]+= (isNorthPlane ? 10 : isSouthPlane ? -10 :0);
+                playerOnePosition[0]+= (isEastPlane ? 10 : isWestPlane ? -10 :0);
 
                 break;
             case "s":
-                playerOnePosition[2]-=10;
-                boardCameraPosition-=10;
-                playerCameraPosition[2]-=10;
-                boardPosition[1]-=10;
+                // playerOnePosition[2]-=10;
+                playerOnePosition[2]+= (isNorthPlane ? -10 : isSouthPlane ? 10 :0);
+                playerOnePosition[0]+= (isEastPlane ? -10 : isWestPlane ? 10 :0);
 
 
-
-                break;
+                break;h
             case "a":
-                playerOnePosition[0]-=10;
-                cameraPosition[0]-=10;
-                boardCameraPosition2-=10;
-                playerCameraPosition[0]-=10;
-                boardPosition[0]+=10;
-
-
+                playerOnePosition[0]+= (isNorthPlane ? -10 : isSouthPlane ? 10 :0);
+                playerOnePosition[2]+= (isEastPlane ? 10 : isWestPlane ? -10 :0);
 
                 break;
             case "d":
-                playerOnePosition[0]+=10;
-                cameraPosition[0]+=10;
-                playerCameraPosition[0]+=10;
-                boardCameraPosition2+=10;
-                boardPosition[0]-=10;
+                playerOnePosition[0]+= (isNorthPlane ? 10 : isSouthPlane ? -10 :0);
+                playerOnePosition[2]+= (isEastPlane ? -10 : isWestPlane ? 10 :0);
+
 
 
                 break;
@@ -350,11 +344,11 @@ function beginGameButtonIsActive(){
             case "ArrowUp":
                 //moves camera forward
                 if(!firstPersonMode){
-                    cameraPosition[1]+=150;
-                    cameraPosition[2]-=20;
-                    overheadBoardAngle+=30;
-                    playerCameraPosition[2]+=150;
-                    playerCameraPosition[1]+=60;
+                    // cameraPosition[1]+=150;
+                    // cameraPosition[2]-=20;
+                    // overheadBoardAngle+=30;
+                    // playerCameraPosition[2]+=150;
+                    // playerCameraPosition[1]+=60;
 
                     firstPersonMode=true;
                     playerOne.style.display="none";
@@ -364,11 +358,11 @@ function beginGameButtonIsActive(){
             case "ArrowDown":
                 //moves camera back
                 if(firstPersonMode){
-                    cameraPosition[1]-=150;
-                    cameraPosition[2]+=20;
-                    overheadBoardAngle-=30;
-                    playerCameraPosition[2]-=150;
-                    playerCameraPosition[1]-=60;
+                    // cameraPosition[1]-=150;
+                    // cameraPosition[2]+=20;
+                    // overheadBoardAngle-=30;
+                    // playerCameraPosition[2]-=150;
+                    // playerCameraPosition[1]-=60;
 
                     firstPersonMode=false;
                     playerOne.style.display="block";
@@ -378,13 +372,14 @@ function beginGameButtonIsActive(){
                 break;
             case "ArrowLeft":
                 if(firstPersonMode){
-                    boardAngle+=15;
+                    // boardAngle+=15;
 
                 }else{
-                    boardAngle+=40;
+                    // boardAngle+=40;
 
                 }
                 playerAngle+=15;
+                cameraAngle+=45
 
                 //turn character left,rotate character container, rotate scene, rotateY
                 break;
@@ -396,13 +391,19 @@ function beginGameButtonIsActive(){
 
                 }
                 playerAngle-=15;
+                cameraAngle-=45
 
                 break;
         }
+        cameraAngle = (cameraAngle + 360)%360
         //multiplying the Y and Z by -1 allows for the switch statement to increase and decrease values appropriately
+        //playerContainer moves the character
         playerOneContainer.style.transform=`rotateX(-90deg) translate3d(${playerOnePosition[0]}px,${playerOnePosition[1]*-1}px,${playerOnePosition[2]*-1}px)`
+       //player rotates the play to face camera (only matters for third person)
         playerOne.style.transform=`rotateY(${playerAngle}deg)`
-        camera.style.transform=`rotateZ(${playerAngle}deg) rotateX(${playerAngle2}deg)`
+        //camera is purely for looking around (rotating board on axis of camera)
+        camera.style.transform=`rotateZ(${cameraAngle}deg) rotateX(${playerAngle2}deg)`
+        //sceneContainer translation is to simulate movement in a 3d space
         sceneContainer.style.transform=`translate3d(${-1*playerOnePosition[0]}px,${playerOnePosition[2]}px,0px)`
 
     })
