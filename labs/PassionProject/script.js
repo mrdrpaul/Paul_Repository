@@ -283,6 +283,13 @@ document.addEventListener("keydown", (event) =>{
             }else{
                 currentPlayerPos[1]-=5;
             }
+            break;
+        case "q":
+            createWorm()
+            break;
+        case "e":
+            moveWorm()
+            break;
 
     }
 
@@ -306,5 +313,65 @@ document.addEventListener("keydown", (event) =>{
     angle = (angle+360)%360;
 });
 function buildScene(){
+
+}
+function createWorm(){
+    let segments = 10;
+    let distance = 0;
+    let worm = document.getElementsByClassName("wormContainer")[0];
+    for(let i =0; i < segments; i++) {
+        const div = document.createElement("div");
+        div.classList.add("wormSegment");
+        worm.appendChild(div);
+
+
+        setTimeout(()=>{
+            // div.style.animationDelay = `${i+1}s`
+            div.style.transform=`translate3d(0,100px,${distance}px)`;
+            distance-=10
+            segments -=1;
+        },i*300)
+    }
+
+
+    // let wormSegment = document.getElementsByClassName("wormSegment");
+    // forEach((wormSegment ,i) =>{
+    //     worm.appendChild(wormSegment);
+    //     wormSegment.style.animationDelay = `${i+1}s`
+    //     wormSegment.style.transform=`translate3d(0,100px,${distance}px)`;
+    //     distance-=10
+    //     segments -=1;
+    // })
+
+
+    // Story.innerHTML = "";
+    // text.split("").forEach((char, i) =>{
+    //     const span = document.createElement("span");
+    //     span.textContent = char === " " ? "\u00A0" : char;
+    //     span.style.animationDelay = `${i*0.05}s`;
+    //     Story.appendChild(span);
+    // })
+}
+
+function moveWorm(){
+    let wormSegment = document.getElementsByClassName("wormSegment");
+    x=0;
+    for(i=0; i < 10; i++){
+        setTimeout(()=>{
+            wormSegment[x++].style.transform=`translate3d(0,100px,${i*25}px)`
+        },i*300)
+    }
+    // i=1;
+    // setTimeout(()=>{
+    //     wormSegment[i].style.transform=`translate3d(0,100px,${i*25}px)`
+    // },i*300)
+
+
+    // forEach((wormSegment, i)=>{
+    //     setTimeout(()=>{
+    //         wormSegment[i].style.transform=`translate3d(0,100px,${i*25}px)`
+    //     },i*300)
+    // })
+
 
 }

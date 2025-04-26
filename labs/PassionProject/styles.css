@@ -472,6 +472,27 @@ body header, footer{
     transform: translate3d(150px,-30px,0);
 }
 
+.wormContainer{
+    position: absolute;
+    transform-style: preserve-3d;
+    width: 100px;
+    aspect-ratio: 1;
+    background-color: red;
+    top:0;
+    transform-origin: top;
+    transform: rotateX(90deg);
+
+}
+
+.wormSegment{
+    position: absolute;
+    width: 15px;
+    aspect-ratio: 1;
+    background-color: green;
+    transition: transform 1s linear;
+}
+
+
 .angelContainer{
     position:absolute;
     display: flex;
@@ -487,7 +508,7 @@ body header, footer{
 }
 @keyframes rotateAngel{
     from{transform: rotateX(-90deg) rotateY(0deg) translate3d(0,-60px,0) scale3d(1,1,1)}
-    to{transform: rotateX(-90deg) rotateY(360deg) translate3d(0,-60px,0) scale3d(7,7,7)}
+    to{transform: rotateX(-90deg) rotateY(360deg) translate3d(0,-60px,0) scale3d(1,1,1)}
 }
 .sphereHalves{
     position:absolute;
