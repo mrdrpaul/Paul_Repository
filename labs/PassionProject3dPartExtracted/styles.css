@@ -226,8 +226,31 @@ body header, footer{
 .rightHand{
     background-image: url("./assets/rightHand.png");
     transform: translate3d(10px,0px,-25px) rotateX(40deg) rotateY(-62deg) rotateZ(-39deg);
+    transform-style: preserve-3d;
+}
+.torch{
+    display: none;
+    position: absolute;
+    width: 10px;
+    height: 30px;
+    background-image: url("./assets/torch.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: rotateZ(0deg) translate3d(0,0,0)
 
 }
+.weapon{
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background-image: url("./assets/weapon.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: rotateX(8deg) rotateY(-17deg) rotateZ(78deg) translate3d(-7px,10px,6px)
+}
+
 .player{
     /*background-image: url("./assets/pixelWizard.png");*/
     /*display: none;*/
@@ -317,6 +340,7 @@ body header, footer{
     background-image: url("./assets/tree.png");
     background-position: center;
     background-size: cover;
+    transition: filter 1s linear;
 }
 .treeFaceOne{
 
