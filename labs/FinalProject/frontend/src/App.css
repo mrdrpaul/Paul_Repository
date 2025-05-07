@@ -1,0 +1,137 @@
+*{
+  padding:0;
+  margin: 0;
+  border: none;
+}
+
+.bodyPage{
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 2.5fr 95fr 2.5fr ;
+  grid-template-rows: auto 1fr auto;
+  text-align: center;
+  transition: background 5s linear;
+}
+
+body header, footer{
+  grid-column: 1/span 3;
+  height:50px;
+  background-color: black;
+  color: white;
+}
+
+#columnCenterBlock{
+  display: grid;
+  grid-template-columns: 100fr auto;
+  grid-template-rows:  100fr auto;
+  overflow: hidden;
+
+}
+
+#columnLeftBorder,#columnRightBorder{
+  /*position: relative;*/
+  background-color: black;
+  height: 100%;
+}
+
+.menuInterface{
+  /*width:300px;*/
+  background-color: red;
+  grid-column: 2;
+  grid-row: 1/span 2;
+  outline: 5px solid tan;
+  outline-offset: -5px;
+  transition: width 0.7s ease;
+}
+.menuInterface.open{
+  width: 300px;
+}
+
+.menuInterface.closed{
+  width: 0;
+}
+
+.chatInterface{
+  flex-direction: column;
+  display: flex;
+  position: relative;
+  background-color: tan;
+  transition: height 0.7s ease;
+  border: 5px solid gold;
+  /*overflow: auto;*/
+  text-align: left;
+  /*flex: 1;*/
+}
+.chatMessages{
+  flex: 1;
+  overflow: auto;
+  color: black;
+  /*padding: 10px;*/
+}
+.chatBar{
+  /*position: sticky;*/
+  display: flex;
+  bottom: 0;
+  width:100%;
+  height: 20px;
+  border-top: 1px solid white;
+}
+
+.chatInterface.open{
+  height: 200px;
+}
+.chatInterface.closed{
+  height: 0;
+}
+
+.gameInterface{
+  background-image: url("./assets/cloudsBackground.png");
+  display: flex;
+  perspective: 800px;
+  height:100%;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  /*outline: 5px solid tan;*/
+  /*outline-offset: -5px;*/
+}
+
+.tileContainer{
+  display: none; /*hides entire element and children until activated*/
+  position: relative;
+  transform-style: preserve-3d;
+  outline: 5px solid white; /*for visual testing*/
+  outline-offset: -5px; /*for visual testing*/
+  width: 0; /*sets initial width, allows for smooth transition*/
+  aspect-ratio: 1; /*allows height to be set to width*/
+  transition: width 0.5s ease, transform 0.5s linear; /*applies transition effect*/
+  /*viewpoint is at center, 90deg rotation with center origin causes board to disappear*/
+  /*rotating with origin at bottom visually folds the board backwards*/
+  /*transform-origin: center;*/
+  transform-origin: bottom;
+}
+
+
+.camera{
+  display: block; /*hides entire element and children until activated*/
+  position: relative;
+  transform-style: preserve-3d;
+  outline: 5px solid white; /*for visual testing*/
+  outline-offset: -5px; /*for visual testing*/
+  width: 1000px; /*sets initial width, allows for smooth transition*/
+  aspect-ratio: 1; /*allows height to be set to width*/
+  /*transition: width 0.5s ease, transform 0.5s linear; !*applies transition effect*!*/
+  /*viewpoint is at center, 90deg rotation with center origin causes board to disappear*/
+  /*rotating with origin at bottom visually folds the board backwards*/
+  /*transform-origin: center;*/
+  transform-origin: bottom;
+  /*transform: rotateX(90deg);*/
+  background-image: url("./assets/grassTexture.png");
+  /*animation: flipTile 10s linear infinite;*/
+}
+
+@keyframes flipTile {
+  from{}
+  to{transform: rotateX(90deg) translate3d(0px,0px,-200px)}
+}

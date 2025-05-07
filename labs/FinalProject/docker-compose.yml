@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  postgres-db:
+    container_name: finalproject
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: finalproject
+      POSTGRES_HOST_AUTH_METHOD: password
+    ports:
+      - "5460:5432"
+
+volumes:
+  postgresql_data:
+    driver: local
