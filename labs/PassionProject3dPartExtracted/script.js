@@ -30,6 +30,8 @@ let tileContainer = document.getElementsByClassName("tileContainer")[0]
 let skeletonBossContainer = document.getElementsByClassName("skeletonBossContainer")[0]
 let summonPortal = document.getElementsByClassName("summonPortal")[0]
 
+let golemEnemy = document.getElementsByClassName("golemEnemy")[0]
+
 let tree = document.getElementsByClassName("treeContainer")[0]
 
 const audio = new Audio('./assets/Untitled.mp3')
@@ -98,6 +100,9 @@ beginGame.addEventListener('click', ()=>{
     newUserButton.style.opacity="0";
     previousUserButton.style.opacity="0";
     beginGame.style.opacity="0";
+    centerBlock.style.display="block"
+    document.getElementsByClassName("centerBlockLeftColumn")[0].style.display="none";
+    document.getElementsByClassName("centerBlockRightColumn")[0].style.display="none";
 
     setTimeout(()=>{
         newUserButton.style.display="none";
@@ -117,8 +122,9 @@ beginGame.addEventListener('click', ()=>{
         // The third transform moves the board and positions it on the player in a 1st person perspective
         // tileContainer.style.transform="rotateX(90deg) scale3d(1,1,1) translate3d(-10px,800px,385px)";
         tileContainer.style.transform="rotateX(90deg) scale3d(1,1,1) translate3d(0px,1200px,385px)";
+        // tileContainer.style.transform="rotateX(90deg) scale3d(1,1,1) translate3d(0px,1000px,350px)";
         centerBlock.style.backgroundImage="url(./assets/background.png)";
-        sceneFloor.style.backgroundImage= "url(./assets/grass.png)";
+        sceneFloor.style.backgroundImage= "url(./assets/grassTexture.png)";
         baseFaces.forEach(elements => {elements.style.backgroundImage="url(./assets/dirt.jpeg)"});
 
         //Currently Hiding Boss Code
@@ -323,15 +329,18 @@ function beginGameButtonIsActive(){
 
     document.addEventListener("keydown",(event)=>{
         keys[event.key.toLowerCase()]=true;
+        // keys[event.key]=true;
     })
 
     document.addEventListener("keyup",(event)=>{
         keys[event.key.toLowerCase()]=false;
+        // keys[event.key]=false;
     })
 
 
     setInterval(()=>{
         if(keys["w"]){moveForward()}
+        // if(keys["W"]){sprintForward()}
         if(keys["a"]){moveLeft()}
         if(keys["s"]){moveBackward()}
         if(keys["d"]){moveRight()}
@@ -352,6 +361,10 @@ function beginGameButtonIsActive(){
         playerOnePosition[2]+= (isNorthPlane ? 10 : isSouthPlane ? -10 :0);
         playerOnePosition[0]+= (isEastPlane ? 10 : isWestPlane ? -10 :0);
     }
+    // function sprintForward(){
+    //     playerOnePosition[2]+= (isNorthPlane ? 20 : isSouthPlane ? -20 :0);
+    //     playerOnePosition[0]+= (isEastPlane ? 20 : isWestPlane ? -20 :0);
+    // }
 
     function moveLeft(){
         playerOnePosition[0]+= (isNorthPlane ? -10 : isSouthPlane ? 10 :0);
@@ -384,10 +397,11 @@ function beginGameButtonIsActive(){
 
         //playerContainer moves the character
         playerOneContainer.style.transform=`rotateX(-90deg) translate3d(${playerOnePosition[0]}px,${playerOnePosition[1]*-1}px,${playerOnePosition[2]*-1}px)`
+        golemEnemy.style.transform=`rotateX(-90deg) translate3d(${playerOnePosition[0]}px,10px,${playerOnePosition[2]*-1}px)`
         //player rotates the play to face camera (only matters for third person)
         playerOne.style.transform=`rotateY(${playerAngle}deg)`
         //camera is purely for looking around (rotating board on axis of camera)
-        camera.style.transform=`rotateZ(${playerAngle}deg) rotateX(${playerAngle2}deg)`
+        camera.style.transform=`rotateZ(${playerAngle + 0.00001}deg) rotateX(${playerAngle2}deg)`
         //sceneContainer translation is to simulate movement in a 3d space
         sceneContainer.style.transform=`translate3d(${-1*playerOnePosition[0]}px,${playerOnePosition[2]}px,0px)`
     }

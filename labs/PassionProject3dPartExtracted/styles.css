@@ -157,7 +157,7 @@ body header, footer{
     aspect-ratio: 1;
     width: inherit;
     background-image: url("./assets/grass.png");
-    background-size:auto;
+    background-size:100px 100px;
     background-position: center;
     transition: background-image 1s linear;
 }
@@ -208,48 +208,54 @@ body header, footer{
     left:390px; /*places the left side of the playerContainer element 50% from the left of the parent element (the left side of the board)*/
     transition: transform 0.2s linear;
 }
-.hands{
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    display: block;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: transform 0.2s linear;
-}
-.leftHand{
-    background-image: url("./assets/leftHand.png");
-    transform: translate3d(-10px,0px,-25px) rotateX(40deg) rotateY(62deg) rotateZ(39deg);
+/*.hands{*/
+/*    display: none;*/
+/*    position: absolute;*/
+/*    width: 20px;*/
+/*    height: 20px;*/
+/*    !*display: block;*!*/
+/*    background-size: contain;*/
+/*    background-position: center;*/
+/*    background-repeat: no-repeat;*/
+/*    transition: transform 0.2s linear;*/
+/*}*/
+/*.leftHand{*/
+/*    !*background-image: url("./assets/leftHand.png");*!*/
+/*    background-image: url("./assets/leftHandBack.png");*/
+/*    !*transform: translate3d(-15px,0px,-25px) rotateX(40deg) rotateY(62deg) rotateZ(39deg);*!*/
+/*    transform: translate3d(-5px,0px,-20px) rotateX(60deg) rotateY(0deg) rotateZ(0deg);*/
 
-}
-.rightHand{
-    background-image: url("./assets/rightHand.png");
-    transform: translate3d(10px,0px,-25px) rotateX(40deg) rotateY(-62deg) rotateZ(-39deg);
-    transform-style: preserve-3d;
-}
-.torch{
-    display: none;
-    position: absolute;
-    width: 10px;
-    height: 30px;
-    background-image: url("./assets/torch.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    transform: rotateZ(0deg) translate3d(0,0,0)
+/*}*/
+/*.rightHand{*/
+/*    !*background-image: url("./assets/rightHand.png");*!*/
+/*    background-image: url("./assets/rightHandBack.png");*/
+/*    !*transform: translate3d(15px,0px,-25px) rotateX(40deg) rotateY(-62deg) rotateZ(-39deg);*!*/
+/*    transform: translate3d(5px,0px,-20px) rotateX(60deg) rotateY(0deg) rotateZ(0deg);*/
+/*    transform-style: preserve-3d;*/
+/*}*/
+/*.torch{*/
+/*    display: none;*/
+/*    position: absolute;*/
+/*    width: 10px;*/
+/*    height: 30px;*/
+/*    background-image: url("./assets/torch.png");*/
+/*    background-size: contain;*/
+/*    background-position: center;*/
+/*    background-repeat: no-repeat;*/
+/*    transform: rotateZ(0deg) translate3d(0,0,0)*/
 
-}
-.weapon{
-    position: absolute;
-    width: 40px;
-    height: 20px;
-    background-image: url("./assets/weapon.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    transform: rotateX(8deg) rotateY(-17deg) rotateZ(78deg) translate3d(-7px,10px,6px)
-}
+/*}*/
+/*.weapon{*/
+/*    display: none;*/
+/*    position: absolute;*/
+/*    width: 40px;*/
+/*    height: 20px;*/
+/*    background-image: url("./assets/weapon.png");*/
+/*    background-size: contain;*/
+/*    background-position: center;*/
+/*    background-repeat: no-repeat;*/
+/*    transform: rotateX(8deg) rotateY(-17deg) rotateZ(78deg) translate3d(-7px,10px,6px)*/
+/*}*/
 
 .player{
     /*background-image: url("./assets/pixelWizard.png");*/
@@ -263,7 +269,73 @@ body header, footer{
     transition: transform 0.2s linear;
 
 }
+
+
+.shadowBox{
+    /*position: absolute;*/
+    transform-style: preserve-3d;
+    width: 100px;
+    aspect-ratio: 1;
+    /*background-color: black;*/
+    left: 50%;
+    transform: rotateX(90deg) translate3d(-50%, 0px, 70px);
+    /*transform: translate3d(-50%, 0px, 70px);*/
+}
+
+.shadowFace{
+    transform-origin: bottom;
+    position: absolute;
+    transform-style: preserve-3d;
+    width: 100px;
+    height: 50px;
+    background-color: black;
+    /*left: 0%;*/
+    /*transform: rotateX(90deg);*/
+}
+
+.shadowBoxTop{
+    /*transform: rotateX(90deg) translate3d(0, 0px, 50px);*/
+    width: 100px;
+    height: 100px;
+
+}
+.shadowBoxBack{
+    transform: rotateX(90deg) translate3d(0, 0px, 50px);
+
+}
+.shadowBoxFront{
+    transform: rotateX(90deg) translate3d(0, 0px, -50px);
+
+}
+.shadowBoxLeft{
+    transform: rotateX(90deg) rotateY(90deg) translate3d(0, 0, 50px);
+
+}
+.shadowBoxRight{
+    transform: rotateX(90deg) rotateY(90deg) translate3d(0, 0,-50px);
+
+}
+
 /*_______________________________________End Player customization_______________________________________*/
+.golemEnemy{
+    position: absolute;
+    display: block;
+    transform-style: preserve-3d;
+    transform-origin: bottom;
+    transform:rotateX(-90deg) translate3d(0px, 10px, 0px);
+    width: 87px;
+    height: 90px;
+    bottom:400px;
+    left:350px;
+    /*background-image: url("./assets/pixelGolem.png");*/
+    /*background-image: url("./assets/wide");*/
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 2s linear;
+
+}
+
 /*_______________________________________Begin Castle customization_______________________________________*/
 .castle{
     position: absolute;
@@ -293,17 +365,61 @@ body header, footer{
 }
 .castleWallFrontLeft{
     position: absolute;
-    width:250px;
+    width:275px;
 }
 .castleWallFrontGate{
     position: absolute;
-    background-image: none;
+    background-image: url("./assets/gate.png");
+    width: 150px;
+    height: 150px;
+    left:225px;
+    bottom:0;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transform-style: preserve-3d;
 
 }
+.torch{
+    /*display: none;*/
+    position: absolute;
+    width: 10px;
+    height: 30px;
+    background-image: url("./assets/torch.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    /*transform: rotateZ(0deg) translate3d(10px,-106px,-16px);*/
+    transform-style: preserve-3d;
+
+}
+.torchLeft{
+    position: absolute;
+    width: 10px;
+    height: 30px;
+    bottom: 41px;
+    left:29px;
+    transform-style: preserve-3d;
+    transform:rotateX(-28deg) translate3d(0px, 0px, 8px);
+
+}
+.torchRight{
+    position: absolute;
+    width: 10px;
+    height: 30px;
+    bottom: 41px;
+    right:29px;
+    transform-style: preserve-3d;
+    transform:rotateX(-28deg) translate3d(0px, 0px, 8px);
+
+}
+.torchFaceTwo{
+    transform: rotateY(90deg);
+}
+
 .castleWallFrontRight{
     right:0;
     position: absolute;
-    width:250px;
+    width:275px;
 }
 
 .castleWallBack{

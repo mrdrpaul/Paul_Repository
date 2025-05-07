@@ -78,7 +78,7 @@
     </div>
   </div>
   <div class="outerColumns" id="columnCenterBlock">
-    <div>leftcol</div>
+    <div class="centerBlockLeftColumn">leftcol</div>
     <div id="centerBlockCenterCol">
 <!--      used for flipping the tile down-->
       <div class="tileContainer">
@@ -202,12 +202,19 @@
           <div class="scene">
 
             <div class="playerContainer">
+<!--              <div class="shadowBox">-->
+<!--                <div class="shadowFace shadowBoxTop"></div>-->
+<!--                <div class="shadowFace shadowBoxFront"></div>-->
+<!--                <div class="shadowFace shadowBoxBack"></div>-->
+<!--                <div class="shadowFace shadowBoxLeft"></div>-->
+<!--                <div class="shadowFace shadowBoxRight"></div>-->
+<!--              </div>-->
               <div class="player">
-                <div class="hands leftHand"></div>
-                <div class="hands rightHand">
-                  <div class="torch"></div>
-                  <div class="weapon"></div>
-                </div>
+<!--                <div class="hands leftHand"></div>-->
+<!--                <div class="hands rightHand">-->
+<!--                  <div class="torch"></div>-->
+<!--                  <div class="weapon"></div>-->
+<!--                </div>-->
               </div>
 
             </div>
@@ -221,12 +228,24 @@
             <div class="baseFaces baseRight"></div>
             <div class="baseFaces baseFloor"></div>
 
+            <div class="golemEnemy">
+            </div>
+
 
             <div class="castle">
 
               <div class="castleWall castleWallFront">
                 <div class="castleWall castleWallFrontLeft"></div>
-                <div class="castleWall castleWallFrontGate"></div>
+                <div class="castleWall castleWallFrontGate">
+                  <div class="torchLeft">
+                    <div class="torch torchFaceOne"></div>
+                    <div class="torch torchFaceTwo"></div>
+                  </div>
+                  <div class="torchRight">
+                    <div class="torch torchFaceOne"></div>
+                    <div class="torch torchFaceTwo"></div>
+                  </div>
+                </div>
                 <div class="castleWall castleWallFrontRight"></div>
               </div>
 
@@ -254,7 +273,7 @@
       <button type="button" id="begin">Begin the Challenge</button>
 
     </div>
-    <div>rightcol</div>
+    <div class="centerBlockRightColumn">rightcol</div>
   </div>
   <div class="outerColumns" id="columnRightBorder"></div>
   <footer></footer>
