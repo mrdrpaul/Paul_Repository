@@ -9,7 +9,7 @@ function ChatInterface({isOpen}: Props){
     const [chatLog, setChatLog] = useState<string[]>([])
     const [currentUser,setCurrentUser] = useState("[GAME DEV] [mrdrpaul] ")
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
-    const handleChange = (event: string) =>{
+    const handleChange = (event) =>{
         setChatText(event.target.value)
     }
 
@@ -17,7 +17,6 @@ function ChatInterface({isOpen}: Props){
         if(event.key === 'Enter'){
             setChatLog([...chatLog,chatText]);
             setChatText("")
-            // setChatLog(chatText);
         }
     }
 
@@ -32,7 +31,7 @@ function ChatInterface({isOpen}: Props){
             ))}
                 <div ref={messagesEndRef}/>
             </div>
-            <input className={"chatBar"} name={"chatBox"} type={"text"} value={chatText} placeholder={"Type text here"} onChange={handleChange} onKeyDown={handleKeyDown}></input>
+            <input className={"chatBar"} name={"chatBox"} type={"text"} value={chatText} placeholder={"Type text here"} onChange={handleChange} maxLength={50} onKeyDown={handleKeyDown}></input>
         </div>
     )
 }

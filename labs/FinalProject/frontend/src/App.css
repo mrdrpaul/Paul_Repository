@@ -35,9 +35,32 @@ body header, footer{
   height: 100%;
 }
 
+.loginModal{
+  position: absolute;
+  display: block;
+  z-index: 1;
+  width: 300px;
+  height:200px;
+  box-shadow: 0 0 1000px 100px black;
+  align-items: center;
+  align-content: center;
+  background-color: tan;
+  background-image: url("./assets/loginBackground.png");
+  background-size: contain;
+  background-position: center;
+
+  transform: translate(-50%,-50%);
+  left: 50%;
+  top: 50%;
+}
+
+#loginMusic{
+  display: none;
+}
+
 .menuInterface{
-  /*width:300px;*/
-  background-color: red;
+  background-color: darkgoldenrod;
+  background-position: center;
   grid-column: 2;
   grid-row: 1/span 2;
   outline: 5px solid tan;
@@ -45,7 +68,7 @@ body header, footer{
   transition: width 0.7s ease;
 }
 .menuInterface.open{
-  width: 300px;
+  width: 400px;
 }
 
 .menuInterface.closed{
@@ -58,20 +81,16 @@ body header, footer{
   position: relative;
   background-color: tan;
   transition: height 0.7s ease;
-  border: 5px solid gold;
-  /*overflow: auto;*/
+  /*border: 5px solid gold;*/
   text-align: left;
-  /*flex: 1;*/
 }
 .chatMessages{
   flex: 1;
   overflow: auto;
   color: black;
-  /*padding: 10px;*/
 }
 .chatBar{
-  /*position: sticky;*/
-  display: flex;
+  display: none;
   bottom: 0;
   width:100%;
   height: 20px;
@@ -79,46 +98,48 @@ body header, footer{
 }
 
 .chatInterface.open{
-  height: 200px;
+  height: 250px;
+}
+.chatInterface.open > .chatBar{
+  display: flex;
 }
 .chatInterface.closed{
   height: 0;
 }
 
 .gameInterface{
-  background-image: url("./assets/cloudsBackground.png");
+  /*background-image: url("./assets/cloudsBackground.png");*/
+  background-image: url("./assets/loginBackground.png");
   display: flex;
   perspective: 800px;
   height:100%;
   overflow: hidden;
   justify-content: center;
   align-items: center;
-  /*outline: 5px solid tan;*/
-  /*outline-offset: -5px;*/
+  background-size: 100% 100%;
+  filter: blur(10px);
 }
 
+/*_______________________________________CSS for tile container stylization (parent of the tile elements)_______________________________________*/
 .tileContainer{
   display: none; /*hides entire element and children until activated*/
   position: relative;
   transform-style: preserve-3d;
-  outline: 5px solid white; /*for visual testing*/
-  outline-offset: -5px; /*for visual testing*/
-  width: 0; /*sets initial width, allows for smooth transition*/
+  width: 1000px; /*sets initial width, allows for smooth transition*/
   aspect-ratio: 1; /*allows height to be set to width*/
   transition: width 0.5s ease, transform 0.5s linear; /*applies transition effect*/
   /*viewpoint is at center, 90deg rotation with center origin causes board to disappear*/
   /*rotating with origin at bottom visually folds the board backwards*/
   /*transform-origin: center;*/
+  transform: rotateX(90deg);
   transform-origin: bottom;
 }
 
-
+/*_______________________________________CSS for camera stylization (parent of the tile)_______________________________________*/
 .camera{
   display: block; /*hides entire element and children until activated*/
   position: relative;
   transform-style: preserve-3d;
-  outline: 5px solid white; /*for visual testing*/
-  outline-offset: -5px; /*for visual testing*/
   width: 1000px; /*sets initial width, allows for smooth transition*/
   aspect-ratio: 1; /*allows height to be set to width*/
   /*transition: width 0.5s ease, transform 0.5s linear; !*applies transition effect*!*/
@@ -131,7 +152,196 @@ body header, footer{
   /*animation: flipTile 10s linear infinite;*/
 }
 
-@keyframes flipTile {
-  from{}
-  to{transform: rotateX(90deg) translate3d(0px,0px,-200px)}
+/*_______________________________________CSS for Scene+base stylization_______________________________________*/
+.sceneContainer{
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: width 2.5s ease, transform 0.2s linear;
+  aspect-ratio: 1;
+  width: inherit;
 }
+.scene{
+  /*display: none; !*sets display to none so that the scene does not initially appear, instead wil appear on button click*!*/
+  aspect-ratio: 1;
+  width: inherit; /*initial width set to 0 so that the transition animates the board coming into existence*/
+  background-color: white;
+  /*transform-origin: bottom;*/
+  transform-style: preserve-3d;
+  transition: width 3.5s ease, transform 0.5s linear;
+}
+.sceneFloor{
+  position: absolute;
+  aspect-ratio: 1;
+  width: inherit;
+  background-image: url("./assets/grass.png");
+  background-size:100px 100px;
+  background-position: center;
+  transition: background-image 1s linear;
+}
+.baseFaces{
+  position: absolute;
+  width:inherit;
+  --baseHeight:40px;
+  height:var(--baseHeight);
+  background-image: url("./assets/dirt.jpeg");
+  background-size:auto;
+  background-position: center;
+  transition: background-image 1s linear;
+
+}
+.baseFaces.baseFront{
+  top:100%; /*pushes element to bottom of parent*/
+  transform-origin: top; /* performs transformation along top of element*/
+  transform: rotateX(-90deg); /* folds element down along x axis*/
+}
+.baseFaces.baseBack{
+  transform-origin: top;
+  transform: rotateX(-90deg);
+}
+.baseFaces.baseLeft{
+  transform-origin: top left;
+  transform: rotateX(-90deg) rotateY(-90deg);
+}
+.baseFaces.baseRight{
+  transform-origin: top right;
+  transform: rotateX(-90deg) rotateY(90deg);
+}
+.baseFaces.baseFloor{
+  height:100%;
+  transform: translateZ(calc(-1*(var(--baseHeight))));
+}
+/*_______________________________________End CSS for Scene+base stylization_______________________________________*/
+/*_______________________________________Begin Castle customization_______________________________________*/
+.castle{
+  position: absolute;
+  left:100px;
+  aspect-ratio: 1;
+  width: 600px;
+  background-image: url("./assets/mossyCobblestoneRoad.png");
+  background-position: center;
+  background-size: 100px 100px;
+  transform-style: preserve-3d;
+}
+.castleWall{
+  position: absolute;
+  background-image: url("./assets/castleWall.png");
+  background-position: center;
+  background-size: contain;
+  width: 600px;
+  height: 100px;
+}
+
+.castleWallFront{
+  bottom: 0;
+  background-image: none;
+  transform-origin: bottom;
+  transform: rotateX(-90deg);
+  transform-style: preserve-3d;
+}
+.castleWallFrontLeft{
+  position: absolute;
+  width:275px;
+}
+.castleWallFrontGate{
+  position: absolute;
+  background-image: url("./assets/gate.png");
+  width: 150px;
+  height: 150px;
+  left:225px;
+  bottom:0;
+  background-repeat: no-repeat;
+  z-index: 1;
+  transform-style: preserve-3d;
+
+}
+.torch{
+  /*display: none;*/
+  position: absolute;
+  width: 10px;
+  height: 30px;
+  background-image: url("./assets/torch.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  /*transform: rotateZ(0deg) translate3d(10px,-106px,-16px);*/
+  transform-style: preserve-3d;
+
+}
+.torchLeft{
+  position: absolute;
+  width: 10px;
+  height: 30px;
+  bottom: 41px;
+  left:29px;
+  transform-style: preserve-3d;
+  transform:rotateX(-28deg) translate3d(0px, 0px, 8px);
+
+}
+.torchRight{
+  position: absolute;
+  width: 10px;
+  height: 30px;
+  bottom: 41px;
+  right:29px;
+  transform-style: preserve-3d;
+  transform:rotateX(-28deg) translate3d(0px, 0px, 8px);
+
+}
+.torchFaceTwo{
+  transform: rotateY(90deg);
+}
+
+.castleWallFrontRight{
+  right:0;
+  position: absolute;
+  width:275px;
+}
+
+.castleWallBack{
+  top: -100px;
+  transform-origin: bottom;
+  transform: rotateX(-90deg);
+}
+.castleWallLeft{
+  top: -100px;
+  transform-origin: bottom right;
+  transform: rotateX(-90deg) rotateY(90deg);
+}
+.castleWallRight{
+  top: -100px;
+  transform-origin: bottom left;
+  transform: rotateX(-90deg) rotateY(-90deg);
+}
+
+
+.treeContainer{
+  position: absolute;
+  transform-style: preserve-3d;
+  /*background-color: red;*/
+  width: 35px;
+  height: 70px;
+  transform-origin: bottom;
+  transform: rotateX(-90deg);
+
+}
+.tree{
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  background-image: url("./assets/tree.png");
+  background-position: center;
+  background-size: cover;
+  transition: filter 1s linear;
+}
+.treeFaceOne{
+
+}
+.treeFaceTwo{
+  transform:rotateY(90deg);
+
+}
+
+
+
+
+/*_______________________________________End Castle customization_______________________________________*/
