@@ -6,6 +6,8 @@ import com.bridge.example.finalproject.repository.AccountRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountService {
 
@@ -17,5 +19,8 @@ public class AccountService {
     }
 
     public AccountEntity addNewAccount(AccountEntity account){return accountRepository.save(account);}
+
+    public List<AccountEntity> getAccounts(){return accountRepository.findAll();}
+
 
 }

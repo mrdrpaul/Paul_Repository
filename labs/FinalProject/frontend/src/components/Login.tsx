@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import music from '../assets/deep-in-the-dungeon.mp3'
 import axios from "axios";
+import {fetchAccounts} from "./AccountService.ts";
 
 function Login(){
     const [username, setUserName] = useState("")
@@ -20,6 +21,7 @@ function Login(){
         // event.preventDefault()
         musicRef.current?.play()
         // alert(`Logging in with  ${username} ${password}`)
+        console.log(fetchAccounts())
     }
 
     const handleNewUser = () => {

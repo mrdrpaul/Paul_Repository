@@ -5,6 +5,8 @@ import com.bridge.example.finalproject.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin
@@ -17,4 +19,7 @@ public class AccountController {
     public ResponseEntity<AccountEntity> addNewAccount(@RequestBody AccountEntity account){
         return ResponseEntity.ok(accountService.addNewAccount(account));
     }
+
+    @GetMapping("/accounts")
+    public ResponseEntity<List<AccountEntity>> getAccounts(){return ResponseEntity.ok(accountService.getAccounts());}
 }
