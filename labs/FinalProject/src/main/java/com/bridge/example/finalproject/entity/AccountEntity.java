@@ -18,8 +18,7 @@ public class AccountEntity {
     public AccountEntity(){
     }
 
-    public AccountEntity(Long id, String username, String password) {
-        this.id = id;
+    public AccountEntity(String username, String password) {
         this.username = username;
         this.password = password;
     }

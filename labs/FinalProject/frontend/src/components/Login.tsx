@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import music from '../assets/deep-in-the-dungeon.mp3'
+import axios from "axios";
 
 function Login(){
     const [username, setUserName] = useState("")
@@ -27,8 +28,19 @@ function Login(){
         )
         // alert("New User")
     }
-    const handleAccountCreation = () => {
+    const handleAccountCreation = (event) => {
+        event.preventDefault();
         setIsNewUser(false)
+        axios.post("/api/newUser",{
+            "username": username,
+            "password":password
+        })
+        .then((r)=>{
+                console.log(r)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
 
     if(!isNewUser){
@@ -42,8 +54,8 @@ function Login(){
                 <form>
                     <div><input name={"username"} value={username} type={"text"} placeholder={"username"} onChange={handleUsername}></input></div>
                     <div><input name={"password"} value={password} type={"password"} placeholder={"password"} onChange={handlePassword}></input></div>
-                    <button onClick={handleLogin}>Login</button>
-                    <button onClick={handleNewUser}>New User</button>
+                    <button type={"button"} onClick={handleLogin}>Login</button>
+                    <button type={"button"} onClick={handleNewUser}>New User</button>
                 </form>
             </div>
         )
@@ -51,10 +63,10 @@ function Login(){
         return(
             <div className={"loginModal"}>
                 <div>New User</div>
-                <form>
+                <form onSubmit={handleAccountCreation}>
                     <div><input name={"username"} value={username} type={"text"} placeholder={"username"} onChange={handleUsername}></input></div>
                     <div><input name={"password"} value={password} type={"password"} placeholder={"password"} onChange={handlePassword}></input></div>
-                    <button onClick={handleAccountCreation}>Create Account</button>
+                    <button type={"submit"}>Create Account</button>
                 </form>
             </div>
             )
