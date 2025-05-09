@@ -64,7 +64,7 @@ function Login({onStateChange}){
 
     useEffect(()=>{
         fetchAccounts().then(setAccounts)
-    },[])
+    })
 
     if(!isNewUser){
         return (

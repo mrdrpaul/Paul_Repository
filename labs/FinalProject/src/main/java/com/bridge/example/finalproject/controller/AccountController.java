@@ -29,10 +29,6 @@ public class AccountController {
         return ResponseEntity.ok(accountService.addNewCharacter(character, accountId));
     }
 
-//    @PostMapping("/newCharacter/1")
-//    public ResponseEntity<CharacterEntity> addNewCharacter(@RequestBody CharacterEntity character, @PathVariable Long accountId){
-//        return ResponseEntity.ok(accountService.addNewCharacter(character, accountId));
-//    }
 
     @GetMapping("/characters/{accountId:\\d+}")
     public ResponseEntity<List<CharacterEntity>> getCharacters(@PathVariable Long accountId){return ResponseEntity.ok(accountService.getCharacters(accountId));}
