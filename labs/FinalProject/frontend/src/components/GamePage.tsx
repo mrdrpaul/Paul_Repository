@@ -6,9 +6,8 @@ import {useState} from "react";
 import Login from "./Login.tsx";
 import CharacterSelectionPage from "./CharacterSelectionPage.tsx";
 function GamePage(){
-    const [openMenu,setOpenMenu] = useState(true);
-    const [openChat,setOpenChat] = useState(true);
-    const [chatText,setChatText] = useState("");
+    const [openMenu,setOpenMenu] = useState(false);
+    const [openChat,setOpenChat] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isCharacterSelected,setIsCharacterSelected] = useState(false);
 
@@ -52,8 +51,6 @@ function GamePage(){
             <Login onStateChange={handleLogin}/>
         )
     }
-
-
 }
 
 export default GamePage
