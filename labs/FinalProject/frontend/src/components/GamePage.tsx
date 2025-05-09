@@ -5,9 +5,9 @@ import ChatInterface from "./ChatInterface.tsx";
 import {useState} from "react";
 import Login from "./Login.tsx";
 import CharacterSelectionPage from "./CharacterSelectionPage.tsx";
-function GamePage({onStateChange}){
-    const [openMenu,setOpenMenu] = useState(false);
-    const [openChat,setOpenChat] = useState(false);
+function GamePage(){
+    const [openMenu,setOpenMenu] = useState(true);
+    const [openChat,setOpenChat] = useState(true);
     const [chatText,setChatText] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isCharacterSelected,setIsCharacterSelected] = useState(false);
@@ -19,28 +19,31 @@ function GamePage({onStateChange}){
         setOpenChat((status)=> !status)
     }
 
-    const handleLogin = (loginState) =>{
+    const handleLogin = (loginState: boolean) =>{
         setIsLoggedIn(loginState);
     }
 
-    const handleCharacterSelection = () =>{
-        onStateChange(true);
+    const handleCharacterSelected = (characterSelectedState: boolean)=>{
+        setIsCharacterSelected(characterSelectedState);
     }
 
-    if (isLoggedIn === true){
-        if(isCharacterSelected === true){
+    if (isLoggedIn){
+        if(isCharacterSelected){
             return(
-                <div>
+                <div id="columnCenterBlock">
                     <GameInterface/>
                     <MenuInterface isOpen={openMenu}/>
                     <ChatInterface isOpen={openChat}/>
+                    <div id={"gameBar"}>
+                        <button onClick={toggleChat}>{openChat ? "Close Chat":"Open Chat"}</button>
+                        <button onClick={toggleMenu}>{openMenu ? "Close Menu":"Open Menu"}</button>
+                    </div>
                 </div>
             )
         }else{
             return(
                 <div>
-                    <CharacterSelectionPage/>
-                    {handleCharacterSelection}
+                    <CharacterSelectionPage onStateChange={handleCharacterSelected}/>
                 </div>
             )
         }

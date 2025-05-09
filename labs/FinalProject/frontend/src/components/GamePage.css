@@ -27,7 +27,9 @@ body header, footer{
   grid-template-rows:  100fr auto;
   overflow: hidden;
   background-image: url("../assets/loginBackground.png");
-  background-size: 100% 100%;
+  background-size: 100vw 100vh;
+  /*background-size: 100% 100%;*/
+  background-position: center;
   /*filter: blur(10px);*/
 
 }
@@ -121,6 +123,11 @@ body header, footer{
   align-items: center;
   background-size: 100% 100%;
 
+}
+
+#gameBar{
+  position: absolute;
+  top: 0;
 }
 
 /*_______________________________________CSS for tile container stylization (parent of the tile elements)_______________________________________*/
