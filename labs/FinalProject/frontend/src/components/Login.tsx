@@ -2,8 +2,11 @@ import {useEffect, useRef, useState} from "react";
 import music from '../assets/deep-in-the-dungeon.mp3'
 import axios from "axios";
 import {fetchAccounts} from "./AccountService.ts";
+import type {Account} from "../AccountType.ts";
 
-function Login(){
+function Login({onStateChange}){
+    const [Accounts, setAccounts] = useState<Account[]>([])
+
     const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
     const [isNewUser, setIsNewUser] = useState(false)
@@ -18,37 +21,54 @@ function Login(){
     }
 
     const handleLogin = (event)=>{
-        // event.preventDefault()
+        event.preventDefault()
         musicRef.current?.play()
-        // alert(`Logging in with  ${username} ${password}`)
-        console.log(fetchAccounts())
+        fetchAccounts().then(setAccounts)
+        for(let i = 0; i < Accounts.length; i++){
+            if(Accounts[i].username === username){
+                Accounts[i].password === password ? onStateChange(true) : alert("incorrect password");
+                return;
+            }
+        }
+        alert("Account not found");
+        return;
     }
 
     const handleNewUser = () => {
         return(
             setIsNewUser(true)
         )
-        // alert("New User")
     }
     const handleAccountCreation = (event) => {
         event.preventDefault();
+        for(let i = 0; i < Accounts.length; i++){
+            if(Accounts[i].username === username){
+                alert("Username already in use, please select another")
+                return;
+            }
+        }
         setIsNewUser(false)
         axios.post("/api/newUser",{
             "username": username,
             "password":password
         })
-        .then((r)=>{
+            .then((r)=>{
                 console.log(r)
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+
+        fetchAccounts().then(setAccounts)
     }
+
+    useEffect(()=>{
+        fetchAccounts().then(setAccounts)
+    },[])
 
     if(!isNewUser){
         return (
             <div className="loginModal">
-                {/*<audio id={"loginMusic"} src={'../assets/deep-in-the-dungeon.mp3'}></audio>*/}
                 <audio id={"loginMusic"} controls autoPlay={true} loop={true}>
                     <source src={music} type={"audio/mpeg"}></source>
                 </audio>

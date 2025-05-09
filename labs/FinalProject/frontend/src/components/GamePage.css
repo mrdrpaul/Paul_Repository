@@ -26,7 +26,7 @@ body header, footer{
   grid-template-columns: 100fr auto;
   grid-template-rows:  100fr auto;
   overflow: hidden;
-  background-image: url("./assets/loginBackground.png");
+  background-image: url("../assets/loginBackground.png");
   background-size: 100% 100%;
   /*filter: blur(10px);*/
 
@@ -48,7 +48,7 @@ body header, footer{
   align-items: center;
   align-content: center;
   background-color: tan;
-  background-image: url("./assets/loginBackground.png");
+  background-image: url("../assets/loginBackground.png");
   background-size: contain;
   background-position: center;
 
@@ -112,7 +112,7 @@ body header, footer{
 
 .gameInterface{
   /*background-image: url("./assets/cloudsBackground.png");*/
-  background-image: url("./assets/loginBackground.png");
+  background-image: url("../assets/loginBackground.png");
   display: flex;
   perspective: 800px;
   height:100%;
@@ -120,7 +120,7 @@ body header, footer{
   justify-content: center;
   align-items: center;
   background-size: 100% 100%;
-  /*filter: blur(10px);*/
+
 }
 
 /*_______________________________________CSS for tile container stylization (parent of the tile elements)_______________________________________*/
@@ -151,7 +151,7 @@ body header, footer{
   /*transform-origin: center;*/
   transform-origin: bottom;
   /*transform: rotateX(90deg);*/
-  background-image: url("./assets/grassTexture.png");
+  background-image: url("../assets/grassTexture.png");
   /*animation: flipTile 10s linear infinite;*/
 }
 
@@ -186,7 +186,7 @@ body header, footer{
   width:inherit;
   --baseHeight:40px;
   height:var(--baseHeight);
-  background-image: url("./assets/dirt.jpeg");
+  background-image: url("../assets/dirt.jpeg");
   background-size:auto;
   background-position: center;
   transition: background-image 1s linear;
@@ -220,14 +220,14 @@ body header, footer{
   left:100px;
   aspect-ratio: 1;
   width: 600px;
-  background-image: url("./assets/mossyCobblestoneRoad.png");
+  background-image: url("../assets/mossyCobblestoneRoad.png");
   background-position: center;
   background-size: 100px 100px;
   transform-style: preserve-3d;
 }
 .castleWall{
   position: absolute;
-  background-image: url("./assets/castleWall.png");
+  background-image: url("../assets/castleWall.png");
   background-position: center;
   background-size: contain;
   width: 600px;
@@ -247,7 +247,7 @@ body header, footer{
 }
 .castleWallFrontGate{
   position: absolute;
-  background-image: url("./assets/gate.png");
+  background-image: url("../assets/gate.png");
   width: 150px;
   height: 150px;
   left:225px;
@@ -262,7 +262,7 @@ body header, footer{
   position: absolute;
   width: 10px;
   height: 30px;
-  background-image: url("./assets/torch.png");
+  background-image: url("../assets/torch.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -331,7 +331,7 @@ body header, footer{
   position: absolute;
   width: inherit;
   height: inherit;
-  background-image: url("./assets/tree.png");
+  background-image: url("../assets/tree.png");
   background-position: center;
   background-size: cover;
   transition: filter 1s linear;
