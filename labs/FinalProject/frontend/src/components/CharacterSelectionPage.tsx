@@ -1,6 +1,5 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
-import {fetchAccounts} from "./AccountService.ts";
 import type {Character} from "../CharacterType.ts";
 import {fetchCharacters} from "./CharacterService.ts";
 
@@ -11,19 +10,19 @@ function CharacterSelectionPage({onStateChange}){
     }
 
     const displayCharacters = (event) => {
+        fetchCharacters(1).then(setCharacters)
         console.log(characters)
     }
 
-    const addCharacter = () =>{
+    const addCharacter = (event) =>{
         event.preventDefault();
-        axios.post("/api/newCharacter",{
+        axios.post("/api/newCharacter/1",{
             "characterName": "testGuy",
             "characterClass": "testClass",
             "health":100,
             "mana" : 40,
             "attack": 7,
-            "defense" : 3,
-            "account" : 5
+            "defense" : 3
         })
             .then((r)=>{
                 console.log(r)
@@ -32,8 +31,12 @@ function CharacterSelectionPage({onStateChange}){
                 console.log(err)
             })
 
-        fetchCharacters().then(setCharacters)
+        fetchCharacters(1).then(setCharacters)
     }
+
+    // useEffect(()=>{
+    //     fetchCharacters().then(setCharacters)
+    // },[])
 
     return (
         <div className={"characterSelectionPage"}>

@@ -16,22 +16,16 @@ public class CharacterEntity {
     private Integer attack;
     private Integer defense;
 
-    @OneToOne
-    @JoinColumn(name = "account_id")
-    private AccountEntity Account;
-
-
     public CharacterEntity(){
 
     }
-    public CharacterEntity(String characterName, String characterClass, Integer health, Integer mana, Integer attack, Integer defense, AccountEntity account) {
+    public CharacterEntity(String characterName, String characterClass, Integer health, Integer mana, Integer attack, Integer defense) {
         this.characterName = characterName;
         this.characterClass = characterClass;
         this.health = health;
         this.mana = mana;
         this.attack = attack;
         this.defense = defense;
-        Account = account;
     }
 
     public Long getId() {
@@ -88,13 +82,5 @@ public class CharacterEntity {
 
     public void setDefense(Integer defense) {
         this.defense = defense;
-    }
-
-    public AccountEntity getAccount() {
-        return Account;
-    }
-
-    public void setAccount(AccountEntity account) {
-        Account = account;
     }
 }

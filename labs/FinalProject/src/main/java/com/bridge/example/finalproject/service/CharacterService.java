@@ -19,7 +19,6 @@ public class CharacterService {
         this.characterRepository = characterRepository;
     }
 
-    public CharacterEntity addNewCharacter(CharacterEntity character){return characterRepository.save(character);}
 
-    public List<CharacterEntity> getCharacters(){return characterRepository.findAll();}
+
 }

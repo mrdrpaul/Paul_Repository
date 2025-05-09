@@ -19,13 +19,8 @@ public class CharacterController {
         this.characterService = characterService;
     }
 
-    @PostMapping("/newCharacter")
-    public ResponseEntity<CharacterEntity> addNewCharacter(@RequestBody CharacterEntity character){
-        return ResponseEntity.ok(characterService.addNewCharacter(character));
-    }
 
-    @GetMapping("/characters")
-    public ResponseEntity<List<CharacterEntity>> getCharacters(){return ResponseEntity.ok(characterService.getCharacters());}
+
 
 
 }

@@ -1,9 +1,8 @@
 package com.bridge.example.finalproject.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class AccountEntity {
@@ -15,12 +14,16 @@ public class AccountEntity {
     private String username;
     private String password;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<CharacterEntity> characters;
+
     public AccountEntity(){
     }
 
-    public AccountEntity(String username, String password) {
+    public AccountEntity(String username, String password, List<CharacterEntity> characters) {
         this.username = username;
         this.password = password;
+        this.characters = characters;
     }
 
     public Long getId() {
@@ -45,5 +48,13 @@ public class AccountEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<CharacterEntity> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(List<CharacterEntity> characters) {
+        this.characters = characters;
     }
 }
