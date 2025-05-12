@@ -160,7 +160,8 @@ body header, footer{
   background-repeat: no-repeat;
   left: 50%;
   bottom: 0;
-  /*transform: translate(-50%,-20%);*/
+  transition: background-image 2s linear;
+  transform: translate(-50%,-20%);
   animation: rotateCharacter 10s linear infinite;
 }
 
@@ -176,7 +177,7 @@ body header, footer{
   /*width: 0;*/
   background-color: grey;
   /*background-image: url("../assets/stars.png");*/
-  opacity: 0.2;
+  /*opacity: 0.2;*/
 }
 
 /*_______________________________________CSS for tile container stylization (parent of the tile elements)_______________________________________*/

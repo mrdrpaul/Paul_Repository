@@ -4,7 +4,7 @@ import axios from "axios";
 import {fetchAccounts} from "./AccountService.ts";
 import type {Account} from "../AccountType.ts";
 
-function Login({onStateChange}){
+function Login({onStateChange, onState2Change}){
     const [Accounts, setAccounts] = useState<Account[]>([])
 
     const [username, setUserName] = useState("")
@@ -27,6 +27,7 @@ function Login({onStateChange}){
         for(let i = 0; i < Accounts.length; i++){
             if(Accounts[i].username === username){
                 Accounts[i].password === password ? onStateChange(true) : alert("incorrect password");
+                onState2Change(Accounts[i].id);
                 return;
             }
         }

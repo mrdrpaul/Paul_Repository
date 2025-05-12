@@ -1,13 +1,19 @@
-import {useEffect, useRef, useState} from "react";
+import {use, useEffect, useRef, useState} from "react";
 import axios from "axios";
 import type {Character} from "../CharacterType.ts";
 import {fetchCharacters} from "./CharacterService.ts";
 import {changeCharacterImage} from "./helper.ts";
 
-function CharacterSelectionPage({onStateChange}){
+function CharacterSelectionPage({onStateChange, activeId}){
     const [characters,setCharacters] = useState<Character[]>([])
+    const [currentAccountId,setCurrentAccountId] = useState(activeId) //hardcoded to account 2, need to change to mach id of account that is logged in
     const [characterName, setCharacterName] = useState("")
-    const [currentAccountId,setCurrentAccountId] = useState(2)
+    const [characterClass, setCharacterClass] = useState("")
+    const [statPoints,setStatPoints] = useState(5)
+    const [health,setHealth] = useState(100)
+    const [mana,setMana] = useState(40)
+    const [attack,setAttack] = useState(5)
+    const [defense,setDefense] = useState(5)
 
     const characterReference = useRef<HTMLDivElement>(null)
 
@@ -16,6 +22,7 @@ function CharacterSelectionPage({onStateChange}){
     }
 
     const displayCharacters = (event) => {
+        console.log(activeId)
         fetchCharacters(currentAccountId).then(setCharacters)
         console.log(characters)
     }
@@ -23,12 +30,12 @@ function CharacterSelectionPage({onStateChange}){
     const addCharacter = (event) =>{
         event.preventDefault();
         axios.post(`/api/newCharacter/${currentAccountId}`,{
-            "characterName": "testGuy",
-            "characterClass": "testClass",
-            "health":100,
-            "mana" : 40,
-            "attack": 7,
-            "defense" : 3
+            "characterName": characterName,
+            "characterClass": characterClass,
+            "health": health,
+            "mana" : mana,
+            "attack": attack,
+            "defense" : defense
         })
             .then((r)=>{
                 console.log(r)
@@ -46,16 +53,59 @@ function CharacterSelectionPage({onStateChange}){
 
     // const handleClassSelection = (event: React.ChangeEvent<HTMLScriptElement>) =>{
     const handleClassSelection = (event) =>{
-        const selectedClass = event.target.value;
+        setCharacterClass(event.target.value)
         if(characterReference){
-            changeCharacterImage(characterReference.current, selectedClass)
+            changeCharacterImage(characterReference.current, event.target.value)
+        }
+
+    }
+
+    const handleStatChange = (event) =>{
+        if(statPoints === 0){
+            alert("No points remain")
+        }else{
+            switch (event.target.value){
+                case "healthIncrease":
+                    setHealth(health+10);
+                    setStatPoints(statPoints-1);
+                    break;
+                case "healthDecrease":
+                    setHealth(health-10);
+                    setStatPoints(statPoints+1);
+                    break;
+                case "manaIncrease":
+                    setMana(mana+10);
+                    setStatPoints(statPoints-1);
+                    break;
+                case "manaDecrease":
+                    setMana(mana-10);
+                    setStatPoints(statPoints+1);
+                    break;
+                case "attackIncrease":
+                    setAttack(attack+3);
+                    setStatPoints(statPoints-1);
+                    break;
+                case "attackDecrease":
+                    setAttack(attack-3);
+                    setStatPoints(statPoints+1);
+                    break;
+                case "defenseIncrease":
+                    setDefense(defense+3);
+                    setStatPoints(statPoints-1);
+                    break;
+                case "defenseDecrease":
+                    setDefense(defense-3);
+                    setStatPoints(statPoints+1);
+                    break;
+            }
         }
 
     }
 
 
     useEffect(()=>{
-        fetchCharacters(currentAccountId).then(setCharacters)
+        fetchCharacters(currentAccountId).then(setCharacters);
+        setCurrentAccountId(activeId);
     })
 
     return (
@@ -74,12 +124,52 @@ function CharacterSelectionPage({onStateChange}){
                 <div>
                     <input className={"characterNameInput"} name={"nameInput"} type={"text"} value={characterName} placeholder={"Character Name"} onChange={handleNameChange} maxLength={15}></input>
                     <select id="propSelection" aria-label="Prop Selection" onChange={handleClassSelection}>
-                        <option value="wizard" selected>Wizard</option>
+                        <option value="wizard" defaultValue="wizard">Wizard</option>
                         <option value="barbarian" >Barbarian</option>
                         <option value="paladin">Paladin</option>
                         <option value="rogue">Rogue</option>
                         <option value="archer">Archer</option>
+                        <option value="mouse">Mouse</option>
+                        <option value="golem">Golem</option>
+                        <option value="notPixelBarbarian">Not Pixel Barbarian</option>
+                        <option value="priest">Priest</option>
                     </select>
+                    <div>Stat Points Remaining: {statPoints}</div>
+                    <div style={{display:"flex"}}>
+                        <div style={{width:"75px", height:"50px", backgroundColor:"purple"}}>
+                            <div style={{border:"4px solid white"}}>
+                                <div>Health</div>
+                                <div>{health}</div>
+                            </div>
+                            <button type={"button"} style={{width:"25px", height:"25px",padding:0,textAlign:"center"}} onClick={handleStatChange} value={"healthIncrease"}>+</button>
+                            <button type={"button"} style={{width:"25px", height:"25px",padding:0,textAlign:"center"}} onClick={handleStatChange} value={"healthDecrease"}>-</button>
+                        </div>
+                        <div style={{width:"75px", height:"50px", backgroundColor:"purple"}}>
+                            <div style={{border:"4px solid white"}}>
+                                <div>Mana</div>
+                                <div>{mana}</div>
+                            </div>
+                            <button type={"button"} style={{width:"25px", height:"25px",padding:0,textAlign:"center"}} onClick={handleStatChange} value={"manaIncrease"}>+</button>
+                            <button type={"button"} style={{width:"25px", height:"25px",padding:0,textAlign:"center"}} onClick={handleStatChange} value={"manaDecrease"}>-</button>
+                        </div>
+                        <div style={{width:"75px", height:"50px", backgroundColor:"purple"}}>
+                            <div style={{border:"4px solid white"}}>
+                                <div>Attack</div>
+                                <div>{attack}</div>
+                            </div>
+                            <button type={"button"} style={{width:"25px", height:"25px",padding:0,textAlign:"center"}} onClick={handleStatChange} value={"attackIncrease"}>+</button>
+                            <button type={"button"} style={{width:"25px", height:"25px",padding:0,textAlign:"center"}} onClick={handleStatChange} value={"attackDecrease"}>-</button>
+                        </div>
+                        <div style={{width:"75px", height:"50px", backgroundColor:"purple"}}>
+                            <div style={{border:"4px solid white"}}>
+                                <div>Defense</div>
+                                <div>{defense}</div>
+                            </div>
+                            <button type={"button"} style={{width:"25px", height:"25px",padding:0,textAlign:"center"}} onClick={handleStatChange} value={"defenseIncrease"}>+</button>
+                            <button type={"button"} style={{width:"25px", height:"25px",padding:0,textAlign:"center"}} onClick={handleStatChange} value={"defenseDecrease"}>-</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

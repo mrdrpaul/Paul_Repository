@@ -10,6 +10,7 @@ function GamePage(){
     const [openChat,setOpenChat] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isCharacterSelected,setIsCharacterSelected] = useState(false);
+    const [activeAccountId, setActiveAccountId] = useState(0);
 
     const toggleMenu = () =>{
         setOpenMenu((status)=> !status)
@@ -18,9 +19,17 @@ function GamePage(){
         setOpenChat((status)=> !status)
     }
 
-    const handleLogin = (loginState: boolean) =>{
+    const handleLogin = (loginState: boolean, activeId:number) =>{
+        setActiveAccountId(activeId);
+
         setIsLoggedIn(loginState);
     }
+    const handleActiveId = (activeId:number) =>{
+        setActiveAccountId(activeId);
+        console.log(activeId)
+
+    }
+
 
     const handleCharacterSelected = (characterSelectedState: boolean)=>{
         setIsCharacterSelected(characterSelectedState);
@@ -42,13 +51,13 @@ function GamePage(){
         }else{
             return(
                 <div>
-                    <CharacterSelectionPage onStateChange={handleCharacterSelected}/>
+                    <CharacterSelectionPage onStateChange={handleCharacterSelected} activeId={activeAccountId}/>
                 </div>
             )
         }
     }else{
         return(
-            <Login onStateChange={handleLogin}/>
+            <Login onState2Change={handleActiveId} onStateChange={handleLogin} />
         )
     }
 }
