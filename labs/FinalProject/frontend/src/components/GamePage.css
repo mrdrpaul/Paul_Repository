@@ -131,11 +131,52 @@ body header, footer{
 }
 
 .characterSelectionPage{
+  display: grid;
+  grid-template-columns: 15fr 70fr 15fr;
   width: 100%;
   height: 100%;
   background-image: url("../assets/characterSelectionBackground.png");
   background-size: 100vw 100vh;
   background-position: center;
+}
+
+.characterList{
+  background-color: black;
+
+}
+.characterView{
+  position: relative;
+  /*display: flex;*/
+  /*align-content: center;*/
+  /*align-items: center;*/
+}
+.currentCharacterView{
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-image: url("../assets/pixelWizard.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  left: 50%;
+  bottom: 0;
+  /*transform: translate(-50%,-20%);*/
+  animation: rotateCharacter 10s linear infinite;
+}
+
+@keyframes rotateCharacter{
+  /*from{transform:rotate(0deg)}*/
+  /*to{transform:rotate(200deg)}*/
+  from{transform: translate(-50%,-20%) rotateY(0deg)}
+  50%{transform: translate(-50%,-20%) rotateY(360deg)}
+  to{transform: translate(-50%,-20%) rotateY(0deg)}
+
+}
+.characterStatAdjustment{
+  /*width: 0;*/
+  background-color: grey;
+  /*background-image: url("../assets/stars.png");*/
+  opacity: 0.2;
 }
 
 /*_______________________________________CSS for tile container stylization (parent of the tile elements)_______________________________________*/
