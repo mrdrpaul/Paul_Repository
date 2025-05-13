@@ -15,6 +15,7 @@ public class CharacterEntity {
     private Integer mana;
     private Integer attack;
     private Integer defense;
+    private Integer level;
 
     public CharacterEntity(){
 
@@ -82,5 +83,13 @@ public class CharacterEntity {
 
     public void setDefense(Integer defense) {
         this.defense = defense;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

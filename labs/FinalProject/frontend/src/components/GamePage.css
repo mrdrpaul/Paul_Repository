@@ -154,7 +154,7 @@ body header, footer{
   position: absolute;
   width: 300px;
   height: 300px;
-  background-image: url("../assets/pixelWizard.png");
+  /*background-image: url("../assets/pixelWizard.png");*/
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -166,18 +166,35 @@ body header, footer{
 }
 
 @keyframes rotateCharacter{
-  /*from{transform:rotate(0deg)}*/
-  /*to{transform:rotate(200deg)}*/
   from{transform: translate(-50%,-20%) rotateY(0deg)}
   50%{transform: translate(-50%,-20%) rotateY(360deg)}
   to{transform: translate(-50%,-20%) rotateY(0deg)}
 
 }
+
+.characterLore{
+  background-color: goldenrod;
+  width: 100%;
+  height:400px;
+}
+
+.statPointContainer{
+  display: flex;
+  /*border: 5px solid black;*/
+  height:80px;
+}
+
 .characterStatAdjustment{
   /*width: 0;*/
   background-color: grey;
   /*background-image: url("../assets/stars.png");*/
   /*opacity: 0.2;*/
+}
+.statButton{
+  width:25px;
+  height:25px;
+  padding:0;
+  text-align:center
 }
 
 /*_______________________________________CSS for tile container stylization (parent of the tile elements)_______________________________________*/
