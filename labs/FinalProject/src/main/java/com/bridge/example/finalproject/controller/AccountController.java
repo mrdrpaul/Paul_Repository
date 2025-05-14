@@ -33,4 +33,10 @@ public class AccountController {
     @GetMapping("/characters/{accountId:\\d+}")
     public ResponseEntity<List<CharacterEntity>> getCharacters(@PathVariable Long accountId){return ResponseEntity.ok(accountService.getCharacters(accountId));}
 
+    @PatchMapping("/character/{characterId:\\d+}")
+    public ResponseEntity<CharacterEntity> updateCharacterById(@PathVariable Long characterId, @RequestBody CharacterEntity character) {
+        return ResponseEntity.ok(accountService.updateCharacterById(characterId, character));
+    }
+
+
 }

@@ -20,6 +20,7 @@ function CharacterSelectionPage({onStateChange, activeId}){
     // const characterLore Reference
 
     const handleCharacterSelection = (event, character : Character) =>{
+        setIsNewCharacter(false);
         setSelectedCharacter(character)
         setIsCharacterSelected(true)
         console.log(character)
@@ -27,13 +28,21 @@ function CharacterSelectionPage({onStateChange, activeId}){
 
     }
 
+    const handleNewCharacter = () =>{
+        setIsCharacterSelected(false)
+        setIsNewCharacter(true);
+        handleImageChange("")
+    }
+
+    const handleCharacterUpdate = () =>{
+        fetchCharacters(currentAccountId).then(setCharacters)
+    }
     const displayCharacters = (event) => {
         console.log(activeId)
         fetchCharacters(currentAccountId).then(setCharacters)
         console.log(characters)
     }
     const handleImageChange = (value: String) =>{
-        // setCharacterClass(event.target.value)
         if(characterReference){
             changeCharacterImage(characterReference.current, value)
         }
@@ -42,7 +51,7 @@ function CharacterSelectionPage({onStateChange, activeId}){
     const handleCharacterCreationAndAdjustment = () =>{
         if(isCharacterSelected){
             return(
-                <CharacterAdjustmentPane character={selectedCharacter} imageChange={handleImageChange}/>
+                <CharacterAdjustmentPane character={selectedCharacter} imageChange={handleImageChange} characterUpdate={handleCharacterUpdate}/>
             )
         }else if(isNewCharacter){
             return(
@@ -55,9 +64,6 @@ function CharacterSelectionPage({onStateChange, activeId}){
         fetchCharacters(currentAccountId).then(setCharacters);
         setCurrentAccountId(activeId);
     })
-    // useEffect(() => {
-    //     handleCharacterCreationAndAdjustment()
-    // }, [selectedCharacter]);
 
     return (
         <div className={"characterSelectionPage"}>
@@ -66,10 +72,10 @@ function CharacterSelectionPage({onStateChange, activeId}){
             </div>
             <div className={"characterView"}>
                 <h1>Character Selection Page</h1>
+                <button type={"button"} onClick={handleNewCharacter}>New Character</button>
                 <div ref={characterReference} className={"currentCharacterView"}></div>
             </div>
             {handleCharacterCreationAndAdjustment()}
-            {/*{selectedCharacter && <CharacterAdjustmentPane character={selectedCharacter}/>}*/}
         </div>
 
     )

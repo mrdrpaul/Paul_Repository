@@ -11,10 +11,30 @@ const CharacterSelectionPanels = ({character}: CharacterProps) =>{
                 <h4>{character.characterName}</h4>
                 <h4>Level {character.level} {character.characterClass}</h4>
             </div>
-            <p>Health: {character.health}</p>
-            <p>Mana: {character.mana}</p>
-            <p>Attack: {character.attack}</p>
-            <p>Defense: {character.defense}</p>
+            <div className={"upperRightCornerLine"}></div>
+            <div className={"panelStatPointContainer"}>
+            <div className={"health"}>
+                <div className={"healthIcon"}></div>
+                <div>Health: {character.health}</div>
+            </div>
+            <div className={"mana"}>
+                <div className={"manaIcon"}></div>
+                <div>Mana: {character.mana}</div>
+            </div>
+            <div className={"attack"}>
+                <div className={"attackIcon"}></div>
+                <div>Attack: {character.attack}</div>
+            </div>
+            <div className={"defense"}>
+                <div className={"defenseIcon"}></div>
+                <div>Defense: {character.defense}</div>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+
+            </div>
+
             <p>Stat Points Available: {character.statPoints}</p>
         </div>
     )

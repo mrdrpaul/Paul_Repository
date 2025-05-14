@@ -169,18 +169,28 @@ body header, footer{
 
 }
 
-
-
+.characterStatAdjustment{
+  position: relative;
+  background-color: slategray;
+  text-align: center;
+}
 .statPointContainer{
   display: flex;
   height:100px;
+  width: 100%;
 
 }
+.pointContainer{
+  width:25%;
+  height:50px;
+  background-color:purple;
+}
 
-.characterStatAdjustment{
-  position: relative;
-  display: flex;
-  background-color: grey;
+.statButton{
+  width:25px;
+  height:25px;
+  padding:0;
+  text-align:center
 }
 
 .characterLore{
@@ -195,31 +205,59 @@ body header, footer{
   transform: translate(-50%);
 }
 
-.statButton{
-  width:25px;
-  height:25px;
-  padding:0;
-  text-align:center
-}
+
 
 .characterList{
-  background-color: gray;
+  /*background-color: gray;*/
   overflow: auto;
 }
 
 .characterSelectionPanel{
-  background-color: golf;
+  background-color: slategray;
   position: relative;
   display: block;
   border: 5px solid white;
+  opacity: 0.8;
+  height: 200px;
+  margin: 5px;
+}
+.nameAndClassRow{
+  text-align: start;
+  height:50px;
+  width: 100%;
+  border-bottom: 5px solid white;
+}
+.panelStatPointContainer{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
 }
 
-.nameAndClassRow{
-  /*position: relative;*/
-  display: grid;
-  grid-template-columns: 50fr 50fr;
-  text-align: start;
+.health, .mana, .attack, .defense{
+  align-items: center;
+  display: flex;
 }
+
+.healthIcon, .manaIcon, .attackIcon, .defenseIcon{
+  width: 50px;
+  height:50px;
+  background-position: center;
+  background-size: contain;
+}
+.healthIcon{
+  background-image: url("../assets/heartIcon.png");
+
+}
+.manaIcon{
+  background-image: url("../assets/manaIcon.png");
+}
+.attackIcon{
+  background-image: url("../assets/swordIcon.png");
+}
+.defenseIcon{
+  background-image: url("../assets/shieldIcon.png");
+}
+
 
 /*_______________________________________CSS for tile container stylization (parent of the tile elements)_______________________________________*/
 .tileContainer{

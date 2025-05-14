@@ -1,16 +1,19 @@
 import type {Character} from "../CharacterType"
 import {useEffect, useState} from "react";
 import {loreChanger} from "./characterSelection.ts";
+import axios from "axios";
+import {fetchCharacters} from "./CharacterService.ts";
 
 type CharacterProps = {
     character : Character;
-    imageChange : string
+    imageChange : string;
+    // characterUpdate : function;
 }
 
 
 // const CharacterAdjustmentPane = ({character}: CharacterProps) =>{
-const CharacterAdjustmentPane = ({character, imageChange} :CharacterProps) =>{
-    const [currentAccountId,setCurrentAccountId] = useState<number>()
+const CharacterAdjustmentPane = ({character, imageChange, characterUpdate} :CharacterProps) =>{
+    const [currentCharacterId,setCurrentCharacterId] = useState<number>()
 
     const [characterName, setCharacterName] = useState("")
     const [characterClass, setCharacterClass] = useState("")
@@ -21,8 +24,22 @@ const CharacterAdjustmentPane = ({character, imageChange} :CharacterProps) =>{
     const [defense,setDefense] = useState<number>()
     const [lore, setLore] = useState("")
 
+    const updateCharacter = (characterId: number) =>{
+        const path = ("/api/character/"+characterId)
+        console.log(characterId)
+        axios.patch(`${path}`,{
+            "health": health,
+            "mana" : mana,
+            "attack": attack,
+            "defense" : defense,
+            "statPoints":statPoints
+        })
+    }
+
+
+
     useEffect(()=>{
-        setCurrentAccountId(character.account)
+        setCurrentCharacterId(character.id)
         setCharacterName(character.characterName)
         setCharacterClass(character.characterClass)
         setStatPoints(character.statPoints)
@@ -40,7 +57,7 @@ const CharacterAdjustmentPane = ({character, imageChange} :CharacterProps) =>{
             setStatPoints((changeType==="add") ? statPoints-1 : statPoints+1)
             switch (event.target.value){
                 case "health":
-                    (changeType === "add") ? setHealth(health+10) : setHealth(health-10);
+                    (changeType === "add") ? setHealth(health+10) : setHealth(health-10) ;
                     break;
                 case "mana":
                     (changeType === "add") ? setMana(mana+10) : setMana(mana-10);
@@ -62,7 +79,7 @@ const CharacterAdjustmentPane = ({character, imageChange} :CharacterProps) =>{
             <div>Stat Points Remaining: {statPoints}</div>
             <div className={"statPointContainer"}>
 
-                <div style={{width:"75px", height:"50px", backgroundColor:"purple"}}>
+                <div className={"pointContainer"}>
                     <div style={{border:"4px solid white"}}>
                         <div>Health</div>
                         <div>{health}</div>
@@ -71,7 +88,7 @@ const CharacterAdjustmentPane = ({character, imageChange} :CharacterProps) =>{
                     <button className={"statButton"} type={"button"} onClick={(event)=>handleStatChange(event,"minus")} value={"health"}>-</button>
                 </div>
 
-                <div style={{width:"75px", height:"50px", backgroundColor:"purple"}}>
+                <div className={"pointContainer"}>
                     <div style={{border:"4px solid white"}}>
                         <div>Mana</div>
                         <div>{mana}</div>
@@ -80,7 +97,7 @@ const CharacterAdjustmentPane = ({character, imageChange} :CharacterProps) =>{
                     <button className={"statButton"} type={"button"} onClick={(event)=>handleStatChange(event,"minus")} value={"mana"}>-</button>
                 </div>
 
-                <div style={{width:"75px", height:"50px", backgroundColor:"purple"}}>
+                <div className={"pointContainer"}>
                     <div style={{border:"4px solid white"}}>
                         <div>Attack</div>
                         <div>{attack}</div>
@@ -89,7 +106,7 @@ const CharacterAdjustmentPane = ({character, imageChange} :CharacterProps) =>{
                     <button className={"statButton"} type={"button"} onClick={(event)=>handleStatChange(event,"minus")} value={"attack"}>-</button>
                 </div>
 
-                <div style={{width:"75px", height:"50px", backgroundColor:"purple"}}>
+                <div className={"pointContainer"}>
                     <div style={{border:"4px solid white"}}>
                         <div>Defense</div>
                         <div>{defense}</div>
@@ -100,8 +117,8 @@ const CharacterAdjustmentPane = ({character, imageChange} :CharacterProps) =>{
 
             </div>
             <div className={"characterLore"}>{lore}</div>
-            {/*<button type={"button"} onClick={addCharacter}>Create Character</button>*/}
-            <div>test</div>
+            <button type={"button"} onClick={() => {updateCharacter(currentCharacterId)}}>Update Character</button>
+            {/*<button type={"button"} onClick={playGame}>Enter Game</button>*/}
         </div>
         </div>
     )
