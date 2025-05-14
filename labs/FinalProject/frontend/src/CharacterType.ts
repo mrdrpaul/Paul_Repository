@@ -6,5 +6,7 @@ export type Character = {
     mana: number,
     attack: number,
     defense: number,
-    account: number
+    account: number,
+    level: number,
+    statPoints: number
 }

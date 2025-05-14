@@ -132,7 +132,7 @@ body header, footer{
 
 .characterSelectionPage{
   display: grid;
-  grid-template-columns: 15fr 70fr 15fr;
+  grid-template-columns: 20fr 60fr 20fr;
   width: 100%;
   height: 100%;
   background-image: url("../assets/characterSelectionBackground.png");
@@ -140,10 +140,7 @@ body header, footer{
   background-position: center;
 }
 
-.characterList{
-  background-color: black;
 
-}
 .characterView{
   position: relative;
   /*display: flex;*/
@@ -203,6 +200,25 @@ body header, footer{
   height:25px;
   padding:0;
   text-align:center
+}
+
+.characterList{
+  background-color: gray;
+  overflow: auto;
+}
+
+.characterSelectionPanel{
+  background-color: golf;
+  position: relative;
+  display: block;
+  border: 5px solid white;
+}
+
+.nameAndClassRow{
+  /*position: relative;*/
+  display: grid;
+  grid-template-columns: 50fr 50fr;
+  text-align: start;
 }
 
 /*_______________________________________CSS for tile container stylization (parent of the tile elements)_______________________________________*/
