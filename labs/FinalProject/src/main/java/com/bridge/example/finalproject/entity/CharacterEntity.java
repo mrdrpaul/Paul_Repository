@@ -16,17 +16,19 @@ public class CharacterEntity {
     private Integer attack;
     private Integer defense;
     private Integer level;
+    private Integer statPoints;
 
     public CharacterEntity(){
 
     }
-    public CharacterEntity(String characterName, String characterClass, Integer health, Integer mana, Integer attack, Integer defense) {
+    public CharacterEntity(String characterName, String characterClass, Integer health, Integer mana, Integer attack, Integer defense, Integer statPoints) {
         this.characterName = characterName;
         this.characterClass = characterClass;
         this.health = health;
         this.mana = mana;
         this.attack = attack;
         this.defense = defense;
+        this.statPoints = statPoints;
     }
 
     public Long getId() {
@@ -91,5 +93,13 @@ public class CharacterEntity {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public Integer getStatPoints() {
+        return statPoints;
+    }
+
+    public void setStatPoints(Integer statPoints) {
+        this.statPoints = statPoints;
     }
 }

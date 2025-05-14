@@ -172,24 +172,32 @@ body header, footer{
 
 }
 
-.characterLore{
-  background-color: goldenrod;
-  width: 100%;
-  height:400px;
-}
+
 
 .statPointContainer{
   display: flex;
-  /*border: 5px solid black;*/
-  height:80px;
+  height:100px;
+
 }
 
 .characterStatAdjustment{
-  /*width: 0;*/
+  position: relative;
+  display: flex;
   background-color: grey;
-  /*background-image: url("../assets/stars.png");*/
-  /*opacity: 0.2;*/
 }
+
+.characterLore{
+  position: relative;
+  display: block;
+  width: 250px;
+  height:400px;
+  left: 50%;
+  background-color: goldenrod;
+  color:black;
+  text-align: center;
+  transform: translate(-50%);
+}
+
 .statButton{
   width:25px;
   height:25px;

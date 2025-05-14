@@ -1,9 +1,11 @@
 
-import {changeCharacterImage} from "./characterSelection.ts";
+import {loreChanger} from "./characterSelection.ts";
 import axios from "axios";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
-const NewCharacterPane = ({currentActiveId}) =>{
+const NewCharacterPane = ({currentActiveId, imageChange}) =>{
+    const [currentAccountId,setCurrentAccountId] = useState(currentActiveId)
+
 
     const [characterName, setCharacterName] = useState("")
     const [characterClass, setCharacterClass] = useState("")
@@ -14,7 +16,7 @@ const NewCharacterPane = ({currentActiveId}) =>{
     const [defense,setDefense] = useState(5)
     const [lore, setLore] = useState("")
 
-    const characterReference = useRef<HTMLDivElement>(null)
+    // const characterReference = useRef<HTMLDivElement>(null)
 
     const addCharacter = (event) =>{
         event.preventDefault();
@@ -25,7 +27,8 @@ const NewCharacterPane = ({currentActiveId}) =>{
             "mana" : mana,
             "attack": attack,
             "defense" : defense,
-            "level": 1
+            "level": 1,
+            "statPoints":statPoints
         })
             .then((r)=>{
                 console.log(r)
@@ -42,10 +45,11 @@ const NewCharacterPane = ({currentActiveId}) =>{
 
     const handleClassSelection = (event) =>{
         setCharacterClass(event.target.value)
-        if(characterReference){
-            changeCharacterImage(characterReference.current, event.target.value)
-        }
+        setLore(loreChanger(event.target.value))
+            imageChange(event.target.value)
+
     }
+
     function handleStatChange(event, changeType: string){
         if(statPoints === 0 && changeType === "add"){
             alert("No points remain")
@@ -68,6 +72,11 @@ const NewCharacterPane = ({currentActiveId}) =>{
         }
 
     }
+
+    useEffect(()=>{
+        setCurrentAccountId(currentActiveId);
+    })
+
     return(
         <div className={"characterStatAdjustment"}>
         <div>
@@ -128,7 +137,8 @@ const NewCharacterPane = ({currentActiveId}) =>{
 
             </div>
             <div className={"characterLore"}>{lore}</div>
-            <button type={"button"} onClick={addCharacter}>New Character</button>
+            <button type={"button"} onClick={addCharacter}>Create Character</button>
+            <div>test</div>
         </div>
     </div>
     )
