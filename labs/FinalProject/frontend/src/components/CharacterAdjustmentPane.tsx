@@ -7,12 +7,12 @@ import {fetchCharacters} from "./CharacterService.ts";
 type CharacterProps = {
     character : Character;
     imageChange : string;
-    // characterUpdate : function;
+    isCharacterSelected: boolean;
 }
 
 
 // const CharacterAdjustmentPane = ({character}: CharacterProps) =>{
-const CharacterAdjustmentPane = ({character, imageChange, characterUpdate} :CharacterProps) =>{
+const CharacterAdjustmentPane = ({character, imageChange, isCharacterSelected} :CharacterProps) =>{
     const [currentCharacterId,setCurrentCharacterId] = useState<number>()
 
     const [characterName, setCharacterName] = useState("")
@@ -73,9 +73,14 @@ const CharacterAdjustmentPane = ({character, imageChange, characterUpdate} :Char
 
     }
 
+    const playGame = ()=>{
+        isCharacterSelected(true)
+    }
+
     return(
         <div className={"characterStatAdjustment"}>
-            <div><div>Level: 1</div>
+            <div>
+                <div>Level: 1</div>
             <div>Stat Points Remaining: {statPoints}</div>
             <div className={"statPointContainer"}>
 
@@ -118,7 +123,7 @@ const CharacterAdjustmentPane = ({character, imageChange, characterUpdate} :Char
             </div>
             <div className={"characterLore"}>{lore}</div>
             <button type={"button"} onClick={() => {updateCharacter(currentCharacterId)}}>Update Character</button>
-            {/*<button type={"button"} onClick={playGame}>Enter Game</button>*/}
+            <button type={"button"} onClick={playGame}>Enter Game</button>
         </div>
         </div>
     )

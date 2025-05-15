@@ -17,7 +17,6 @@ function CharacterSelectionPage({onStateChange, activeId}){
 
 
     const characterReference = useRef<HTMLDivElement>(null)
-    // const characterLore Reference
 
     const handleCharacterSelection = (event, character : Character) =>{
         setIsNewCharacter(false);
@@ -34,8 +33,11 @@ function CharacterSelectionPage({onStateChange, activeId}){
         handleImageChange("")
     }
 
-    const handleCharacterUpdate = () =>{
-        fetchCharacters(currentAccountId).then(setCharacters)
+    const handleCharacterUpdate = (selectedCharacter: boolean) =>{
+        if(selectedCharacter){
+            onStateChange(true)
+        }
+        // fetchCharacters(currentAccountId).then(setCharacters)
     }
     const displayCharacters = (event) => {
         console.log(activeId)
@@ -51,7 +53,7 @@ function CharacterSelectionPage({onStateChange, activeId}){
     const handleCharacterCreationAndAdjustment = () =>{
         if(isCharacterSelected){
             return(
-                <CharacterAdjustmentPane character={selectedCharacter} imageChange={handleImageChange} characterUpdate={handleCharacterUpdate}/>
+                <CharacterAdjustmentPane character={selectedCharacter} imageChange={handleImageChange} isCharacterSelected={handleCharacterUpdate}/>
             )
         }else if(isNewCharacter){
             return(

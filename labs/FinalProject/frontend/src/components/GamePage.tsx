@@ -39,7 +39,7 @@ function GamePage(){
         if(isCharacterSelected){
             return(
                 <div id="columnCenterBlock">
-                    <GameInterface/>
+                    <GameInterface isChatOpen ={openChat}/>
                     <MenuInterface isOpen={openMenu}/>
                     <ChatInterface isOpen={openChat}/>
                     <div id={"gameBar"}>

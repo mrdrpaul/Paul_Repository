@@ -1,10 +1,59 @@
-function GameInterface(){
+import {useEffect, useRef} from "react";
+import {handleKeyDown, handleKeyUp, initialize} from "./GameInterFaceControl"
+
+const GameInterface = ({isChatOpen}: boolean)=>{
+    // const handleKeyDown = (event) =>{
+    //     alert(event.target.value + " key was pressed")
+    // }
+    const keys = {};
+
+    const tileContainerReference = useRef<HTMLDivElement>(null)
+    const cameraReference = useRef<HTMLDivElement>(null)
+    const sceneContainerReference = useRef<HTMLDivElement>(null)
+
+
+
+    useEffect(() => {
+        function handleKeyDownScript(event){
+            handleKeyDown(event.key.toLowerCase())
+        }
+        function handleKeyUpScript(event){
+            handleKeyUp(event.key.toLowerCase())
+        }
+        document.addEventListener('keydown',handleKeyDownScript)
+        document.addEventListener('keyup',handleKeyUpScript)
+
+
+        if(isChatOpen){
+            console.log("open Chat")
+            document.removeEventListener('keydown',handleKeyDownScript)
+            document.removeEventListener('keydown',handleKeyUpScript)
+        }else{
+            console.log("closed chat")
+            document.addEventListener('keydown',handleKeyDownScript)
+            document.addEventListener('keyup',handleKeyUpScript)
+        }
+
+
+        if(sceneContainerReference && cameraReference){
+            initialize(sceneContainerReference.current, cameraReference.current)
+        }
+
+        return () =>{
+            document.removeEventListener('keydown',handleKeyDownScript)
+            document.removeEventListener('keydown',handleKeyUpScript)
+        }
+
+    }, [isChatOpen]);
+
+
+
+
     return (
         <div className="gameInterface">
-            Game Interface
-            <div className="tileContainer">
-                <div className="camera">
-                    <div className="sceneContainer">
+            <div className="tileContainer" ref={tileContainerReference}>
+                <div ref={cameraReference} className="camera">
+                    <div ref={sceneContainerReference} className="sceneContainer">
                         <div className="scene">
 
                             <div className="playerContainer">

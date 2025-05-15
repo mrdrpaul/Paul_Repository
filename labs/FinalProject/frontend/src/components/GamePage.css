@@ -113,8 +113,8 @@ body header, footer{
 }
 
 .gameInterface{
-  /*background-image: url("./assets/cloudsBackground.png");*/
-  background-image: url("../assets/loginBackground.png");
+  background-image: url("../assets/cloudsBackground.png");
+  /*background-image: url("../assets/loginBackground.png");*/
   display: flex;
   perspective: 800px;
   height:100%;
@@ -197,7 +197,7 @@ body header, footer{
   position: relative;
   display: block;
   width: 250px;
-  height:400px;
+  height:200px;
   left: 50%;
   background-color: goldenrod;
   color:black;
@@ -261,17 +261,20 @@ body header, footer{
 
 /*_______________________________________CSS for tile container stylization (parent of the tile elements)_______________________________________*/
 .tileContainer{
-  display: none; /*hides entire element and children until activated*/
+  display: block;
   position: relative;
   transform-style: preserve-3d;
-  width: 1000px; /*sets initial width, allows for smooth transition*/
-  aspect-ratio: 1; /*allows height to be set to width*/
-  transition: width 0.5s ease, transform 0.5s linear; /*applies transition effect*/
-  /*viewpoint is at center, 90deg rotation with center origin causes board to disappear*/
-  /*rotating with origin at bottom visually folds the board backwards*/
-  /*transform-origin: center;*/
-  transform: rotateX(90deg);
+  width: 800px;
+  aspect-ratio: 1;
+  transition: width 0.5s ease, transform 0.5s linear;
+  transform: rotateX(90deg) scale3d(1,1,1) translate3d(0px,1200px,385px);
   transform-origin: bottom;
+  /*animation: movePlayer 10s linear;*/
+}
+
+@keyframes movePlayer{
+  from{transform:rotateX(90deg) scale3d(1,1,1) translate3d(0px,1300px,480px)}
+  to{transform: rotateX(90deg) scale3d(1,1,1) translate3d(0px,1800px,480px)}
 }
 
 /*_______________________________________CSS for camera stylization (parent of the tile)_______________________________________*/
@@ -279,15 +282,12 @@ body header, footer{
   display: block; /*hides entire element and children until activated*/
   position: relative;
   transform-style: preserve-3d;
-  width: 1000px; /*sets initial width, allows for smooth transition*/
+  width: inherit; /*sets initial width, allows for smooth transition*/
   aspect-ratio: 1; /*allows height to be set to width*/
-  /*transition: width 0.5s ease, transform 0.5s linear; !*applies transition effect*!*/
+  transition: transform 0.2s linear; /*applies transition effect*/
   /*viewpoint is at center, 90deg rotation with center origin causes board to disappear*/
   /*rotating with origin at bottom visually folds the board backwards*/
-  /*transform-origin: center;*/
-  transform-origin: bottom;
-  /*transform: rotateX(90deg);*/
-  background-image: url("../assets/grassTexture.png");
+  /*background-image: url("../assets/grassTexture.png");*/
   /*animation: flipTile 10s linear infinite;*/
 }
 
@@ -312,7 +312,7 @@ body header, footer{
   position: absolute;
   aspect-ratio: 1;
   width: inherit;
-  background-image: url("./assets/grass.png");
+  background-image: url("../assets/grass.png");
   background-size:100px 100px;
   background-position: center;
   transition: background-image 1s linear;
@@ -479,8 +479,6 @@ body header, footer{
   transform:rotateY(90deg);
 
 }
-
-
 
 
 /*_______________________________________End Castle customization_______________________________________*/

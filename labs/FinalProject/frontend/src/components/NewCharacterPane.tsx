@@ -99,7 +99,7 @@ const NewCharacterPane = ({currentActiveId, imageChange}) =>{
             <div>Stat Points Remaining: {statPoints}</div>
             <div className={"statPointContainer"}>
 
-                <div style={{width:"75px", height:"50px", backgroundColor:"purple"}}>
+                <div className={"pointContainer"}>
                     <div style={{border:"4px solid white"}}>
                         <div>Health</div>
                         <div>{health}</div>
@@ -108,7 +108,7 @@ const NewCharacterPane = ({currentActiveId, imageChange}) =>{
                     <button className={"statButton"} type={"button"} onClick={(event)=>handleStatChange(event,"minus")} value={"health"}>-</button>
                 </div>
 
-                <div style={{width:"75px", height:"50px", backgroundColor:"purple"}}>
+                <div className={"pointContainer"}>
                     <div style={{border:"4px solid white"}}>
                         <div>Mana</div>
                         <div>{mana}</div>
@@ -117,7 +117,7 @@ const NewCharacterPane = ({currentActiveId, imageChange}) =>{
                     <button className={"statButton"} type={"button"} onClick={(event)=>handleStatChange(event,"minus")} value={"mana"}>-</button>
                 </div>
 
-                <div style={{width:"75px", height:"50px", backgroundColor:"purple"}}>
+                <div className={"pointContainer"}>
                     <div style={{border:"4px solid white"}}>
                         <div>Attack</div>
                         <div>{attack}</div>
@@ -126,7 +126,7 @@ const NewCharacterPane = ({currentActiveId, imageChange}) =>{
                     <button className={"statButton"} type={"button"} onClick={(event)=>handleStatChange(event,"minus")} value={"attack"}>-</button>
                 </div>
 
-                <div style={{width:"75px", height:"50px", backgroundColor:"purple"}}>
+                <div className={"pointContainer"}>
                     <div style={{border:"4px solid white"}}>
                         <div>Defense</div>
                         <div>{defense}</div>
@@ -138,7 +138,6 @@ const NewCharacterPane = ({currentActiveId, imageChange}) =>{
             </div>
             <div className={"characterLore"}>{lore}</div>
             <button type={"button"} onClick={addCharacter}>Create Character</button>
-            <div>test</div>
         </div>
     </div>
     )
