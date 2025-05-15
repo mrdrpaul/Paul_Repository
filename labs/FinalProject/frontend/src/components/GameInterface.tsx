@@ -1,15 +1,14 @@
 import {useEffect, useRef} from "react";
 import {handleKeyDown, handleKeyUp, initialize} from "./GameInterFaceControl"
 
-const GameInterface = ({isChatOpen}: boolean)=>{
-    // const handleKeyDown = (event) =>{
-    //     alert(event.target.value + " key was pressed")
-    // }
+const GameInterface = ({isChatOpen})=>{
     const keys = {};
 
     const tileContainerReference = useRef<HTMLDivElement>(null)
     const cameraReference = useRef<HTMLDivElement>(null)
     const sceneContainerReference = useRef<HTMLDivElement>(null)
+    const playerContainerReference = useRef<HTMLDivElement>(null)
+    const playerReference = useRef<HTMLDivElement>(null)
 
 
 
@@ -35,8 +34,8 @@ const GameInterface = ({isChatOpen}: boolean)=>{
         }
 
 
-        if(sceneContainerReference && cameraReference){
-            initialize(sceneContainerReference.current, cameraReference.current)
+        if(sceneContainerReference && cameraReference && playerContainerReference && playerReference){
+            initialize(sceneContainerReference.current, cameraReference.current, playerContainerReference.current, playerReference.current)
         }
 
         return () =>{
@@ -50,14 +49,16 @@ const GameInterface = ({isChatOpen}: boolean)=>{
 
 
     return (
-        <div className="gameInterface">
+        <div className="gameInterface" >
             <div className="tileContainer" ref={tileContainerReference}>
                 <div ref={cameraReference} className="camera">
                     <div ref={sceneContainerReference} className="sceneContainer">
                         <div className="scene">
 
-                            <div className="playerContainer">
-                                <div className="player"></div>
+                            <div ref={playerContainerReference} className="playerContainer">
+                                <div ref={playerReference} className="player">
+                                    <div className={"handItem"}></div>
+                                </div>
                             </div>
 
                             <div className="sceneFloor"></div>

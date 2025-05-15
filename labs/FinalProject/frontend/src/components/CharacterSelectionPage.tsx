@@ -1,8 +1,7 @@
-import {use, useEffect, useRef, useState} from "react";
-import axios from "axios";
+import {useEffect, useRef, useState} from "react";
 import type {Character} from "../CharacterType.ts";
 import {fetchCharacters} from "./CharacterService.ts";
-import {changeCharacterImage} from "./characterSelection.ts";
+import {changeImages} from "./characterSelection.ts";
 import NewCharacterPane from "./NewCharacterPane.tsx";
 import CharacterSelectionPanels from "./CharacterSelectionPanels.tsx";
 import CharacterAdjustmentPane from "./CharacterAdjustmentPane.tsx";
@@ -17,6 +16,7 @@ function CharacterSelectionPage({onStateChange, activeId}){
 
 
     const characterReference = useRef<HTMLDivElement>(null)
+    const characterSelectionPageReference = useRef<HTMLDivElement>(null)
 
     const handleCharacterSelection = (event, character : Character) =>{
         setIsNewCharacter(false);
@@ -46,7 +46,7 @@ function CharacterSelectionPage({onStateChange, activeId}){
     }
     const handleImageChange = (value: String) =>{
         if(characterReference){
-            changeCharacterImage(characterReference.current, value)
+            changeImages(characterSelectionPageReference.current, characterReference.current, value)
         }
     }
 
@@ -68,7 +68,7 @@ function CharacterSelectionPage({onStateChange, activeId}){
     })
 
     return (
-        <div className={"characterSelectionPage"}>
+        <div ref={characterSelectionPageReference} className={"characterSelectionPage"}>
             <div className={"characterList"}>
                 {characters.map((character,index)=> <div onClick={(event)=>{handleCharacterSelection(event,character)}} key={index}><CharacterSelectionPanels character={character}/></div>)}
             </div>

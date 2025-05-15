@@ -93,6 +93,7 @@ const NewCharacterPane = ({currentActiveId, imageChange}) =>{
                 <option value="notPixelBarbarian">Not Pixel Barbarian</option>
                 <option value="priest">Priest</option>
                 <option value="bishop">Bishop</option>
+                <option value="necromancer">Necromancer</option>
             </select>
 
             <div>Level: 1</div>

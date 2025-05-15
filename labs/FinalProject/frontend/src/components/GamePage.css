@@ -28,14 +28,10 @@ body header, footer{
   overflow: hidden;
   background-image: url("../assets/loginBackground.png");
   background-size: 100vw 100vh;
-  /*background-size: 100% 100%;*/
   background-position: center;
-  /*filter: blur(10px);*/
-
 }
 
 #columnLeftBorder,#columnRightBorder{
-  /*position: relative;*/
   background-color: black;
   height: 100%;
 }
@@ -86,7 +82,6 @@ body header, footer{
   position: relative;
   background-color: tan;
   transition: height 0.7s ease;
-  /*border: 5px solid gold;*/
   text-align: left;
 }
 .chatMessages{
@@ -114,7 +109,6 @@ body header, footer{
 
 .gameInterface{
   background-image: url("../assets/cloudsBackground.png");
-  /*background-image: url("../assets/loginBackground.png");*/
   display: flex;
   perspective: 800px;
   height:100%;
@@ -135,6 +129,7 @@ body header, footer{
   grid-template-columns: 20fr 60fr 20fr;
   width: 100%;
   height: 100%;
+  transition: background-image 2s linear;
   background-image: url("../assets/characterSelectionBackground.png");
   background-size: 100vw 100vh;
   background-position: center;
@@ -143,15 +138,11 @@ body header, footer{
 
 .characterView{
   position: relative;
-  /*display: flex;*/
-  /*align-content: center;*/
-  /*align-items: center;*/
 }
 .currentCharacterView{
   position: absolute;
   width: 300px;
   height: 300px;
-  /*background-image: url("../assets/pixelWizard.png");*/
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -199,16 +190,15 @@ body header, footer{
   width: 250px;
   height:200px;
   left: 50%;
-  background-color: goldenrod;
+  background-color: cadetblue;
+  padding: 4px;
+  outline: 4px solid white;
   color:black;
   text-align: center;
   transform: translate(-50%);
 }
 
-
-
 .characterList{
-  /*background-color: gray;*/
   overflow: auto;
 }
 
@@ -243,6 +233,8 @@ body header, footer{
   height:50px;
   background-position: center;
   background-size: contain;
+  background-repeat: no-repeat;
+
 }
 .healthIcon{
   background-image: url("../assets/heartIcon.png");
@@ -269,12 +261,36 @@ body header, footer{
   transition: width 0.5s ease, transform 0.5s linear;
   transform: rotateX(90deg) scale3d(1,1,1) translate3d(0px,1200px,385px);
   transform-origin: bottom;
-  /*animation: movePlayer 10s linear;*/
+
 }
 
-@keyframes movePlayer{
-  from{transform:rotateX(90deg) scale3d(1,1,1) translate3d(0px,1300px,480px)}
-  to{transform: rotateX(90deg) scale3d(1,1,1) translate3d(0px,1800px,480px)}
+.actionBar{
+  position:absolute;
+  display: grid;
+  grid-template-columns: repeat(8,12.5fr);
+  height:100px;
+  width:800px;
+  border: 5px solid white;
+  bottom: 50px;
+  left: 50%;
+  background-color: tan;
+  transform:translate(-50%);
+  opacity: 0.7;
+}
+
+.actionBarSlot{
+  outline: 2px solid white;
+  height: 100%;
+}
+.slotOne{
+  background-image: url("../assets/paladinSword.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.actionBarSlot.isSelected{
+  background-color: black;
 }
 
 /*_______________________________________CSS for camera stylization (parent of the tile)_______________________________________*/
@@ -350,6 +366,64 @@ body header, footer{
   transform: translateZ(calc(-1*(var(--baseHeight))));
 }
 /*_______________________________________End CSS for Scene+base stylization_______________________________________*/
+/*_______________________________________CSS for player handItem_______________________________________*/
+.playerContainer{
+  /*position: absolute;*/
+  /*transform-style: preserve-3d;*/
+  /*width: 25px;*/
+  /*height:25px;*/
+
+  position: absolute;
+  display: block;
+  transform-style: preserve-3d;
+  transform-origin: bottom; /*transforms occur from bottom up element (allows element to flip up, as opposed to default center origin transform, resulting in element partially being in the ground)*/
+  transform:rotateX(-90deg); /*flips player container back up after flip down from board */
+  width: 20px;
+  height: 20px;
+  /*z-index: 1; !*ensures element visually appears on top of scene (when testing where element is with border:)*!*/
+  bottom:400px;/*places the character at the bottom of the board initially (closest to the user[player])*/
+  left:390px; /*places the left side of the playerContainer element 50% from the left of the parent element (the left side of the board)*/
+  transition: transform 0.2s linear;
+
+}
+.player{
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-style: preserve-3d;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s linear;
+
+}
+
+.handItem{
+  position: absolute;
+  width: 20px;
+  height:20px;
+  background-image: url("../assets/paladinSword.png");
+  background-size:contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translate3d(8px,0px,-20px);
+  animation: handMovement 2s linear infinite;
+}
+
+@keyframes handMovement {
+  from{transform: translate3d(8px,0px,-20px)}
+  25%{transform: translate3d(10px,2px,-20px)}
+  50%{transform: translate3d(12px,0px,-20px)}
+  75%{transform: translate3d(10px,2px,-20px)}
+  to{transform: translate3d(8px,0px,-20px)}
+
+}
+
+
+/*_______________________________________End CSS for player handItem_______________________________________*/
+
+
+
+
 /*_______________________________________Begin Castle customization_______________________________________*/
 .castle{
   position: absolute;

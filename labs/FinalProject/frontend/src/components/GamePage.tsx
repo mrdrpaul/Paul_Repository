@@ -5,6 +5,7 @@ import ChatInterface from "./ChatInterface.tsx";
 import {useState} from "react";
 import Login from "./Login.tsx";
 import CharacterSelectionPage from "./CharacterSelectionPage.tsx";
+import ActionBar from "./ActionBar.tsx";
 function GamePage(){
     const [openMenu,setOpenMenu] = useState(false);
     const [openChat,setOpenChat] = useState(false);
@@ -40,6 +41,7 @@ function GamePage(){
             return(
                 <div id="columnCenterBlock">
                     <GameInterface isChatOpen ={openChat}/>
+                    <ActionBar/>
                     <MenuInterface isOpen={openMenu}/>
                     <ChatInterface isOpen={openChat}/>
                     <div id={"gameBar"}>

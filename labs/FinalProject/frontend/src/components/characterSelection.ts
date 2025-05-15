@@ -9,17 +9,28 @@ import golem from "../assets/Golem.png"
 import notPixelBarbarian from "../assets/Barbarian.png"
 import priest from "../assets/Priest.png"
 import bishop from "../assets/pixelBishop.png"
+import pixelNecromancer from "../assets/pixelNecromancer.png"
 
-export function changeCharacterImage(character: HTMLElement, characterSelection: string){
+
+import wizardBackground from "../assets/wizardBackground.png"
+import barbarianBackground from "../assets/barbarianBackground.png"
+import paladinBackground from "../assets/paladinBackground.png"
+import necromancerBackground from "../assets/necromancerBackground.png"
+
+export function changeImages(characterBackground: HTMLElement, character: HTMLElement, characterSelection: string){
     switch (characterSelection){
         case "wizard":
             character.style.backgroundImage=`url(${pixelWizard})`;
+            characterBackground.style.backgroundImage=`url(${wizardBackground})`
             break;
         case "barbarian":
             character.style.backgroundImage=`url(${pixelBarbarian})`;
+            characterBackground.style.backgroundImage=`url(${barbarianBackground})`
+
             break;
         case "paladin":
             character.style.backgroundImage=`url(${pixelPaladin})`;
+            characterBackground.style.backgroundImage=`url(${paladinBackground})`
             break;
         case "rogue":
             character.style.backgroundImage=`url(${pixelRogue})`;
@@ -41,6 +52,11 @@ export function changeCharacterImage(character: HTMLElement, characterSelection:
             break;
         case "bishop":
             character.style.backgroundImage=`url(${bishop})`;
+            break;
+        case "necromancer":
+            character.style.backgroundImage=`url(${pixelNecromancer})`
+            characterBackground.style.backgroundImage=`url(${necromancerBackground})`
+
             break;
     }
 
@@ -68,6 +84,8 @@ export function loreChanger(characterSelection): string{
             return "Vessels of the divine or voices of forgotten gods, Priests mend flesh and soul with sacred rites. But power drawn from faith cuts both ways — and mercy is not always their first prayer."
         case "bishop":
             return "Crowned in scripture and cloaked in ceremony, Bishops command reverence — and fear. Where Priests bring healing, Bishops bring judgment, wielding relic and rite to break the unworthy."
+        case "necromancer":
+            return "Life is fleeting, but death obeys. Necromancers blur the veil with every whispered rite, commanding bone and shadow to do their bidding. To them, the grave is not an end -- only a doorway"
     }
     return "";
 
