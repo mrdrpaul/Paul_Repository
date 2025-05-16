@@ -4,6 +4,13 @@
   border: none;
 }
 
+:root{
+  /*--selectedHandItem: url("../assets/torch.png");*/
+  --selectedHandItem:url;
+  --selectedBackgroundColor: black
+}
+
+
 .bodyPage{
   width: 100vw;
   height: 100vh;
@@ -281,16 +288,24 @@ body header, footer{
 .actionBarSlot{
   outline: 2px solid white;
   height: 100%;
-}
-.slotOne{
-  background-image: url("../assets/paladinSword.png");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
+.slotOne{
+  background-image: url("../assets/paladinSword.png");
+}
+
+.slotTwo{
+  background-image: url("../assets/torch.png")
+}
+/*.slotThree{*/
+/*  background-image: var(--selectedHandItem);*/
+/*}*/
 
 .actionBarSlot.isSelected{
-  background-color: black;
+  /*background-color: black;*/
+  background-color: var(--selectedBackgroundColor);
 }
 
 /*_______________________________________CSS for camera stylization (parent of the tile)_______________________________________*/
@@ -401,7 +416,8 @@ body header, footer{
   position: absolute;
   width: 20px;
   height:20px;
-  background-image: url("../assets/paladinSword.png");
+  /*background-image: url("../assets/paladinSword.png");*/
+  background-image: var(--selectedHandItem);
   background-size:contain;
   background-position: center;
   background-repeat: no-repeat;

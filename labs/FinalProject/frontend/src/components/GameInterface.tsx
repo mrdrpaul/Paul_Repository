@@ -1,8 +1,8 @@
 import {useEffect, useRef} from "react";
 import {handleKeyDown, handleKeyUp, initialize} from "./GameInterFaceControl"
+import {changeActiveActionBarSlot} from "./ActionBarHandler.ts";
 
 const GameInterface = ({isChatOpen})=>{
-    const keys = {};
 
     const tileContainerReference = useRef<HTMLDivElement>(null)
     const cameraReference = useRef<HTMLDivElement>(null)
@@ -10,46 +10,18 @@ const GameInterface = ({isChatOpen})=>{
     const playerContainerReference = useRef<HTMLDivElement>(null)
     const playerReference = useRef<HTMLDivElement>(null)
 
-
-
     useEffect(() => {
-        function handleKeyDownScript(event){
-            handleKeyDown(event.key.toLowerCase())
-        }
-        function handleKeyUpScript(event){
-            handleKeyUp(event.key.toLowerCase())
-        }
-        document.addEventListener('keydown',handleKeyDownScript)
-        document.addEventListener('keyup',handleKeyUpScript)
-
-
-        if(isChatOpen){
-            console.log("open Chat")
-            document.removeEventListener('keydown',handleKeyDownScript)
-            document.removeEventListener('keydown',handleKeyUpScript)
-        }else{
-            console.log("closed chat")
-            document.addEventListener('keydown',handleKeyDownScript)
-            document.addEventListener('keyup',handleKeyUpScript)
-        }
-
-
         if(sceneContainerReference && cameraReference && playerContainerReference && playerReference){
             initialize(sceneContainerReference.current, cameraReference.current, playerContainerReference.current, playerReference.current)
         }
-
-        return () =>{
-            document.removeEventListener('keydown',handleKeyDownScript)
-            document.removeEventListener('keydown',handleKeyUpScript)
-        }
-
-    }, [isChatOpen]);
-
-
-
+    }, []);
 
     return (
-        <div className="gameInterface" >
+         <div className="gameInterface"
+              tabIndex={0}
+             onKeyDown={(event)=>{(event.key >= "1" && event.key <="8") ? changeActiveActionBarSlot(event.key-1): handleKeyDown(event.key.toLowerCase())}}
+             onKeyUp={(event)=>{handleKeyUp(event.key.toLowerCase())}}
+        >
             <div className="tileContainer" ref={tileContainerReference}>
                 <div ref={cameraReference} className="camera">
                     <div ref={sceneContainerReference} className="sceneContainer">

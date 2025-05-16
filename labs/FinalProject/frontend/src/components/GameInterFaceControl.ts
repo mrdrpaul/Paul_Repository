@@ -30,12 +30,12 @@ let isSouthPlane : boolean
 
 let isMoving = false;
 
-export function handleKeyDown(letter : string){
+export function handleKeyDown(letter : string | number){
     keys[letter] = true;
     // isMoving = true;
 
 }
-export function handleKeyUp(letter: string){
+export function handleKeyUp(letter: string | number){
     keys[letter]=false;
     // isMoving = false;
 }
