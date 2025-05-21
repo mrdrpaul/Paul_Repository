@@ -1,8 +1,10 @@
 import {useEffect, useRef} from "react";
-import {handleKeyDown, handleKeyUp, initialize} from "./GameInterFaceControl"
+import {handleKeyDown, handleKeyUp, initialize} from "./GameInterFaceControl.ts"
 import {changeActiveActionBarSlot} from "./ActionBarHandler.ts";
+import Castle from "./models/castles/castle.tsx";
+// import {handlePressedKeys} from "./gameComponent/HandleKeyBindings.ts";
 
-const GameInterface = ({isChatOpen})=>{
+const GameInterface = ({changeFocus})=>{
 
     const tileContainerReference = useRef<HTMLDivElement>(null)
     const cameraReference = useRef<HTMLDivElement>(null)
@@ -16,11 +18,14 @@ const GameInterface = ({isChatOpen})=>{
         }
     }, []);
 
+    const handleFocusChange = () =>{
+        changeFocus("game")
+    }
+
     return (
          <div className="gameInterface"
               tabIndex={0}
-             onKeyDown={(event)=>{(event.key >= "1" && event.key <="8") ? changeActiveActionBarSlot(event.key-1): handleKeyDown(event.key.toLowerCase())}}
-             onKeyUp={(event)=>{handleKeyUp(event.key.toLowerCase())}}
+              onClick={handleFocusChange}
         >
             <div className="tileContainer" ref={tileContainerReference}>
                 <div ref={cameraReference} className="camera">
@@ -42,38 +47,7 @@ const GameInterface = ({isChatOpen})=>{
 
                             <div className="golemEnemy">
                             </div>
-
-
-                            <div className="castle">
-
-                                <div className="castleWall castleWallFront">
-                                    <div className="castleWall castleWallFrontLeft"></div>
-                                    <div className="castleWall castleWallFrontGate">
-                                        <div className="torchLeft">
-                                            <div className="torch torchFaceOne"></div>
-                                            <div className="torch torchFaceTwo"></div>
-                                        </div>
-                                        <div className="torchRight">
-                                            <div className="torch torchFaceOne"></div>
-                                            <div className="torch torchFaceTwo"></div>
-                                        </div>
-                                    </div>
-                                    <div className="castleWall castleWallFrontRight"></div>
-                                </div>
-
-                                <div className="castleWall castleWallLeft"></div>
-                                <div className="castleWall castleWallRight"></div>
-                                <div className="castleWall castleWallBack"></div>
-
-                                <div className="town">
-
-                                </div>
-
-                                <div className="treeContainer">
-                                    <div className="tree treeFaceOne"></div>
-                                    <div className="tree treeFaceTwo"></div>
-                                </div>
-                            </div>
+                            <Castle/>
                         </div>
                     </div>
                 </div>

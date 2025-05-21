@@ -1,4 +1,4 @@
-import type {Character} from "../CharacterType"
+import type {Character} from "../../CharacterType.ts"
 
 type CharacterProps = {
     character : Character;

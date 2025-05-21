@@ -1,7 +1,3 @@
-// let playerOneContainer = document.getElementsByClassName("playerContainer")[0];
-// let playerOne = document.getElementsByClassName("player")[0];
-
-// let sceneContainer = document.getElementsByClassName("sceneContainer")[0]
 let sceneContainer : HTMLElement;
 let camera : HTMLElement;
 let playerContainer : HTMLElement;
@@ -32,12 +28,10 @@ let isMoving = false;
 
 export function handleKeyDown(letter : string | number){
     keys[letter] = true;
-    // isMoving = true;
 
 }
 export function handleKeyUp(letter: string | number){
     keys[letter]=false;
-    // isMoving = false;
 }
 
 setInterval(()=>{
@@ -50,7 +44,6 @@ setInterval(()=>{
     if(keys["arrowright"]){cameraRight()}
 
     handleMovement();
-    // handleHandMovement(isMoving)
 },100)
 
 function moveForward(){
@@ -80,26 +73,20 @@ function cameraRight(){
     cameraAngle-=45
 }
 
-function handleMovement(){
+function handleMovement() {
     isNorthPlane = (cameraAngle === 0 || cameraAngle === 45 || cameraAngle === 315)
     isEastPlane = (cameraAngle === 225 || cameraAngle === 270 || cameraAngle === 315)
     isWestPlane = (cameraAngle === 45 || cameraAngle === 90 || cameraAngle === 135)
     isSouthPlane = (cameraAngle === 135 || cameraAngle === 180 || cameraAngle === 225)
-    cameraAngle = (cameraAngle + 360)%360
+    cameraAngle = (cameraAngle + 360) % 360
 
     //playerContainer moves the character
-    playerContainer.style.transform=`rotateX(-90deg) translate3d(${playerOnePosition[0]}px,${playerOnePosition[1]*-1}px,${playerOnePosition[2]*-1}px)`
+    playerContainer.style.transform = `rotateX(-90deg) translate3d(${playerOnePosition[0]}px,${playerOnePosition[1] * -1}px,${playerOnePosition[2] * -1}px)`
     // golemEnemy.style.transform=`rotateX(-90deg) translate3d(${playerOnePosition[0]}px,10px,${playerOnePosition[2]*-1}px)`
     //player rotates the play to face camera (only matters for third person)
-    player.style.transform=`rotateY(${playerAngle}deg)`
+    player.style.transform = `rotateY(${playerAngle}deg)`
     //camera is purely for looking around (rotating board on axis of camera)
-    camera.style.transform=`rotateZ(${playerAngle + 0.00001}deg) rotateX(${playerAngle2}deg)`
+    camera.style.transform = `rotateZ(${playerAngle + 0.00001}deg) rotateX(${playerAngle2}deg)`
     //sceneContainer translation is to simulate movement in a 3d space
-    sceneContainer.style.transform=`translate3d(${-1*playerOnePosition[0]}px,${playerOnePosition[2]}px,0px)`
-}
-
-function handleHandMovement(movement: boolean){
-    if(movement){
-
-    }
+    sceneContainer.style.transform = `translate3d(${-1 * playerOnePosition[0]}px,${playerOnePosition[2]}px,0px)`
 }

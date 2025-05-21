@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from "react";
-import type {Character} from "../CharacterType.ts";
-import {fetchCharacters} from "./CharacterService.ts";
+import type {Character} from "../../CharacterType.ts";
+import {fetchCharacters} from "../CharacterService.ts";
 import {changeImages} from "./characterSelection.ts";
 import NewCharacterPane from "./NewCharacterPane.tsx";
 import CharacterSelectionPanels from "./CharacterSelectionPanels.tsx";

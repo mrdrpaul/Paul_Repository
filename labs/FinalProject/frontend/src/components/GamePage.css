@@ -4,12 +4,6 @@
   border: none;
 }
 
-:root{
-  /*--selectedHandItem: url("../assets/torch.png");*/
-  --selectedHandItem:url;
-  --selectedBackgroundColor: black
-}
-
 
 .bodyPage{
   width: 100vw;
@@ -113,7 +107,9 @@ body header, footer{
 .chatInterface.closed{
   height: 0;
 }
-
+.gameInterfaceContainer{
+  /*display: block;*/
+}
 .gameInterface{
   background-image: url("../assets/cloudsBackground.png");
   display: flex;
@@ -271,43 +267,6 @@ body header, footer{
 
 }
 
-.actionBar{
-  position:absolute;
-  display: grid;
-  grid-template-columns: repeat(8,12.5fr);
-  height:100px;
-  width:800px;
-  border: 5px solid white;
-  bottom: 50px;
-  left: 50%;
-  background-color: tan;
-  transform:translate(-50%);
-  opacity: 0.7;
-}
-
-.actionBarSlot{
-  outline: 2px solid white;
-  height: 100%;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-.slotOne{
-  background-image: url("../assets/paladinSword.png");
-}
-
-.slotTwo{
-  background-image: url("../assets/torch.png")
-}
-/*.slotThree{*/
-/*  background-image: var(--selectedHandItem);*/
-/*}*/
-
-.actionBarSlot.isSelected{
-  /*background-color: black;*/
-  background-color: var(--selectedBackgroundColor);
-}
-
 /*_______________________________________CSS for camera stylization (parent of the tile)_______________________________________*/
 .camera{
   display: block; /*hides entire element and children until activated*/
@@ -436,139 +395,3 @@ body header, footer{
 
 
 /*_______________________________________End CSS for player handItem_______________________________________*/
-
-
-
-
-/*_______________________________________Begin Castle customization_______________________________________*/
-.castle{
-  position: absolute;
-  left:100px;
-  aspect-ratio: 1;
-  width: 600px;
-  background-image: url("../assets/mossyCobblestoneRoad.png");
-  background-position: center;
-  background-size: 100px 100px;
-  transform-style: preserve-3d;
-}
-.castleWall{
-  position: absolute;
-  background-image: url("../assets/castleWall.png");
-  background-position: center;
-  background-size: contain;
-  width: 600px;
-  height: 100px;
-}
-
-.castleWallFront{
-  bottom: 0;
-  background-image: none;
-  transform-origin: bottom;
-  transform: rotateX(-90deg);
-  transform-style: preserve-3d;
-}
-.castleWallFrontLeft{
-  position: absolute;
-  width:275px;
-}
-.castleWallFrontGate{
-  position: absolute;
-  background-image: url("../assets/gate.png");
-  width: 150px;
-  height: 150px;
-  left:225px;
-  bottom:0;
-  background-repeat: no-repeat;
-  z-index: 1;
-  transform-style: preserve-3d;
-
-}
-.torch{
-  /*display: none;*/
-  position: absolute;
-  width: 10px;
-  height: 30px;
-  background-image: url("../assets/torch.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  /*transform: rotateZ(0deg) translate3d(10px,-106px,-16px);*/
-  transform-style: preserve-3d;
-
-}
-.torchLeft{
-  position: absolute;
-  width: 10px;
-  height: 30px;
-  bottom: 41px;
-  left:29px;
-  transform-style: preserve-3d;
-  transform:rotateX(-28deg) translate3d(0px, 0px, 8px);
-
-}
-.torchRight{
-  position: absolute;
-  width: 10px;
-  height: 30px;
-  bottom: 41px;
-  right:29px;
-  transform-style: preserve-3d;
-  transform:rotateX(-28deg) translate3d(0px, 0px, 8px);
-
-}
-.torchFaceTwo{
-  transform: rotateY(90deg);
-}
-
-.castleWallFrontRight{
-  right:0;
-  position: absolute;
-  width:275px;
-}
-
-.castleWallBack{
-  top: -100px;
-  transform-origin: bottom;
-  transform: rotateX(-90deg);
-}
-.castleWallLeft{
-  top: -100px;
-  transform-origin: bottom right;
-  transform: rotateX(-90deg) rotateY(90deg);
-}
-.castleWallRight{
-  top: -100px;
-  transform-origin: bottom left;
-  transform: rotateX(-90deg) rotateY(-90deg);
-}
-
-
-.treeContainer{
-  position: absolute;
-  transform-style: preserve-3d;
-  /*background-color: red;*/
-  width: 35px;
-  height: 70px;
-  transform-origin: bottom;
-  transform: rotateX(-90deg);
-
-}
-.tree{
-  position: absolute;
-  width: inherit;
-  height: inherit;
-  background-image: url("../assets/tree.png");
-  background-position: center;
-  background-size: cover;
-  transition: filter 1s linear;
-}
-.treeFaceOne{
-
-}
-.treeFaceTwo{
-  transform:rotateY(90deg);
-
-}
-
-
-/*_______________________________________End Castle customization_______________________________________*/

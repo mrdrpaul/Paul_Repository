@@ -1,14 +1,15 @@
 import {useEffect, useRef, useState} from "react";
 
-type Props = {
-    isOpen: boolean;
-}
 
-function ChatInterface({isOpen}: Props){
+// function ChatInterface({isOpen}: Props, {changeFocus}){
+const ChatInterface = ({isOpen,changeFocus})=>{
     const [chatText,setChatText] = useState("")
     const [chatLog, setChatLog] = useState<string[]>([])
     const [currentUser,setCurrentUser] = useState("[GAME DEV] [mrdrpaul] ")
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+    const chatInterfaceReference = useRef<HTMLDivElement>(null)
+
     const handleChange = (event) =>{
         setChatText(event.target.value)
     }
@@ -20,12 +21,24 @@ function ChatInterface({isOpen}: Props){
         }
     }
 
+    const handleFocusChange = () =>{
+        changeFocus("chat")
+    }
+
     useEffect(()=>{
         messagesEndRef.current?.scrollIntoView({behavior:"smooth"});
     },[chatLog])
 
+    useEffect(() => {
+
+    }, []);
+
     return(
-        <div className={`chatInterface ${isOpen ? "open" : "closed"}`}>
+        <div ref={chatInterfaceReference}
+            className={`chatInterface ${isOpen ? "open" : "closed"}`}
+             tabIndex={0}
+        onClick={handleFocusChange}
+        >
             <div className={"chatMessages"}>{chatLog.map((msg,i)=>(
                 <div key={i}>{currentUser} : {msg}</div>
             ))}

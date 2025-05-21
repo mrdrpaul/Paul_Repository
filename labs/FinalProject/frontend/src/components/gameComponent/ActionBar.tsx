@@ -1,5 +1,6 @@
+import "./actionBar.css"
 import {useEffect, useRef} from "react";
-import {changeActiveActionBarSlot, createReferenceMappings, initializeFirstActionBarSlot} from "./ActionBarHandler.ts";
+import {createReferenceMappings, initializeFirstActionBarSlot} from "./ActionBarHandler.ts";
 
 const ActionBar = () =>{
     const slotOneReference = useRef<HTMLDivElement>(null)
@@ -11,21 +12,7 @@ const ActionBar = () =>{
     const slotSevenReference = useRef<HTMLDivElement>(null)
     const slotEightReference = useRef<HTMLDivElement>(null)
 
-    const references = [slotOneReference, slotTwoReference, slotThreeReference, slotFourReference, slotFiveReference, slotSixReference, slotSevenReference, slotEightReference]
-
-    // useEffect(() => {
-    //     function handleKeyDown(event){
-    //         console.log("action bar " + event.key)
-    //     }
-    //
-    //
-    //
-    //     document.addEventListener('keydown'.current,handleKeyDown)
-    // }, []);
-
-    // const handleClick = (event) =>{
-    //     console.log(event.target + " was clicked")
-    // }
+    // const references = [slotOneReference, slotTwoReference, slotThreeReference, slotFourReference, slotFiveReference, slotSixReference, slotSevenReference, slotEightReference]
 
     useEffect(() => {
         if(slotOneReference){
@@ -50,25 +37,6 @@ const ActionBar = () =>{
         // createReferenceMappings(references)
 
     }, []);
-
-    function handleKey(event){
-        if(event.key >= 1 && event.key <=8){
-            // changeActiveActionBarSlot(references[event.key-1])
-            console.log("number " + event.key +" pressed")
-            changeActiveActionBarSlot(event.key-1)
-            // createReferenceMappings(references)
-            // console.log("element: " + references[event.key].current)
-        }else{
-            console.log("non number pressed: " + event.key)
-        }
-
-        // if(/\d/.test(event.key)){
-        //     console.log("number " + event.key +" pressed")
-        // }else{
-        //     console.log("non number pressed: " + event.key)
-        // }
-        // changeActiveActionBarSlot(event.key)
-    }
 
     return(
         // <div tabIndex={0} className={"actionBar"} onKeyDown={(event) => {handleKey(event)}}>

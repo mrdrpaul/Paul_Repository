@@ -11,8 +11,8 @@ let slotSeven : HTMLElement;
 let slotEight : HTMLElement;
 let actionBarSlots: HTMLElement[];
 
-import swordImage from "../assets/paladinSword.png"
-import torchImage from "../assets/torch.png"
+import swordImage from "../../assets/paladinSword.png"
+import torchImage from "../../assets/torch.png"
 
 let actionBarItems = [swordImage, torchImage]
 

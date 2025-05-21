@@ -1,4 +1,4 @@
-import './GamePage.css'
+import '../GamePage.css'
 
 type Props = {
     isOpen: boolean;

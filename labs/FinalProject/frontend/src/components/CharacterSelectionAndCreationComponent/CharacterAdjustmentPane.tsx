@@ -1,8 +1,8 @@
-import type {Character} from "../CharacterType"
+import type {Character} from "../../CharacterType.ts"
 import {useEffect, useState} from "react";
 import {loreChanger} from "./characterSelection.ts";
 import axios from "axios";
-import {fetchCharacters} from "./CharacterService.ts";
+import {fetchCharacters} from "../CharacterService.ts";
 
 type CharacterProps = {
     character : Character;
