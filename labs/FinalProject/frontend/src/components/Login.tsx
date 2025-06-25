@@ -3,6 +3,7 @@ import music from '../assets/deep-in-the-dungeon.mp3'
 import axios from "axios";
 import {fetchAccounts} from "./AccountService.ts";
 import type {Account} from "../AccountType.ts";
+import "./login.css"
 
 function Login({authentication}){
     const [Accounts, setAccounts] = useState<Account[]>([])

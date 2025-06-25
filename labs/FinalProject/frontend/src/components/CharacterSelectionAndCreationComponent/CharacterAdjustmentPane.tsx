@@ -7,12 +7,12 @@ import {fetchCharacters} from "../CharacterService.ts";
 type CharacterProps = {
     character : Character;
     imageChange : string;
-    isCharacterSelected: boolean;
+    isCharacterSelectedGameStarted: boolean;
 }
 
 
 // const CharacterAdjustmentPane = ({character}: CharacterProps) =>{
-const CharacterAdjustmentPane = ({character, imageChange, isCharacterSelected} :CharacterProps) =>{
+const CharacterAdjustmentPane = ({character, imageChange, isCharacterSelectedGameStarted} :CharacterProps) =>{
     const [currentCharacterId,setCurrentCharacterId] = useState<number>()
 
     const [characterName, setCharacterName] = useState("")
@@ -74,7 +74,7 @@ const CharacterAdjustmentPane = ({character, imageChange, isCharacterSelected} :
     }
 
     const playGame = ()=>{
-        isCharacterSelected(true)
+        isCharacterSelectedGameStarted(true)
     }
 
     return(

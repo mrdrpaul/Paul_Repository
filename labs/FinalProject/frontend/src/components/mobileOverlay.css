@@ -1,0 +1,17 @@
+.mobileOverlay{
+    bottom: 0;
+    position: absolute;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-row: auto auto auto;
+    width: 75px;
+    height: 50px;
+    left: 50%;
+    transform: translate(-50%);
+}
+.mobileMovement{
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    outline: 1px solid black;
+}

@@ -10,7 +10,7 @@
   height: 100vh;
   display: grid;
   grid-template-columns: 2.5fr 95fr 2.5fr ;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 100fr auto;
   text-align: center;
   transition: background 5s linear;
 }
@@ -22,104 +22,41 @@ body header, footer{
   color: white;
 }
 
-#columnCenterBlock{
-  display: grid;
-  grid-template-columns: 100fr auto;
-  grid-template-rows:  100fr auto;
-  overflow: hidden;
-  background-image: url("../assets/loginBackground.png");
-  background-size: 100vw 100vh;
-  background-position: center;
-}
+
 
 #columnLeftBorder,#columnRightBorder{
   background-color: black;
   height: 100%;
 }
 
-.loginModal{
-  position: absolute;
-  display: block;
-  z-index: 1;
-  width: 300px;
-  height:200px;
-  box-shadow: 0 0 1000px 100px black;
-  align-items: center;
-  align-content: center;
-  background-color: tan;
-  background-image: url("../assets/loginBackground.png");
-  background-size: contain;
-  background-position: center;
-
-  transform: translate(-50%,-50%);
-  left: 50%;
-  top: 50%;
-}
-
-#loginMusic{
-  display: none;
-}
-
-.menuInterface{
-  background-color: darkgoldenrod;
-  background-position: center;
-  grid-column: 2;
-  grid-row: 1/span 2;
-  outline: 5px solid tan;
-  outline-offset: -5px;
-  transition: width 0.7s ease;
-}
-.menuInterface.open{
-  width: 400px;
-}
-
-.menuInterface.closed{
-  width: 0;
-}
-
-.chatInterface{
-  flex-direction: column;
-  display: flex;
-  position: relative;
-  background-color: tan;
-  transition: height 0.7s ease;
-  text-align: left;
-}
-.chatMessages{
-  flex: 1;
-  overflow: auto;
-  color: black;
-}
-.chatBar{
-  display: none;
-  bottom: 0;
-  width:100%;
-  height: 20px;
-  border-top: 1px solid white;
-}
-
-.chatInterface.open{
-  height: 250px;
-}
-.chatInterface.open > .chatBar{
-  display: flex;
-}
-.chatInterface.closed{
-  height: 0;
-}
-.gameInterfaceContainer{
-  /*display: block;*/
-}
-.gameInterface{
-  background-image: url("../assets/cloudsBackground.png");
-  display: flex;
-  perspective: 800px;
+#columnCenterBlock{
+  width: 100%;
   height:100%;
+  position: relative;
+  display: block;
   overflow: hidden;
-  justify-content: center;
-  align-items: center;
-  background-size: 100% 100%;
+  background-image: url("../assets/loginBackground.png");
+  background-size: 100vw 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
+.gameComponentContainer{
+
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,auto);
+    grid-template-rows: minmax(0,1fr) minmax(0,auto);
+    grid-template-areas:
+    "game menu"
+    "chat menu"
+  ;
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+    /*background-image: url("../assets/loginBackground.png");*/
+    /*background-size: 100vw 100vh;*/
+    /*background-position: center;*/
+    /*background-repeat: no-repeat;*/
 }
 
 #gameBar{
@@ -127,131 +64,6 @@ body header, footer{
   top: 0;
 }
 
-.characterSelectionPage{
-  display: grid;
-  grid-template-columns: 20fr 60fr 20fr;
-  width: 100%;
-  height: 100%;
-  transition: background-image 2s linear;
-  background-image: url("../assets/characterSelectionBackground.png");
-  background-size: 100vw 100vh;
-  background-position: center;
-}
-
-
-.characterView{
-  position: relative;
-}
-.currentCharacterView{
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  left: 50%;
-  bottom: 0;
-  transition: background-image 2s linear;
-  transform: translate(-50%,-20%);
-  animation: rotateCharacter 10s linear infinite;
-}
-
-@keyframes rotateCharacter{
-  from{transform: translate(-50%,-20%) rotateY(0deg)}
-  50%{transform: translate(-50%,-20%) rotateY(360deg)}
-  to{transform: translate(-50%,-20%) rotateY(0deg)}
-
-}
-
-.characterStatAdjustment{
-  position: relative;
-  background-color: slategray;
-  text-align: center;
-}
-.statPointContainer{
-  display: flex;
-  height:100px;
-  width: 100%;
-
-}
-.pointContainer{
-  width:25%;
-  height:50px;
-  background-color:purple;
-}
-
-.statButton{
-  width:25px;
-  height:25px;
-  padding:0;
-  text-align:center
-}
-
-.characterLore{
-  position: relative;
-  display: block;
-  width: 250px;
-  height:200px;
-  left: 50%;
-  background-color: cadetblue;
-  padding: 4px;
-  outline: 4px solid white;
-  color:black;
-  text-align: center;
-  transform: translate(-50%);
-}
-
-.characterList{
-  overflow: auto;
-}
-
-.characterSelectionPanel{
-  background-color: slategray;
-  position: relative;
-  display: block;
-  border: 5px solid white;
-  opacity: 0.8;
-  height: 200px;
-  margin: 5px;
-}
-.nameAndClassRow{
-  text-align: start;
-  height:50px;
-  width: 100%;
-  border-bottom: 5px solid white;
-}
-.panelStatPointContainer{
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-}
-
-.health, .mana, .attack, .defense{
-  align-items: center;
-  display: flex;
-}
-
-.healthIcon, .manaIcon, .attackIcon, .defenseIcon{
-  width: 50px;
-  height:50px;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-}
-.healthIcon{
-  background-image: url("../assets/heartIcon.png");
-
-}
-.manaIcon{
-  background-image: url("../assets/manaIcon.png");
-}
-.attackIcon{
-  background-image: url("../assets/swordIcon.png");
-}
-.defenseIcon{
-  background-image: url("../assets/shieldIcon.png");
-}
 
 
 /*_______________________________________CSS for tile container stylization (parent of the tile elements)_______________________________________*/
@@ -303,6 +115,7 @@ body header, footer{
   aspect-ratio: 1;
   width: inherit;
   background-image: url("../assets/grass.png");
+  /*background-image: url("../assets/stars.png");*/
   background-size:100px 100px;
   background-position: center;
   transition: background-image 1s linear;

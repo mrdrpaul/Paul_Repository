@@ -316,7 +316,7 @@ function buildScene(){
 
 }
 function createWorm(){
-    let segments = 10;
+    let segments = 100;
     let distance = 0;
     let worm = document.getElementsByClassName("wormContainer")[0];
     for(let i =0; i < segments; i++) {
@@ -330,7 +330,7 @@ function createWorm(){
             div.style.transform=`translate3d(0,100px,${distance}px)`;
             distance-=10
             segments -=1;
-        },i*300)
+        },i*5)
     }
 
 

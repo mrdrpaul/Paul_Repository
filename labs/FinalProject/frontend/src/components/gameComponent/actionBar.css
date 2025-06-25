@@ -32,6 +32,15 @@
 .slotTwo{
     background-image: url("../../assets/torch.png")
 }
+.slotThree{
+    background-image: url("../../assets/wizardBook.png");
+    animation: glowBook 3s linear infinite;
+}
+@keyframes glowBook {
+    from{}
+    50%{filter: brightness(1.3)}
+    to{}
+}
 /*.slotThree{*/
 /*  background-image: var(--selectedHandItem);*/
 /*}*/

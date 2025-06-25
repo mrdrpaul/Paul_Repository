@@ -486,10 +486,13 @@ body header, footer{
 
 .wormSegment{
     position: absolute;
-    width: 15px;
+    width: 5px;
     aspect-ratio: 1;
     background-color: green;
     transition: transform 1s linear;
+    background-image: url("./assets/3dCard/pillar.png");
+    background-position: center;
+    background-size: contain;
 }
 
 

@@ -13,8 +13,9 @@ let actionBarSlots: HTMLElement[];
 
 import swordImage from "../../assets/paladinSword.png"
 import torchImage from "../../assets/torch.png"
+import wizardBookImage from "../../assets/wizardBook.png"
 
-let actionBarItems = [swordImage, torchImage]
+let actionBarItems = [swordImage, torchImage,wizardBookImage]
 
 const root = document.documentElement;
 

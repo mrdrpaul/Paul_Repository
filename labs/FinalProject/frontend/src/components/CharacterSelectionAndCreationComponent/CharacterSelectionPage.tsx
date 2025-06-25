@@ -5,14 +5,15 @@ import {changeImages} from "./characterSelection.ts";
 import NewCharacterPane from "./NewCharacterPane.tsx";
 import CharacterSelectionPanels from "./CharacterSelectionPanels.tsx";
 import CharacterAdjustmentPane from "./CharacterAdjustmentPane.tsx";
+import "./characterSelectionPage.css"
 
-function CharacterSelectionPage({onStateChange, activeId}){
+function CharacterSelectionPage({selectedActiveCharacter, onStateChange, activeId}){
     const [characters,setCharacters] = useState<Character[]>([])
     const [currentAccountId,setCurrentAccountId] = useState(activeId)
     const [isCharacterSelected, setIsCharacterSelected] = useState(false)
     const [isNewCharacter,setIsNewCharacter] = useState(false)
 
-    const [selectedCharacter, setSelectedCharacter] = useState<Character>()
+    const [currentSelectedCharacter, setCurrentSelectedCharacter] = useState<Character>()
 
 
     const characterReference = useRef<HTMLDivElement>(null)
@@ -20,10 +21,9 @@ function CharacterSelectionPage({onStateChange, activeId}){
 
     const handleCharacterSelection = (event, character : Character) =>{
         setIsNewCharacter(false);
-        setSelectedCharacter(character)
+        setCurrentSelectedCharacter(character)
         setIsCharacterSelected(true)
         console.log(character)
-        console.log(true)
 
     }
 
@@ -35,6 +35,7 @@ function CharacterSelectionPage({onStateChange, activeId}){
 
     const handleCharacterUpdate = (selectedCharacter: boolean) =>{
         if(selectedCharacter){
+            selectedActiveCharacter(currentSelectedCharacter)
             onStateChange(true)
         }
         // fetchCharacters(currentAccountId).then(setCharacters)
@@ -45,6 +46,7 @@ function CharacterSelectionPage({onStateChange, activeId}){
         console.log(characters)
     }
     const handleImageChange = (value: String) =>{
+        console.log("account Id: " + activeId)
         if(characterReference){
             changeImages(characterSelectionPageReference.current, characterReference.current, value)
         }
@@ -53,7 +55,7 @@ function CharacterSelectionPage({onStateChange, activeId}){
     const handleCharacterCreationAndAdjustment = () =>{
         if(isCharacterSelected){
             return(
-                <CharacterAdjustmentPane character={selectedCharacter} imageChange={handleImageChange} isCharacterSelected={handleCharacterUpdate}/>
+                <CharacterAdjustmentPane character={currentSelectedCharacter} imageChange={handleImageChange} isCharacterSelectedGameStarted={handleCharacterUpdate}/>
             )
         }else if(isNewCharacter){
             return(

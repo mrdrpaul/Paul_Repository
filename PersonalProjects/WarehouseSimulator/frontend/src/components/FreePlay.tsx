@@ -1,11 +1,8 @@
 import {useEffect, useRef} from "react";
-import {handleKeyDown, handleKeyUp, initialize} from "./GameInterFaceControl.ts"
-import {changeActiveActionBarSlot} from "./ActionBarHandler.ts";
-import Castle from "./models/castles/castle.tsx";
-import "./gameInterface.css"
-// import {handlePressedKeys} from "./gameComponent/HandleKeyBindings.ts";
-
-const GameInterface = ({changeFocus})=>{
+import {handleKeyDown, handleKeyUp, initialize} from "./FreePlay.ts";
+import "./freePlay.css"
+import Warehouse from "./Models/Warehouse.tsx";
+const FreePlay = () =>{
 
     const tileContainerReference = useRef<HTMLDivElement>(null)
     const cameraReference = useRef<HTMLDivElement>(null)
@@ -13,22 +10,26 @@ const GameInterface = ({changeFocus})=>{
     const playerContainerReference = useRef<HTMLDivElement>(null)
     const playerReference = useRef<HTMLDivElement>(null)
 
+    function handleKey(event){
+        console.log(event)
+    }
+
+
     useEffect(() => {
         if(sceneContainerReference && cameraReference && playerContainerReference && playerReference){
             initialize(sceneContainerReference.current, cameraReference.current, playerContainerReference.current, playerReference.current)
         }
     }, []);
 
-    const handleFocusChange = () =>{
-        changeFocus("game")
-    }
-
     return (
-         <div className="gameInterface"
-              tabIndex={0}
-              onClick={handleFocusChange}
+        <div className="gameInterface"
+             // onKeyDown={(event)=>{handleKeyDown(event.key.toLowerCase())}}
+             // onKeyDown={(event)=>{handleKey(event.key.toLowerCase())}}
+             // onKeyUp={(event)=>{handleKeyUp(event.key.toLowerCase())}}
         >
-            <div className="tileContainer" ref={tileContainerReference}>
+            <div className="tileContainer" ref={tileContainerReference}
+
+            >
                 <div ref={cameraReference} className="camera">
                     <div ref={sceneContainerReference} className="sceneContainer">
                         <div className="scene">
@@ -45,10 +46,7 @@ const GameInterface = ({changeFocus})=>{
                             <div className="baseFaces baseLeft"></div>
                             <div className="baseFaces baseRight"></div>
                             <div className="baseFaces baseFloor"></div>
-
-                            <div className="golemEnemy">
-                            </div>
-                            <Castle/>
+                            <Warehouse/>
                         </div>
                     </div>
                 </div>
@@ -56,4 +54,4 @@ const GameInterface = ({changeFocus})=>{
         </div>
     )
 }
-export default GameInterface
+export default FreePlay

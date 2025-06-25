@@ -1,0 +1,50 @@
+.menuInterface{
+    position: relative;
+    background-color: darkgoldenrod;
+    background-position: center;
+    /*width: 0;*/
+    /*grid-column: 2;*/
+    /*grid-row: 1/span 2;*/
+    grid-area: menu;
+    /*outline: 5px solid tan;*/
+    /*outline: 5px solid black;*/
+    outline-offset: -5px;
+    transition: width 0.7s ease;
+    /*width:200px;*/
+    /*background-image: url("../../assets/inventoryBackground.png");*/
+    /*background-size: 100% 100%;*/
+    /*background-repeat: no-repeat;*/
+}
+.menuInterface.open{
+    width: 400px;
+}
+
+.menuInterface.closed{
+    width: 0;
+}
+
+.characterInventory{
+    position: relative;
+    display: grid;
+    grid-template-columns: 25fr 25fr 25fr 25fr;
+    grid-template-rows: repeat(8,100px);
+    grid-gap: 10px;
+    top: 0;
+    background-color: black;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
+
+.menuTitle{
+    /*grid-column: 1/span 4;*/
+    background-color: red;
+}
+
+.inventorySlot{
+    position: relative;
+    background-color: white;
+    width: 100%;
+    height: 100px;
+}
+

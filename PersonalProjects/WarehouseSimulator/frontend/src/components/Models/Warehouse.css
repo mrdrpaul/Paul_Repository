@@ -1,0 +1,57 @@
+
+
+
+/*_______________________________________Begin Castle customization_______________________________________*/
+.warehouse{
+    position: absolute;
+    left:250px;
+    aspect-ratio: 1;
+    width: 100px;
+    border: 5px solid white;
+    /*background-image: url("../../assets/warehouseBack.png");*/
+    /*background-position: center;*/
+    /*background-size: 100px 100px;*/
+    transform-style: preserve-3d;
+}
+.warehouseFace{
+    position: absolute;
+    bottom: 0;
+    width: 100px;
+    height:100px;
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.warehouseFaceFront{
+    transform: rotateX(-90deg);
+    background-image: url("../../assets/warehouseFront.png");
+}
+.warehouseFaceLeft{
+    top: -67px;
+    height:67px;
+    width:100px;
+    background-size: cover;
+    transform-origin: bottom right;
+    background-image: url("../../assets/warehouseSide.png");
+    transform: rotateX(-90deg) rotateY(90deg);
+
+
+}
+.warehouseFaceRight{
+    /*top: -100px;*/
+    transform-origin: bottom left;
+    /*transform: rotateX(-90deg) rotateY(-90deg);*/
+    background-image: url("../../assets/warehouseSide.png");
+
+}
+.warehouseFaceBack{
+    /*transform: rotateX(-90deg);*/
+    background-image: url("../../assets/warehouseBack.png");
+
+}
+
+
+/*_______________________________________End Castle customization_______________________________________*/
